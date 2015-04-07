@@ -21,21 +21,31 @@
 class Node
 {
 public:
-    Node();
+    Node(int data = 0);
     Node(const Node&) = delete;
     Node& operator =(const Node&) = delete;
     ~Node() = default;
     bool check();
     bool nodeCheck();
 
+    void degraph();
+    bool regraph(Node* child);
+
+    bool isOrphan();
+    bool isLeftFree();
+    bool isRightFree();
+
 private:
+    Node* _getParent();
+    void _setParent(Node* parent);
+
     Node* _parent;
     Node* _left;
     Node* _right;
 
     int _data;
 
-    Node* getParent();
 };
+
 
 #endif // __NODE_H_INCLUDED__
