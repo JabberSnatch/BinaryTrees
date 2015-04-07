@@ -79,9 +79,37 @@ Node::isRightFree()
     return (_right == nullptr);
 }
 
+std::string
+Node::to_str()
+{
+    return _to_str("", 0);
+}
+
 void
 Node::_setParent(Node* parent)
 {
     _parent = parent;
+}
+
+std::string
+Node::_to_str(std::string acc, int depth)
+{
+    for(int i = 0; i < depth; ++i)
+    {
+        acc += " ";
+    }
+
+    acc += "-N:" + std::to_string(_data) + "\n";
+
+    if(_left != nullptr)
+    {
+        acc = _left->_to_str(acc, depth+1);
+    }
+    if(_right != nullptr)
+    {
+        acc = _right->_to_str(acc, depth+1);
+    }
+
+    return acc;
 }
 

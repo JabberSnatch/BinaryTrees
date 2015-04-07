@@ -43,6 +43,8 @@ int main(int argc, char* argv[])
     root.regraph(&a);
     root.regraph(&b);
 
+    std::cout << root.to_str() << std::endl;
+
     return 0;
 }
 
