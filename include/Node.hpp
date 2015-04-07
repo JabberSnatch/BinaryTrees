@@ -27,6 +27,8 @@ public:
     Node(const Node&) = delete;
     Node& operator =(const Node&) = delete;
     ~Node() = default;
+    bool check();
+    bool nodeCheck();
 
     //void SPR();
 
@@ -41,6 +43,7 @@ public:
     std::string to_str();
 
 private:
+    Node* _getParent();
     void _setParent(Node* parent);
     std::string _to_str(std::string acc, int depth);
 
