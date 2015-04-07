@@ -130,17 +130,16 @@ Node::isRightFree()
     return (_right == nullptr);
 }
 
-Node *  
-Node::_getParent()
-{
-	return _parent;
-}
-
-
 std::string
 Node::to_str()
 {
     return _to_str("", 0);
+}
+
+Node*  
+Node::_getParent()
+{
+    return _parent;
 }
 
 void
