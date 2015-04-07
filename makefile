@@ -1,13 +1,14 @@
 TARGET = prog
 
-SRCS = 
+SRCS = main.cpp\
+       Node.cpp\
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src
 BIN_DIR = ./bin
 INC_DIR = ./include
 
-DEP_DIRS = /usr/include/qt4
+DEP_DIRS =
 
 OBJS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 
