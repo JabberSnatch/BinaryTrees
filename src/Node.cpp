@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 
-#include "Node.cpp"
+#include "Node.hpp"
 
 Node::Node()
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(0)
