@@ -180,6 +180,12 @@ Node::to_str()
     return _to_str("", 0);
 }
 
+Node*  
+Node::_getParent()
+{
+    return _parent;
+}
+
 void
 Node::_setParent(Node* parent)
 {
