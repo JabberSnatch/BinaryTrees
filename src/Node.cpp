@@ -24,19 +24,23 @@ Node::Node(int data)
 
 
 bool 
-Node::check(){
+Node::check()
+{
     if(_parent!=nullptr)
         return false;
-    else{
+    else
+    {
         if((_left==nullptr)&&(_right==nullptr))
             return true;
         else{
-            if(_left!=nullptr){
-                if(_left->getParent() != this)
+            if(_left!=nullptr)
+            {
+                if(_left->_getParent() != this)
                     return false;
             }
-            if(_right!=nullptr){
-                if(_right->getParent() != this)
+            if(_right!=nullptr)
+            {
+                if(_right->_getParent() != this)
                     return false;
             }
             return (_right->nodeCheck()&&_left->nodeCheck());
@@ -49,15 +53,18 @@ bool
 Node::nodeCheck(){
     if((_left==nullptr)&&(_right==nullptr))
         return true;
-    else{
+    else
+    {
         bool leftChecked=true,rightChecked=true;
-        if(_left!=nullptr){
-            if(_left->getParent()!=this)
+        if(_left!=nullptr)
+        {
+            if(_left->_getParent()!=this)
                 return false;
             leftChecked=_left->nodeCheck();
         }
-        if(_right!=nullptr){
-            if(_right->getParent()!=this)
+        if(_right!=nullptr)
+        {
+            if(_right->_getParent()!=this)
                 return false;
             rightChecked=_right->nodeCheck();
         }
@@ -124,14 +131,43 @@ Node::isRightFree()
 }
 
 Node *  
-Node::_getParent(){
+Node::_getParent()
+{
 	return _parent;
-	
+}
+
+
+std::string
+Node::to_str()
+{
+    return _to_str("", 0);
 }
 
 void
 Node::_setParent(Node* parent)
 {
     _parent = parent;
+}
+
+std::string
+Node::_to_str(std::string acc, int depth)
+{
+    for(int i = 0; i < depth; ++i)
+    {
+        acc += " ";
+    }
+
+    acc += "-N:" + std::to_string(_data) + "\n";
+
+    if(_left != nullptr)
+    {
+        acc = _left->_to_str(acc, depth+1);
+    }
+    if(_right != nullptr)
+    {
+        acc = _right->_to_str(acc, depth+1);
+    }
+
+    return acc;
 }
 

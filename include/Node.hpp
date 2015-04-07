@@ -18,6 +18,8 @@
 #ifndef __NODE_H_INCLUDED__
 #define __NODE_H_INCLUDED__
 
+#include <string>
+
 class Node
 {
 public:
@@ -28,16 +30,21 @@ public:
     bool check();
     bool nodeCheck();
 
+    //void SPR();
+
     void degraph();
     bool regraph(Node* child);
 
     bool isOrphan();
     bool isLeftFree();
     bool isRightFree();
+    
+    std::string to_str();
 
 private:
     Node* _getParent();
     void _setParent(Node* parent);
+    std::string _to_str(std::string acc, int depth);
 
     Node* _parent;
     Node* _left;
