@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <chrono>
+#include <random>
 
 #include "Node.hpp"
 
@@ -44,6 +45,17 @@ int main(int argc, char* argv[])
     root.regraph(&b);
 
     std::cout << root.to_str() << std::endl;
+    std::cout << root.check() << std::endl;
+    std::cout << root.nombreFils() << std::endl;
+    
+    
+    std::mt19937 rng;
+    rng.seed(std::random_device()());
+    std::uniform_int_distribution<std::mt19937::result_type> randomNodes(0,root.nombreFils());
+	
+	int nb=randomNodes(rng);
+    std::cout << "noeud a " << nb << std::endl;
+    std::cout << (root.nodeAt(&nb))->to_str() << std::endl;
 
     return 0;
 }

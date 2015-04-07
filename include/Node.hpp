@@ -19,6 +19,7 @@
 #define __NODE_H_INCLUDED__
 
 #include <string>
+#include <iostream>
 
 class Node
 {
@@ -38,6 +39,9 @@ public:
     bool isOrphan();
     bool isLeftFree();
     bool isRightFree();
+    int nombreFils();
+    Node* nodeAt(int* num);
+
     
     std::string to_str();
 

@@ -30,8 +30,9 @@ Node::check()
         return false;
     else
     {
-        if((_left==nullptr)&&(_right==nullptr))
+        if((_left==nullptr)&&(_right==nullptr)){
             return true;
+        }
         else{
             if(_left!=nullptr)
             {
@@ -51,8 +52,9 @@ Node::check()
 
 bool 
 Node::nodeCheck(){
-    if((_left==nullptr)&&(_right==nullptr))
+    if((_left==nullptr)&&(_right==nullptr)){
         return true;
+    }
     else
     {
         bool leftChecked=true,rightChecked=true;
@@ -129,6 +131,41 @@ Node::isRightFree()
 {
     return (_right == nullptr);
 }
+
+int 
+Node::nombreFils()
+{
+	int nb=0;
+	if(_left!=nullptr)
+		nb=nb+1+ _left->nombreFils();
+	if(_right!=nullptr)
+		return (nb+1+ _right->nombreFils());
+	return nb;
+}
+
+Node*
+Node::nodeAt(int *num){
+	if(*num==0)
+		return this;
+	else{
+		Node* res;
+		if(_left!= nullptr){
+			(*num)--;
+			res=_left->nodeAt(num);
+			if(res!=nullptr)
+				return res;
+		}
+		if(_right!= nullptr){
+			if(*num!=0)
+				(*num)--;
+			res=_right->nodeAt(num);
+			if(res!=nullptr)
+				return res;
+		}
+	}
+	return nullptr;
+}
+
 
 Node *  
 Node::_getParent()
