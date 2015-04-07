@@ -25,6 +25,8 @@ public:
     Node(const Node&) = delete;
     Node& operator =(const Node&) = delete;
     ~Node() = default;
+    bool check();
+    bool nodeCheck();
 
 private:
     Node* _parent;
@@ -33,6 +35,7 @@ private:
 
     int _data;
 
+    Node* getParent();
 };
 
 #endif // __NODE_H_INCLUDED__
