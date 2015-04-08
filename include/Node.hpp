@@ -19,6 +19,7 @@
 #define __NODE_H_INCLUDED__
 
 #include <string>
+#include <random>
 #include <iostream>
 
 class Node
@@ -31,11 +32,15 @@ public:
 
     //void SPR();
 
+    void insert(int E);
+
     void degraph();
     bool regraph(Node* child);
 
     bool check();
     bool nodeCheck();
+
+    Node* findRoot();
 
     bool isOrphan();
     bool isLeftFree();
@@ -56,6 +61,9 @@ private:
     Node* _right;
 
     int _data;
+
+    static std::mt19937 rng;
+    static std::uniform_int_distribution<int> binaryPick;
 
 };
 

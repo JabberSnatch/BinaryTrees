@@ -22,6 +22,14 @@ CXX = g++
 
 .PHONY: all clean fclean
 
+debug: CPPFLAGS += -DDEBUG
+debug: CXXFLAGS += -g
+debug: LDFLAGS += -g
+debug: all
+
+release: CPPFLAGS += -O2
+release: all
+
 all: $(TARGET)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
@@ -47,8 +55,8 @@ fclean: clean
 	$(RM) $(BIN_DIR)/$(TARGET)
 
 rodolphe: CPPFLAGS += -DRODOLPHE
-rodolphe: all
+rodolphe: clean debug
 
 samuel: CPPFLAGS += -DSAMUEL
-samuel: all
+samuel: clean debug
 

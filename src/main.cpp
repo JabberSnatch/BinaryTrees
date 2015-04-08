@@ -59,7 +59,28 @@ int main(int argc, char* argv[])
 #endif 
 
 #ifdef SAMUEL
-    
+    Node root(0);
+    Node a(1);
+    Node b(2);
+    Node c(3);
+    Node d(4);
+    Node e(5);
+
+    a.regraph(&c);
+    a.regraph(&d);
+
+    b.regraph(&e);
+
+    root.regraph(&a);
+    root.regraph(&b);
+    std::cout << root.to_str() << std::endl;
+
+    a.degraph();
+    std::cout << root.to_str() << std::endl;
+
+    b.regraph(&a);
+    std::cout << root.to_str() << std::endl;
+
 #endif
 
     return 0;

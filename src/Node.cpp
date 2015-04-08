@@ -18,9 +18,42 @@
 
 #include "Node.hpp"
 
+#include <cassert>
+
+using namespace std;
+
+mt19937 Node::rng = mt19937(random_device()());
+uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0, 1);
+
 Node::Node(int data)
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(data)
 {}
+
+void
+Node::insert(int E)
+{
+    if(_left == nullptr)
+    {
+        _left = new Node(E);
+    }
+    else if(_right == nullptr)
+    {
+        _right = new Node(E);
+    }
+    else
+    {
+        int side = binaryPick(rng);        
+
+        if(side == 0)
+        {
+            _left->insert(E);
+        }
+        if(side == 1)
+        {
+            _right->insert(E);
+        }
+    }
+}
 
 void 
 Node::degraph()
@@ -58,6 +91,10 @@ Node::regraph(Node* child)
         success = true;
     }
 
+#if DEBUG
+    assert(findRoot()->check());
+#endif
+
     return success;
 }
 
@@ -87,7 +124,6 @@ Node::check()
     }
 }
 
-
 bool 
 Node::nodeCheck(){
     if((_left==nullptr)&&(_right==nullptr)){
@@ -110,6 +146,19 @@ Node::nodeCheck(){
         }
         return ( rightChecked && leftChecked );
     }
+}
+
+Node*
+Node::findRoot()
+{
+    Node* node = this;
+    
+    while(node->_parent != nullptr)
+    {
+        node = _parent;
+    }
+
+    return node;
 }
 
 bool
@@ -189,15 +238,15 @@ Node::_setParent(Node* parent)
     _parent = parent;
 }
 
-std::string
-Node::_to_str(std::string acc, int depth)
+string
+Node::_to_str(string acc, int depth)
 {
     for(int i = 0; i < depth; ++i)
     {
         acc += " ";
     }
 
-    acc += "-N:" + std::to_string(_data) + "\n";
+    acc += "+->" + to_string(_data) + "\n";
 
     if(_left != nullptr)
     {
@@ -210,4 +259,5 @@ Node::_to_str(std::string acc, int depth)
 
     return acc;
 }
+
 
