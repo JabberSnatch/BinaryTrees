@@ -98,6 +98,7 @@ int main(int argc, char* argv[])
     {
         root.insert(i);
     }
+    std::cout << root.check() << std::endl;
     std::cout << root.to_str() << std::endl;
 
 #endif

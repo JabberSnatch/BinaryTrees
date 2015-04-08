@@ -25,7 +25,7 @@
 class Node
 {
 public:
-    Node(int data = 0);
+    Node(int data = 0, Node* parent = nullptr);
     Node(const Node&) = delete;
     Node& operator =(const Node&) = delete;
     ~Node() = default;

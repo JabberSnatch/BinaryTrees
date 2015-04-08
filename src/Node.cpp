@@ -25,8 +25,8 @@ using namespace std;
 mt19937 Node::rng = mt19937(random_device()());
 uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0, 1);
 
-Node::Node(int data)
-    :_parent(nullptr), _left(nullptr), _right(nullptr), _data(data)
+Node::Node(int data, Node* parent)
+    :_parent(parent), _left(nullptr), _right(nullptr), _data(data)
 {}
 
 void
@@ -34,11 +34,11 @@ Node::insert(int E)
 {
     if(_left == nullptr)
     {
-        _left = new Node(E);
+        _left = new Node(E, this);
     }
     else if(_right == nullptr)
     {
-        _right = new Node(E);
+        _right = new Node(E, this);
     }
     else
     {
