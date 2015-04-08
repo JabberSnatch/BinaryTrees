@@ -44,6 +44,7 @@ int main(int argc, char* argv[])
     root.regraph(&a);
     root.regraph(&b);
 
+#ifdef RODOLPHE
     std::cout << root.to_str() << std::endl;
     std::cout << root.check() << std::endl;
     std::cout << root.nbDescendants() << std::endl;
@@ -55,6 +56,11 @@ int main(int argc, char* argv[])
     int nb = randomNodes(rng);
     std::cout << "noeud a l'indice " << nb << std::endl;
     std::cout << (root.nodeAt(&nb))->to_str() << std::endl;
+#endif 
+
+#ifdef SAMUEL
+
+#endif
 
     return 0;
 }
