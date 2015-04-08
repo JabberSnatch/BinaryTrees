@@ -29,6 +29,7 @@ int main(int argc, char* argv[])
     std::chrono::duration<int> s_oneday(60*60*24);
     std::cout << s_oneday.count() << std::endl;
 
+#ifdef RODOLPHE
     Node root(0);
     Node a(1);
     Node b(2);
@@ -44,7 +45,6 @@ int main(int argc, char* argv[])
     root.regraph(&a);
     root.regraph(&b);
 
-#ifdef RODOLPHE
     std::cout << root.to_str() << std::endl;
     std::cout << root.check() << std::endl;
     std::cout << root.nbDescendants() << std::endl;
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 #endif 
 
 #ifdef SAMUEL
-
+    
 #endif
 
     return 0;
