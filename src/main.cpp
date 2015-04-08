@@ -20,6 +20,7 @@
 #include <chrono>
 #include <random>
 
+#include <cassert>
 #include "Node.hpp"
 
 int main(int argc, char* argv[])

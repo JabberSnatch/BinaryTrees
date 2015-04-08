@@ -98,54 +98,52 @@ Node::regraph(Node* child)
     return success;
 }
 
+//NOTE: check is supposed to be called on the root of a tree
 bool 
 Node::check()
 {
-    if(_parent!=nullptr)
-        return false;
-    else
+    bool RES = false;
+
+    if(isOrphan())
     {
-        if((_left==nullptr)&&(_right==nullptr)){
-            return true;
-        }
-        else{
-            if(_left!=nullptr)
-            {
-                if(_left->_getParent() != this)
-                    return false;
-            }
-            if(_right!=nullptr)
-            {
-                if(_right->_getParent() != this)
-                    return false;
-            }
-            return (_right->nodeCheck()&&_left->nodeCheck());
-        }
+        RES = true;
+        RES &= nodeCheck();
     }
+
+    return RES;
 }
 
 bool 
-Node::nodeCheck(){
-    if((_left==nullptr)&&(_right==nullptr)){
-        return true;
+Node::nodeCheck()
+{
+    bool RES = false;
+    
+    if(isLeftFree() && isRightFree())
+    {
+        RES = true;
     }
     else
     {
-        bool leftChecked=true,rightChecked=true;
-        if(_left!=nullptr)
+        if(!isLeftFree())
         {
-            if(_left->_getParent()!=this)
-                return false;
-            leftChecked=_left->nodeCheck();
+            if(_left->_getParent() == this)
+            {
+                RES = true;
+                RES &= _left->nodeCheck();
+            }
         }
-        if(_right!=nullptr)
+
+        if(!isRightFree())
         {
-            if(_right->_getParent()!=this)
-                return false;
-            rightChecked=_right->nodeCheck();
+            if(_right->_getParent() == this)
+            {
+                RES = true;
+                RES &= _right->nodeCheck();
+            }
         }
-        return ( rightChecked && leftChecked );
     }
+
+    return RES;
 }
 
 Node*
