@@ -22,6 +22,45 @@ Node::Node(int data)
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(data)
 {}
 
+void 
+Node::degraph()
+{
+    if(_parent)
+    {
+        if(_parent->_left == this)
+        {
+            _parent->_left = nullptr;
+        }
+        if(_parent->_right == this)
+        {
+            _parent->_right = nullptr;
+        }
+
+        _parent = nullptr;
+    }
+}
+
+bool
+Node::regraph(Node* child)
+{
+    bool success = false;
+
+    if(isLeftFree())
+    {
+        _left = child;
+        _left->_parent = this;        
+        success = true;
+    }
+    else if(isRightFree())
+    {
+        _right = child;
+        _right->_parent = this;
+        success = true;
+    }
+
+    return success;
+}
+
 bool 
 Node::check()
 {
@@ -71,45 +110,6 @@ Node::nodeCheck(){
         }
         return ( rightChecked && leftChecked );
     }
-}
-
-void 
-Node::degraph()
-{
-    if(_parent)
-    {
-        if(_parent->_left == this)
-        {
-            _parent->_left = nullptr;
-        }
-        if(_parent->_right == this)
-        {
-            _parent->_right = nullptr;
-        }
-
-        _parent = nullptr;
-    }
-}
-
-bool
-Node::regraph(Node* child)
-{
-    bool success = false;
-
-    if(isLeftFree())
-    {
-        _left = child;
-        _left->_parent = this;        
-        success = true;
-    }
-    else if(isRightFree())
-    {
-        _right = child;
-        _right->_parent = this;
-        success = true;
-    }
-
-    return success;
 }
 
 bool

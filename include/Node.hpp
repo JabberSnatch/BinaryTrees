@@ -28,13 +28,14 @@ public:
     Node(const Node&) = delete;
     Node& operator =(const Node&) = delete;
     ~Node() = default;
-    bool check();
-    bool nodeCheck();
 
     //void SPR();
 
     void degraph();
     bool regraph(Node* child);
+
+    bool check();
+    bool nodeCheck();
 
     bool isOrphan();
     bool isLeftFree();
