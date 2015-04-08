@@ -56,6 +56,7 @@ int main(int argc, char* argv[])
 	int nb=randomNodes(rng);
     std::cout << "noeud a " << nb << std::endl;
     std::cout << (root.nodeAt(&nb))->to_str() << std::endl;
+    root.SPR(root.nodeAt(&nb));
 
     return 0;
 }
