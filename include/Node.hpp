@@ -30,7 +30,7 @@ public:
     Node& operator =(const Node&) = delete;
     ~Node() = default;
 
-    void SPR(Node* noeud);
+    void SPR_ite(Node* noeud);
 
     void insert(int E);
 

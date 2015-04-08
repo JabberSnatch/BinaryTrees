@@ -30,6 +30,97 @@ Node::Node(int data, Node* parent)
 {}
 
 void
+Node::SPR_ite(Node* noeud){
+    noeud->degraph();
+    Node * nodeActual=this;
+    bool fin=false,remonte=false;
+    while(fin==false)
+    {
+        if(remonte)// si on est en train de remonter
+        {
+            remonte=false;
+            if(nodeActual->_parent!=nullptr)//si on est pas a la racine
+            {
+                if(nodeActual->_parent->_right!=nodeActual)//si on est dans le fils gauche
+                {
+                    if(nodeActual->_parent->_right!=nullptr)// si le fils droit est libre
+                    {
+                        nodeActual=nodeActual->_parent->_right;
+                    }
+                    else// s'il n'y a pas de fils droit
+                    {
+                        nodeActual=nodeActual->_parent;
+                        remonte=true;
+                    }
+                }
+                else//si on est dans le fils droit
+                {
+                    nodeActual=nodeActual->_parent;
+                    remonte=true;
+                }
+            }
+            else
+            {
+                fin =true;
+            }
+        }
+    
+        else
+        {
+            
+            if(nodeActual->regraph(noeud))
+            {
+                std::cout << this->to_str() << std::endl;
+                noeud->degraph();
+            }
+            if(nodeActual->_left!=nullptr)// si on peut aller a gauche
+            {
+                nodeActual=nodeActual->_left;
+            }
+            else if (nodeActual->_right!=nullptr)// si on peut aller a droite
+            {
+                nodeActual=nodeActual->_right;
+            }
+            else if((nodeActual->_parent)->_parent==nullptr)//si on est juste après la racine
+            {
+                if((nodeActual->_parent)->_right==nodeActual)   //si on est a droite
+                {
+                    fin =true;
+                }
+                else                                    //si on est a gauche
+                {
+                    if((nodeActual->_parent)->_right!=nullptr)
+                    {
+                        nodeActual=(nodeActual->_parent)->_right;
+                    }
+                    else
+                    {
+                        fin=true;              
+                    }
+                }
+            }
+            else if(nodeActual==((nodeActual->_parent)->_right))//si on est a droite du noeud _parent
+            {
+                remonte=true;
+                nodeActual=nodeActual->_parent;
+            }
+            else// si on est a gauche du noeud _parent
+            {
+                if((nodeActual->_parent)->_right!=nullptr)
+                {
+                    nodeActual=(nodeActual->_parent)->_right;
+                }
+                else
+                {
+                    nodeActual=nodeActual->_parent;
+                    remonte=true;                
+                }
+            }
+        }
+    }
+}
+
+void
 Node::insert(int E)
 {
     if(_left == nullptr)
@@ -146,98 +237,6 @@ Node::nodeCheck()
 
     return RES;
 }
-
-void
-Node::SPR(Node* noeud){
-    noeud->degraph();
-    Node * nodeActual=this;
-    bool fin=false,remonte=false;
-    while(fin==false)
-    {
-        if(remonte)// si on est en train de remonter
-        {
-            remonte=false;
-            if(nodeActual->_parent!=nullptr)//si on est pas a la racine
-            {
-                if(nodeActual->_parent->_right!=nodeActual)//si on est dans le fils gauche
-                {
-                    if(nodeActual->_parent->_right!=nullptr)// si le fils droit est libre
-                    {
-                        nodeActual=nodeActual->_parent->_right;
-                    }
-                    else// s'il n'y a pas de fils droit
-                    {
-                        nodeActual=nodeActual->_parent;
-                        remonte=true;
-                    }
-                }
-                else//si on est dans le fils droit
-                {
-                    nodeActual=nodeActual->_parent;
-                    remonte=true;
-                }
-            }
-            else
-            {
-                fin =true;
-            }
-        }
-    
-        else
-        {
-            
-            if(nodeActual->regraph(noeud))
-            {
-                std::cout << this->to_str() << std::endl;
-                noeud->degraph();
-            }
-            if(nodeActual->_left!=nullptr)// si on peut aller a gauche
-            {
-                nodeActual=nodeActual->_left;
-            }
-            else if (nodeActual->_right!=nullptr)// si on peut aller a droite
-            {
-                nodeActual=nodeActual->_right;
-            }
-            else if((nodeActual->_parent)->_parent==nullptr)//si on est juste après la racine
-            {
-                if((nodeActual->_parent)->_right==nodeActual)   //si on est a droite
-                {
-                    fin =true;
-                }
-                else                                    //si on est a gauche
-                {
-                    if((nodeActual->_parent)->_right!=nullptr)
-                    {
-                        nodeActual=(nodeActual->_parent)->_right;
-                    }
-                    else
-                    {
-                        fin=true;              
-                    }
-                }
-            }
-            else if(nodeActual==((nodeActual->_parent)->_right))//si on est a droite du noeud _parent
-            {
-                remonte=true;
-                nodeActual=nodeActual->_parent;
-            }
-            else// si on est a gauche du noeud _parent
-            {
-                if((nodeActual->_parent)->_right!=nullptr)
-                {
-                    nodeActual=(nodeActual->_parent)->_right;
-                }
-                else
-                {
-                    nodeActual=nodeActual->_parent;
-                    remonte=true;                
-                }
-            }
-        }
-    }
-}
-
 
 Node*
 Node::findRoot()
