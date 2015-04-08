@@ -30,7 +30,7 @@ public:
     Node& operator =(const Node&) = delete;
     ~Node() = default;
 
-    //void SPR();
+    void SPR(Node* noeud);
 
     void insert(int E);
 
@@ -47,6 +47,7 @@ public:
     bool isRightFree();
     int nbDescendants();
     Node* nodeAt(int* num);
+    
 
     std::string to_str();
 
