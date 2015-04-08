@@ -15,17 +15,25 @@ OBJS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 SYS_LIBS = 
 
 INCLUDES = -I$(INC_DIR) $(addprefix -I, $(DEP_DIRS))
-CXXFLAGS = -std=c++11 -W -Wall $(INCLUDES)
+CXXFLAGS = -std=c++0x -W -Wall $(INCLUDES)
 LDLIBS = $(addprefix -l, $(SYS_LIBS))
 LDFLAGS = -W -Wall
 CXX = g++
 
 .PHONY: all clean fclean
 
+debug: CPPFLAGS += -DDEBUG
+debug: CXXFLAGS += -g
+debug: LDFLAGS += -g
+debug: all
+
+release: CPPFLAGS += -O2
+release: all
+
 all: $(TARGET)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(TARGET): $(BIN_DIR)/$(TARGET)
 
@@ -45,3 +53,10 @@ clean:
 
 fclean: clean
 	$(RM) $(BIN_DIR)/$(TARGET)
+
+rodolphe: CPPFLAGS += -DRODOLPHE
+rodolphe: clean debug
+
+samuel: CPPFLAGS += -DSAMUEL
+samuel: clean debug
+
