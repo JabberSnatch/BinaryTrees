@@ -149,6 +149,7 @@ Node::nodeCheck()
 
 void
 Node::SPR(Node* noeud){
+    int i=0;
     noeud->degraph();
     Node * nodeActual=this;
     bool fin=false,remonte=false;
@@ -184,11 +185,11 @@ Node::SPR(Node* noeud){
         }
     
         else
-        {
-            
+        {   
+            i++;
             if(nodeActual->regraph(noeud))
             {
-                std::cout << this->to_str() << std::endl;
+                i++;
                 noeud->degraph();
             }
             if(nodeActual->_left!=nullptr)// si on peut aller a gauche
@@ -236,6 +237,7 @@ Node::SPR(Node* noeud){
             }
         }
     }
+    std::cout << i << std::endl;
 }
 
 

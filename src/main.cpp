@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
     root.regraph(&a);
     root.regraph(&b);*/
     
-    for(int i = 1; i < 30; ++i)
+    for(int i = 1; i < 3000; ++i)
     {
         root.insert(i);
     }
@@ -58,13 +58,14 @@ int main(int argc, char* argv[])
     
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<std::mt19937::result_type> randomNodes(0,root.nbDescendants());
+    std::uniform_int_distribution<std::mt19937::result_type> randomNodes(1,root.nbDescendants());
 	
     int nb = randomNodes(rng);
     int save_nb=nb;
     std::cout << "noeud a l'indice " << nb << std::endl;
     std::cout << (root.nodeAt(&nb))->to_str() << std::endl;
-    nb=save_nb;
+    //nb=save_nb;
+    nb=1;
     root.SPR(root.nodeAt(&nb));
 #endif 
 
