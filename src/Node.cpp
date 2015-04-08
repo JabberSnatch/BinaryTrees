@@ -30,10 +30,12 @@ Node::Node(int data, Node* parent)
 {}
 
 void
-Node::SPR_ite(Node* noeud){
+Node::SPR_ite(Node* noeud)
+{
     noeud->degraph();
     Node * nodeActual=this;
     bool fin=false,remonte=false;
+
     while(fin==false)
     {
         if(remonte)// si on est en train de remonter
@@ -118,6 +120,23 @@ Node::SPR_ite(Node* noeud){
             }
         }
     }
+}
+
+void
+Node::SPR_rec(Node* noeud)
+{
+    noeud->degraph();
+
+    if(!isLeftFree())
+    {
+        _left->SPR_rec(noeud);
+    }
+    if(!isRightFree())
+    {
+        _right->SPR_rec(noeud);
+    }
+
+    regraph(noeud);
 }
 
 void

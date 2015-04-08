@@ -70,7 +70,8 @@ int main(int argc, char* argv[])
 
 #ifdef SAMUEL
     Node root(0);
-#if 0
+
+#if 1
     Node a(1);
     Node b(2);
     Node c(3);
@@ -84,17 +85,15 @@ int main(int argc, char* argv[])
 
     root.regraph(&a);
     root.regraph(&b);
-    std::cout << root.to_str() << std::endl;
-
-    a.degraph();
-    std::cout << root.to_str() << std::endl;
 
     b.regraph(&a);
     std::cout << root.to_str() << std::endl;
 
     std::cout << &root << "; " << a.findRoot() << std::endl;
+    root.SPR_rec(&d);
 #else
-    for(int i = 1; i < 50000; ++i)
+
+    for(int i = 1; i < 30000; ++i)
     {
         root.insert(i);
     }
