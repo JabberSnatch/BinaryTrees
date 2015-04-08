@@ -39,15 +39,15 @@ public:
     bool isOrphan();
     bool isLeftFree();
     bool isRightFree();
-    int nombreFils();
+    int nbDescendants();
     Node* nodeAt(int* num);
 
-    
     std::string to_str();
 
 private:
     Node* _getParent();
     void _setParent(Node* parent);
+
     std::string _to_str(std::string acc, int depth);
 
     Node* _parent;

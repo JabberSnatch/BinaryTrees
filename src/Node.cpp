@@ -22,7 +22,6 @@ Node::Node(int data)
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(data)
 {}
 
-
 bool 
 Node::check()
 {
@@ -73,7 +72,6 @@ Node::nodeCheck(){
         return ( rightChecked && leftChecked );
     }
 }
-
 
 void 
 Node::degraph()
@@ -133,46 +131,45 @@ Node::isRightFree()
 }
 
 int 
-Node::nombreFils()
+Node::nbDescendants()
 {
-	int nb=0;
-	if(_left!=nullptr)
-		nb=nb+1+ _left->nombreFils();
-	if(_right!=nullptr)
-		return (nb+1+ _right->nombreFils());
-	return nb;
+    int nb=0;
+
+    if(_left!=nullptr)
+    {
+        nb += 1+ _left->nbDescendants();
+    }
+    if(_right!=nullptr)
+    {
+        nb += 1+ _right->nbDescendants();
+    }
+
+    return nb;
 }
 
 Node*
-Node::nodeAt(int *num){
-	if(*num==0)
-		return this;
-	else{
-		Node* res;
-		if(_left!= nullptr){
-			(*num)--;
-			res=_left->nodeAt(num);
-			if(res!=nullptr)
-				return res;
-		}
-		if(_right!= nullptr){
-			if(*num!=0)
-				(*num)--;
-			res=_right->nodeAt(num);
-			if(res!=nullptr)
-				return res;
-		}
-	}
-	return nullptr;
-}
-
-
-Node *  
-Node::_getParent()
+Node::nodeAt(int *num)
 {
-	return _parent;
+    if(*num==0)
+        return this;
+    else{
+        Node* res;
+        if(_left!= nullptr){
+            (*num)--;
+            res=_left->nodeAt(num);
+            if(res!=nullptr)
+                return res;
+        }
+        if(_right!= nullptr){
+            if(*num!=0)
+                (*num)--;
+            res=_right->nodeAt(num);
+            if(res!=nullptr)
+                return res;
+        }
+    }
+    return nullptr;
 }
-
 
 std::string
 Node::to_str()
