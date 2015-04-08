@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
 
 #ifdef SAMUEL
     Node root(0);
+#if 0
     Node a(1);
     Node b(2);
     Node c(3);
@@ -81,6 +82,14 @@ int main(int argc, char* argv[])
 
     b.regraph(&a);
     std::cout << root.to_str() << std::endl;
+#else
+    for(int i = 1; i < 30000; ++i)
+    {
+        root.insert(i);
+    }
+    std::cout << root.to_str() << std::endl;
+
+#endif
 
 #endif
 
