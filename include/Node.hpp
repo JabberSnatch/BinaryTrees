@@ -30,7 +30,7 @@ public:
     Node& operator =(const Node&) = delete;
     ~Node() = default;
 
-    void SPR();
+    //void SPR();
 
     void insert(int E);
 
