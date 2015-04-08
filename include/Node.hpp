@@ -31,6 +31,7 @@ public:
     ~Node() = default;
 
     //void SPR();
+    void SPR_rec(Node* noeud);
 
     void insert(int E);
 

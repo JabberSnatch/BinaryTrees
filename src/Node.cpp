@@ -30,6 +30,22 @@ Node::Node(int data)
 {}
 
 void
+Node::SPR_rec(Node* noeud)
+{
+    noeud->degraph();
+    regraph(noeud);
+
+    if(!isLeftFree())
+    {
+        _left->SPR_rec(noeud);
+    }
+    if(!isRightFree())
+    {
+        _right->SPR_rec(noeud);
+    }
+}
+
+void
 Node::insert(int E)
 {
     if(_left == nullptr)

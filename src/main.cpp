@@ -76,13 +76,8 @@ int main(int argc, char* argv[])
 
     root.regraph(&a);
     root.regraph(&b);
-    std::cout << root.to_str() << std::endl;
 
-    a.degraph();
-    std::cout << root.to_str() << std::endl;
-
-    b.regraph(&a);
-    std::cout << root.to_str() << std::endl;
+    root.SPR_rec(&d);
 #else
 
     for(int i = 1; i < 30000; ++i)
