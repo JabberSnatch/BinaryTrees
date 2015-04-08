@@ -82,8 +82,10 @@ int main(int argc, char* argv[])
 
     b.regraph(&a);
     std::cout << root.to_str() << std::endl;
+
+    std::cout << &root << "; " << a.findRoot() << std::endl;
 #else
-    for(int i = 1; i < 30000; ++i)
+    for(int i = 1; i < 50000; ++i)
     {
         root.insert(i);
     }

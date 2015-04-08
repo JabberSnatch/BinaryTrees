@@ -58,7 +58,7 @@ Node::insert(int E)
 void 
 Node::degraph()
 {
-    if(_parent)
+    if(!isOrphan())
     {
         if(_parent->_left == this)
         {
@@ -78,17 +78,20 @@ Node::regraph(Node* child)
 {
     bool success = false;
 
-    if(isLeftFree())
+    if(child->isOrphan())
     {
-        _left = child;
-        _left->_parent = this;        
-        success = true;
-    }
-    else if(isRightFree())
-    {
-        _right = child;
-        _right->_parent = this;
-        success = true;
+        if(isLeftFree())
+        {
+            _left = child;
+            _left->_parent = this;        
+            success = true;
+        }
+        else if(isRightFree())
+        {
+            _right = child;
+            _right->_parent = this;
+            success = true;
+        }
     }
 
 #if DEBUG
@@ -149,14 +152,14 @@ Node::nodeCheck()
 Node*
 Node::findRoot()
 {
-    Node* node = this;
+    Node* target = this;
     
-    while(node->_parent != nullptr)
+    while(!target->isOrphan())
     {
-        node = _parent;
+        target = target->_parent;
     }
 
-    return node;
+    return target;
 }
 
 bool
@@ -224,7 +227,7 @@ Node::to_str()
     return _to_str("", 0);
 }
 
-Node*  
+Node*
 Node::_getParent()
 {
     return _parent;
