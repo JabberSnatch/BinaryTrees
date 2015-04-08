@@ -33,7 +33,6 @@ void
 Node::SPR_rec(Node* noeud)
 {
     noeud->degraph();
-    regraph(noeud);
 
     if(!isLeftFree())
     {
@@ -43,6 +42,8 @@ Node::SPR_rec(Node* noeud)
     {
         _right->SPR_rec(noeud);
     }
+
+    regraph(noeud);
 }
 
 void
@@ -165,14 +166,14 @@ Node::nodeCheck()
 Node*
 Node::findRoot()
 {
-    Node* node = this;
+    Node* target = this;
     
-    while(node->_parent != nullptr)
+    while(!target->isOrphan())
     {
-        node = _parent;
+        target = target->_parent;
     }
 
-    return node;
+    return target;
 }
 
 bool
