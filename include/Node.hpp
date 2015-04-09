@@ -31,7 +31,7 @@ public:
     Node& operator =(const Node&);
     Node* clone();
 
-    ~Node() = default;
+    ~Node();
 
     void SPR_ite(Node* noeud);
     void SPR_rec(Node* noeud);

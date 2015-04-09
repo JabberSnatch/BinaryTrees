@@ -80,6 +80,14 @@ Node::operator =(const Node& n)
     return *this;
 }
 
+Node::~Node()
+{
+    degraph();
+
+    delete _left;
+    delete _right;
+}
+
 void
 Node::SPR_ite(Node* noeud)
 {
@@ -206,17 +214,17 @@ Node::_SPR_rec(Node* noeud, int count)
 void
 Node::insert(int E)
 {
-    if(_left == nullptr)
+    if(isLeftFree())
     {
         _left = new Node(E, this);
     }
-    else if(_right == nullptr)
+    else if(isRightFree())
     {
         _right = new Node(E, this);
     }
     else
     {
-        int side = binaryPick(rng);        
+        int side = binaryPick(rng);
 
         if(side == 0)
         {
