@@ -74,26 +74,22 @@ int main(int argc, char* argv[])
 #ifdef SAMUEL
     Node root(0);
 
-#if 0
-    Node a(1);
-    Node b(2);
-    Node c(3);
-    Node d(4);
-    Node e(5);
+#if 1
+    for(int i = 1; i < 10; ++i)
+    {
+        root.insert(i);
+    }
+    
+    Node copy(root);
 
-    a.regraph(&c);
-    a.regraph(&d);
+    std::cout << "Root" << std::endl << root.to_str() << std::endl;
+    std::cout << "Copy" << std::endl << copy.to_str() << std::endl;
 
-    b.regraph(&e);
+    int nb = 5;
+    root.SPR_rec(root.nodeAt(&nb));
+    nb = 5;
+    copy.SPR_ite(copy.nodeAt(&nb));
 
-    root.regraph(&a);
-    root.regraph(&b);
-
-    b.regraph(&a);
-    std::cout << root.to_str() << std::endl;
-
-    root.SPR_rec(&d);
-    root.SPR_ite(&d);
 #else
 
     for(int i = 1; i < 300; ++i)

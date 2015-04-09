@@ -29,6 +29,41 @@ Node::Node(int data, Node* parent)
     :_parent(parent), _left(nullptr), _right(nullptr), _data(data)
 {}
 
+Node::Node(const Node& n)
+    :_parent(nullptr), _data(n._data)
+{
+    if(!n.isLeftFree())
+    {
+        _left = n._left->clone();
+        _left->_parent = this;
+    }
+    else
+    {
+        _left = nullptr;
+    }
+
+    if(!n.isRightFree())
+    {
+        _right = n._right->clone();
+        _right->_parent = this;
+    }
+    else
+    {
+        _right = nullptr;
+    }
+
+#if DEBUG
+    assert(findRoot()->check());
+#endif
+
+}
+
+Node*
+Node::clone()
+{
+    return new Node(*this);
+}
+
 void
 Node::SPR_ite(Node* noeud)
 {
@@ -216,9 +251,11 @@ Node::regraph(Node* child)
             success = true;
         }
     }
+
 #if DEBUG
     assert(findRoot()->check());
 #endif
+
     return success;
 }
 
@@ -284,19 +321,19 @@ Node::findRoot()
 }
 
 bool
-Node::isOrphan()
+Node::isOrphan() const
 {
     return (_parent == nullptr);
 }
 
 bool
-Node::isLeftFree()
+Node::isLeftFree() const
 {
     return (_left == nullptr);
 }
 
 bool
-Node::isRightFree()
+Node::isRightFree() const
 {
     return (_right == nullptr);
 }
@@ -342,10 +379,32 @@ Node::nodeAt(int *num)
     return nullptr;
 }
 
-std::string
+string
 Node::to_str()
 {
     return _to_str("", 0);
+}
+
+string
+Node::_to_str(string acc, int depth)
+{
+    for(int i = 0; i < depth; ++i)
+    {
+        acc += " ";
+    }
+
+    acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + "\n";
+
+    if(_left != nullptr)
+    {
+        acc = _left->_to_str(acc, depth+1);
+    }
+    if(_right != nullptr)
+    {
+        acc = _right->_to_str(acc, depth+1);
+    }
+
+    return acc;
 }
 
 Node*
@@ -358,28 +417,6 @@ void
 Node::_setParent(Node* parent)
 {
     _parent = parent;
-}
-
-string
-Node::_to_str(string acc, int depth)
-{
-    for(int i = 0; i < depth; ++i)
-    {
-        acc += " ";
-    }
-
-    acc += "+->" + to_string(_data) + "\n";
-
-    if(_left != nullptr)
-    {
-        acc = _left->_to_str(acc, depth+1);
-    }
-    if(_right != nullptr)
-    {
-        acc = _right->_to_str(acc, depth+1);
-    }
-
-    return acc;
 }
 
 

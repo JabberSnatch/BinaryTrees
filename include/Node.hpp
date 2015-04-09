@@ -26,8 +26,11 @@ class Node
 {
 public:
     Node(int data = 0, Node* parent = nullptr);
-    Node(const Node&) = delete;
+
+    Node(const Node&);
     Node& operator =(const Node&) = delete;
+    Node* clone();
+
     ~Node() = default;
 
     void SPR_ite(Node* noeud);
@@ -43,22 +46,21 @@ public:
 
     Node* findRoot();
 
-    bool isOrphan();
-    bool isLeftFree();
-    bool isRightFree();
+    bool isOrphan() const;
+    bool isLeftFree() const;
+    bool isRightFree() const;
+
     int nbDescendants();
     Node* nodeAt(int* num);
     
-
     std::string to_str();
 
 private:
     int _SPR_rec(Node* noeud, int count);
+    std::string _to_str(std::string acc, int depth);
 
     Node* _getParent();
     void _setParent(Node* parent);
-
-    std::string _to_str(std::string acc, int depth);
 
     Node* _parent;
     Node* _left;
