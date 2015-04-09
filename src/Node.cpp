@@ -30,26 +30,18 @@ Node::Node(int data, Node* parent)
 {}
 
 Node::Node(const Node& n)
-    :_parent(nullptr), _data(n._data)
+    :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data)
 {
     if(!n.isLeftFree())
     {
         _left = n._left->clone();
         _left->_parent = this;
     }
-    else
-    {
-        _left = nullptr;
-    }
 
     if(!n.isRightFree())
     {
         _right = n._right->clone();
         _right->_parent = this;
-    }
-    else
-    {
-        _right = nullptr;
     }
 
 #if DEBUG
@@ -62,6 +54,30 @@ Node*
 Node::clone()
 {
     return new Node(*this);
+}
+
+Node&
+Node::operator =(const Node& n)
+{
+    if(this != &n)
+    {
+        _parent = nullptr;
+        _data = n._data;
+
+        _left = nullptr;
+        if(!n.isLeftFree())
+        {
+            _left = new Node(*(n._left));
+        }
+
+        _right = nullptr;
+        if(!n.isRightFree())
+        {
+            _right = new Node(*(n._right));
+        }
+    }
+
+    return *this;
 }
 
 void

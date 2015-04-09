@@ -28,7 +28,7 @@ public:
     Node(int data = 0, Node* parent = nullptr);
 
     Node(const Node&);
-    Node& operator =(const Node&) = delete;
+    Node& operator =(const Node&);
     Node* clone();
 
     ~Node() = default;

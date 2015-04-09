@@ -81,14 +81,21 @@ int main(int argc, char* argv[])
     }
     
     Node copy(root);
+    Node copy2;
+    copy2 = copy;
 
     std::cout << "Root" << std::endl << root.to_str() << std::endl;
     std::cout << "Copy" << std::endl << copy.to_str() << std::endl;
+    std::cout << "Copy2" << std::endl << copy2.to_str() << std::endl;
 
     int nb = 5;
     root.SPR_rec(root.nodeAt(&nb));
     nb = 5;
     copy.SPR_ite(copy.nodeAt(&nb));
+
+    std::cout << "Root" << std::endl << root.to_str() << std::endl;
+    std::cout << "Copy" << std::endl << copy.to_str() << std::endl;
+    std::cout << "Copy2" << std::endl << copy2.to_str() << std::endl;
 
 #else
 
