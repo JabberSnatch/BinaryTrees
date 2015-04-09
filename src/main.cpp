@@ -66,13 +66,15 @@ int main(int argc, char* argv[])
     std::cout << (root.nodeAt(&nb))->to_str() << std::endl;
     //nb=save_nb;
     nb=1;
-    root.SPR(root.nodeAt(&nb));
+    root.SPR_ite(root.nodeAt(&nb));
+    nb=1;
+    root.SPR_rec(root.nodeAt(&nb));
 #endif 
 
 #ifdef SAMUEL
     Node root(0);
 
-#if 1
+#if 0
     Node a(1);
     Node b(2);
     Node c(3);
@@ -90,16 +92,20 @@ int main(int argc, char* argv[])
     b.regraph(&a);
     std::cout << root.to_str() << std::endl;
 
-    std::cout << &root << "; " << a.findRoot() << std::endl;
     root.SPR_rec(&d);
+    root.SPR_ite(&d);
 #else
 
-    for(int i = 1; i < 30000; ++i)
+    for(int i = 1; i < 300; ++i)
     {
         root.insert(i);
     }
     std::cout << root.check() << std::endl;
-    std::cout << root.to_str() << std::endl;
+
+    int nb=25;
+    root.SPR_rec(root.nodeAt(&nb));
+    nb = 25;
+    root.SPR_ite(root.nodeAt(&nb));
 
 #endif
 

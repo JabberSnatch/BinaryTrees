@@ -127,18 +127,29 @@ Node::SPR_ite(Node* noeud)
 void
 Node::SPR_rec(Node* noeud)
 {
+    std::cout << _SPR_rec(noeud, 0) << std::endl;
+}
+
+int
+Node::_SPR_rec(Node* noeud, int count)
+{
+    noeud->degraph();
+    if(regraph(noeud))
+    {
+        count++;
+    }
     noeud->degraph();
 
     if(!isLeftFree())
     {
-        _left->SPR_rec(noeud);
+        count = _left->_SPR_rec(noeud, count);
     }
     if(!isRightFree())
     {
-        _right->SPR_rec(noeud);
+        count = _right->_SPR_rec(noeud, count);
     }
 
-    regraph(noeud);
+    return count;
 }
 
 void

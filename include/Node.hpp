@@ -53,6 +53,8 @@ public:
     std::string to_str();
 
 private:
+    int _SPR_rec(Node* noeud, int count);
+
     Node* _getParent();
     void _setParent(Node* parent);
 
