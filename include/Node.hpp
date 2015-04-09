@@ -11,6 +11,7 @@
  *       Compiler:  gcc
  *
  *         Author:  Samuel BOURASSEAU (SB), samuel.bourasseau@gmail.com
+ *                  Rodolphe CHARLOT, charlot.rodolphe@gmail.com
  *   Organization:  
  *
  * =====================================================================================
