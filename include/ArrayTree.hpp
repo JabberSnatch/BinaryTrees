@@ -40,14 +40,14 @@ public:
     int maxSize() {return _blockCount * _blockSize;}
 
 private:
-    int _blockCount;
-    int _blockSize;
+    int _blockCount();
+    int _blockSize = 5;
     int _nodeCount;
 
-    int* _parents;
-    int* _lefts;
-    int* _rights;
-    int* _data;
+    int* _parents = nullptr;
+    int* _lefts = nullptr;
+    int* _rights = nullptr;
+    int* _data = nullptr;
 
 };
 
