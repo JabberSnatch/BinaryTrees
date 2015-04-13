@@ -26,6 +26,8 @@
 class Node
 {
 public:
+    class NodeIter;
+
     Node(int data = 0, Node* parent = nullptr);
 
     Node(const Node&);
@@ -42,19 +44,23 @@ public:
     void degraph();
     bool regraph(Node* child);
 
-    bool check();
-    bool nodeCheck();
+    bool check() const;
+    bool nodeCheck() const;
 
-    Node* findRoot();
+    const Node* findRoot() const;
 
-    bool isOrphan() const;
-    bool isLeftFree() const;
-    bool isRightFree() const;
-
-    int nbDescendants();
+    int nbDescendants() const;
     Node* nodeAt(int* num);
     
+    Node::NodeIter* begin() {return new Node::NodeIter(this);}
     std::string to_str();
+
+    int size() const {return findRoot()->nbDescendants()+1;}
+    int getData() const {return _data;}
+
+    bool isOrphan() const {return _parent == nullptr;}
+    bool isLeftFree() const {return _left == nullptr;}
+    bool isRightFree() const {return _right == nullptr;}
 
 private:
     int _SPR_rec(Node* noeud, int count);
@@ -72,7 +78,29 @@ private:
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
 
-};
 
+public:
+    class NodeIter
+    {
+        friend class Node;
+
+    public:
+        void begin() {_index = 0;}
+        Node* getNext() {int i = _index++; return _root->nodeAt(&i);}
+        bool hasNext() {return _index < _size;}
+        void end() {_index = _size-1;}
+
+    private:
+        NodeIter(Node* root)
+            :_root(root), _index(0), _size(root->size())
+        {}
+
+        Node* _root;
+        int _index;
+        int _size;
+
+    };
+
+};
 
 #endif // __NODE_H_INCLUDED__

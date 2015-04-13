@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 #ifdef SAMUEL
     Node root(0);
 
-#if 1
+#if 0
     //NOTE(samu): This test case shows how memory is lost when running SPR
     //            Maybe we should consider switching to smart pointer in order to avoid
     //            having to manually free the SPR'ed node
@@ -102,16 +102,21 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 1; i < 300; ++i)
+    for(int i = 1; i < 10; ++i)
     {
         root.insert(i);
     }
     std::cout << root.check() << std::endl;
 
-    int nb=25;
-    root.SPR_rec(root.nodeAt(&nb));
-    nb = 25;
-    root.SPR_ite(root.nodeAt(&nb));
+    for(auto it = root.begin(); it->hasNext();)
+    {
+        Node* n = it->getNext();
+
+        std::cout << n->getData() << "; ";
+    }
+    std::cout << std::endl;
+
+    std::cout << root.to_str() << std::endl;
 
 #endif
 

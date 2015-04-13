@@ -286,7 +286,7 @@ Node::regraph(Node* child)
 
 //NOTE: check is supposed to be called on the root of a tree
 bool 
-Node::check()
+Node::check() const
 {
     bool RES = false;
 
@@ -300,7 +300,7 @@ Node::check()
 }
 
 bool 
-Node::nodeCheck()
+Node::nodeCheck() const
 {
     bool RES = false;
     
@@ -332,10 +332,10 @@ Node::nodeCheck()
     return RES;
 }
 
-Node*
-Node::findRoot()
+const Node*
+Node::findRoot() const
 {
-    Node* target = this;
+    const Node* target = this;
     
     while(!target->isOrphan())
     {
@@ -345,26 +345,8 @@ Node::findRoot()
     return target;
 }
 
-bool
-Node::isOrphan() const
-{
-    return (_parent == nullptr);
-}
-
-bool
-Node::isLeftFree() const
-{
-    return (_left == nullptr);
-}
-
-bool
-Node::isRightFree() const
-{
-    return (_right == nullptr);
-}
-
 int 
-Node::nbDescendants()
+Node::nbDescendants() const
 {
     int nb=0;
 
@@ -443,5 +425,4 @@ Node::_setParent(Node* parent)
 {
     _parent = parent;
 }
-
 
