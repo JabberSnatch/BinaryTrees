@@ -73,6 +73,7 @@ int main(int argc, char* argv[])
 #endif 
 
 #ifdef SAMUEL
+
     Node root(0);
 
 #if 1

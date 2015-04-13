@@ -42,21 +42,5 @@ private:
     
 };
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
 #endif // NODE_H_STATIQUE included
-    
-    
-    
-    
-    
-    
-    
-    
+
