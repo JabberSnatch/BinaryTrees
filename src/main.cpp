@@ -20,6 +20,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
+#include <ctime>
 
 #include <cassert>
 #include "Node.hpp"
@@ -34,7 +35,7 @@ int main(int argc, char* argv[])
 #ifdef RODOLPHE
     while(1){
         Node root(0);
-        for(int i = 1; i < 20000; ++i)
+        for(int i = 1; i < 50000; ++i)
         {
             root.insert(i);
         }
@@ -43,10 +44,10 @@ int main(int argc, char* argv[])
         Node copy2;
 
         
+        int nb=25;
         std::chrono::time_point<std::chrono::system_clock> start, end;
         start = std::chrono::system_clock::now();
-            int nb=25;
-            Node* rootNode = root.nodeAt(&nb);
+            Node* rootNode = root.nodeAt(nb);
             root.SPR_rec(rootNode);
         end = std::chrono::system_clock::now();
         int elapsed_seconds = std::chrono::duration_cast<std::chrono::milliseconds>
@@ -55,21 +56,19 @@ int main(int argc, char* argv[])
         
         
         start = std::chrono::system_clock::now();
-            nb=25;
-            Node* copyNode = copy.nodeAt(&nb);
+            Node* copyNode = copy.nodeAt(nb);
             copy.SPR_ite(copyNode);
         end = std::chrono::system_clock::now();
         int elapsed_seconds_2 = std::chrono::duration_cast<std::chrono::milliseconds>
                                  (end-start).count();
         std::cout << "temps it: " << elapsed_seconds_2 << std::endl;
-        std::cout << "temps it/rec%: " << ((float)elapsed_seconds_2/(float)elapsed_seconds)*100.0 << std::endl;
+        std::cout << "temps it/rec%: " << ((float)elapsed_seconds_2/(float)elapsed_seconds)*100.0 << std::endl << std::endl;
+        delete copyNode;
 
         
 
         delete rootNode;
-        delete copyNode;
         
-        std::cout << "plop" << std::endl;
     }
 #endif 
 
@@ -90,11 +89,10 @@ int main(int argc, char* argv[])
     Node copy2;
 
     int nb = 5;
-    Node* rootNode = root.nodeAt(&nb);
+    Node* rootNode = root.nodeAt(nb);
     root.SPR_rec(rootNode);
 
-    nb = 5;
-    Node* copyNode = copy.nodeAt(&nb);
+    Node* copyNode = copy.nodeAt(nb);
     copy.SPR_ite(copyNode);
 
     delete rootNode;
@@ -109,9 +107,8 @@ int main(int argc, char* argv[])
     std::cout << root.check() << std::endl;
 
     int nb=25;
-    root.SPR_rec(root.nodeAt(&nb));
-    nb = 25;
-    root.SPR_ite(root.nodeAt(&nb));
+    root.SPR_rec(root.nodeAt(nb));
+    root.SPR_ite(root.nodeAt(nb));
 
 #endif
 

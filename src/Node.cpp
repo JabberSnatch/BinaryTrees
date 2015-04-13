@@ -1,4 +1,4 @@
-/*
+    /*
  * =====================================================================================
  *
  *       Filename:  node.cpp
@@ -364,44 +364,43 @@ Node::isRightFree() const
 }
 
 int 
-Node::nbDescendants()
+Node::descendantCount()
 {
-    int nb=0;
-
-    if(_left!=nullptr)
+    int num=0;
+    if(!isLeftFree())
     {
-        nb += 1+ _left->nbDescendants();
+        num+=(_left->descendantCount()+1);
     }
-    if(_right!=nullptr)
+    if(!isRightFree())
     {
-        nb += 1+ _right->nbDescendants();
+        num+=(_right->descendantCount()+1);
     }
-
-    return nb;
+    return num;
 }
 
 Node*
-Node::nodeAt(int *num)
+Node::nodeAt(int num)
 {
-    if(*num==0)
-        return this;
-    else{
-        Node* res;
-        if(_left!= nullptr){
-            (*num)--;
+    Node* res=nullptr;
+    if(num==0)
+        res= this;
+    else 
+    {
+        num--;
+        if(!isLeftFree())
+        {
             res=_left->nodeAt(num);
-            if(res!=nullptr)
-                return res;
+            num-=(_left->descendantCount()+1);
         }
-        if(_right!= nullptr){
-            if(*num!=0)
-                (*num)--;
-            res=_right->nodeAt(num);
-            if(res!=nullptr)
-                return res;
+        if(!isRightFree()) 
+        {
+            if(res==nullptr)
+            {
+                res=_right->nodeAt(num);
+            }
         }
     }
-    return nullptr;
+    return res;
 }
 
 string
@@ -420,17 +419,18 @@ Node::_to_str(string acc, int depth)
 
     acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + "\n";
 
-    if(_left != nullptr)
+    if(!isLeftFree())
     {
         acc = _left->_to_str(acc, depth+1);
     }
-    if(_right != nullptr)
+    if(!isRightFree())
     {
         acc = _right->_to_str(acc, depth+1);
     }
 
     return acc;
 }
+
 
 Node*
 Node::_getParent()
@@ -443,5 +443,4 @@ Node::_setParent(Node* parent)
 {
     _parent = parent;
 }
-
 

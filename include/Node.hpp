@@ -51,14 +51,16 @@ public:
     bool isLeftFree() const;
     bool isRightFree() const;
 
-    int nbDescendants();
-    Node* nodeAt(int* num);
+    int descendantCount();
+    Node* nodeAt(int num);
     
     std::string to_str();
+    int _childNumber();
 
 private:
     int _SPR_rec(Node* noeud, int count);
     std::string _to_str(std::string acc, int depth);
+    int _nodeAt(int num);
 
     Node* _getParent();
     void _setParent(Node* parent);
