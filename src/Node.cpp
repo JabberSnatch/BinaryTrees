@@ -212,6 +212,7 @@ Node::_SPR_rec(Node* noeud, int count)
     return count;
 }
 
+//TODO(samu) : insert the data in the current node, if no data is already stored
 void
 Node::insert(int E)
 {
