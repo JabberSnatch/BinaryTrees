@@ -24,6 +24,8 @@
 #include <cassert>
 #include "Node.hpp"
 
+#include "ArrayTree.hpp"
+
 int main(int argc, char* argv[])
 {
     std::cout << "YOLO" << std::endl;
@@ -77,29 +79,19 @@ int main(int argc, char* argv[])
 
     Node root(0);
 
-#if 0
-    //NOTE(samu): This test case shows how memory is lost when running SPR
-    //            Maybe we should consider switching to smart pointer in order to avoid
-    //            having to manually free the SPR'ed node
+#if 1
+    ArrayTree tree;
 
-    for(int i = 1; i < 3000; ++i)
+    tree.dumpToStdout();
+
+    for(int i = 1; i < 10; ++i)
     {
-        root.insert(i);
+        tree.insert(i);
     }
-    
-    Node copy(root);
-    Node copy2;
 
-    int nb = 5;
-    Node* rootNode = root.nodeAt(&nb);
-    root.SPR_rec(rootNode);
+    tree.dumpToStdout();
 
-    nb = 5;
-    Node* copyNode = copy.nodeAt(&nb);
-    copy.SPR_ite(copyNode);
-
-    delete rootNode;
-    delete copyNode;
+    std::cout << tree.to_str() << std::endl;
 
 #else
 

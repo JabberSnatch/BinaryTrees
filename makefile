@@ -2,6 +2,7 @@ TARGET = prog
 
 SRCS = main.cpp\
        Node.cpp\
+       ArrayTree.cpp\
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src

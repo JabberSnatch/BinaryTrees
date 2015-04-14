@@ -18,13 +18,16 @@
 #ifndef ARRAYTREE_H_INCLUDED
 #define ARRAYTREE_H_INCLUDED
 
+#include <string>
+#include <random>
+
 class Node;
 
 class ArrayTree
 {
 public:
-    ArrayTree() = default;
-    ArrayTree(const Node&);
+    ArrayTree();
+    ArrayTree(Node&);
     ArrayTree(const ArrayTree&) = delete;
     ArrayTree& operator =(const ArrayTree&) = delete;
     ~ArrayTree() = default;
@@ -32,15 +35,26 @@ public:
     void SPR_ite(Node* noeud) = delete;
     void SPR_rec(Node* noeud) = delete;
 
-    void insert(int E) = delete;
+    void insert(int E);
 
     void degraph() = delete;
     bool regraph(Node* child) = delete;
 
-    int maxSize() {return _blockCount * _blockSize;}
+    bool isLeftFree(int index) {return _lefts[index] == -1;}
+    bool isRightFree(int index) {return _rights[index] == -1;}
+
+    std::string to_str();
+    void dumpToStdout();
 
 private:
-    int _blockCount();
+    void _load(Node* n);
+    void _increaseStorage(); //Enlarges storage by one block
+
+    std::string _to_str(std::string acc, int depth, int index);
+
+    int _storageSize() {return _blockCount * _blockSize;}
+
+    int _blockCount;
     int _blockSize = 5;
     int _nodeCount;
 
@@ -48,6 +62,9 @@ private:
     int* _lefts = nullptr;
     int* _rights = nullptr;
     int* _data = nullptr;
+
+    static std::mt19937 rng;
+    static std::uniform_int_distribution<int> binaryPick;
 
 };
 
