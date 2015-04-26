@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
 
     tree.dumpToStdout();
 
-    for(int i = 1; i < 10; ++i)
+    for(int i = 0; i < 11; ++i)
     {
         tree.insert(i);
     }
@@ -101,14 +101,9 @@ int main(int argc, char* argv[])
     }
     std::cout << root.check() << std::endl;
 
-    for(auto it = root.begin(); it->hasNext();)
-    {
-        Node* n = it->getNext();
+    ArrayTree tree(root);
 
-        std::cout << n->getData() << "; ";
-    }
-    std::cout << std::endl;
-
+    std::cout << tree.to_str() << std::endl;
     std::cout << root.to_str() << std::endl;
 
 #endif

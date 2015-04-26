@@ -32,13 +32,7 @@ public:
     ArrayTree& operator =(const ArrayTree&) = delete;
     ~ArrayTree() = default;
 
-    void SPR_ite(Node* noeud) = delete;
-    void SPR_rec(Node* noeud) = delete;
-
     void insert(int E);
-
-    void degraph() = delete;
-    bool regraph(Node* child) = delete;
 
     bool isLeftFree(int index) {return _lefts[index] == -1;}
     bool isRightFree(int index) {return _rights[index] == -1;}
@@ -54,14 +48,15 @@ private:
 
     int _storageSize() {return _blockCount * _blockSize;}
 
-    int _blockCount;
+    int _blockCount = 1;
     int _blockSize = 5;
-    int _nodeCount;
+    int _nodeCount = 0;
 
     int* _parents = nullptr;
     int* _lefts = nullptr;
     int* _rights = nullptr;
     int* _data = nullptr;
+    bool* _free = nullptr;
 
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;

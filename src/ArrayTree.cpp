@@ -26,12 +26,12 @@ mt19937 ArrayTree::rng = mt19937(random_device()());
 uniform_int_distribution<int> ArrayTree::binaryPick = uniform_int_distribution<int>(0, 1);
 
 ArrayTree::ArrayTree()
-    :_blockCount(1), _nodeCount(0)
 {
     _parents = new int[_storageSize()];
     _lefts = new int[_storageSize()];
     _rights = new int[_storageSize()];
     _data = new int[_storageSize()];
+    _free = new bool[_storageSize()];
 
     for(int index = 0; index < _storageSize(); ++index)
     {
@@ -39,24 +39,41 @@ ArrayTree::ArrayTree()
         _lefts[index] = -1;
         _rights[index] = -1;
         _data[index] = 0;
+        _free[index] = true;
     }
 }
 
 ArrayTree::ArrayTree(Node& root)
-    :_nodeCount(root.size())
 {
-    _blockCount = _nodeCount / _blockSize + (_nodeCount % _blockSize!=0);
-
     _parents = new int[_storageSize()];
     _lefts = new int[_storageSize()];
     _rights = new int[_storageSize()];
     _data = new int[_storageSize()];
+    _free = new bool[_storageSize()];
+
+    for(int index = 0; index < _storageSize(); ++index)
+    {
+        _parents[index] = -1;
+        _lefts[index] = -1;
+        _rights[index] = -1;
+        _data[index] = 0;
+        _free[index] = true;
+    }
 
     for(auto it = root.begin(); it->hasNext();)
     {
         Node* n = it->getNext();
-        _load(n);
+
+        
+        std::cout << n->getData() << std::endl;
+        insert(n->getData());    
     }
+}
+
+void
+ArrayTree::_load(Node* n)
+{
+
 }
 
 void
@@ -67,7 +84,15 @@ ArrayTree::insert(int E)
         
     while(!spotFound)
     {
-        if(isLeftFree(index))
+        if(_free[index])
+        {
+            _data[index] = E;
+            _free[index] = false;
+
+            spotFound = true;
+        }
+
+        else if(isLeftFree(index))
         {
             _nodeCount++;
             if(_nodeCount >= _storageSize())
@@ -77,9 +102,8 @@ ArrayTree::insert(int E)
 
             _lefts[index] = _nodeCount;
             _parents[_nodeCount] = index;
-            _data[_nodeCount] = E;
 
-            spotFound = true;
+            index = _nodeCount;
         }
         else if(isRightFree(index))
         {
@@ -91,10 +115,10 @@ ArrayTree::insert(int E)
 
             _rights[index] = _nodeCount;
             _parents[_nodeCount] = index;
-            _data[_nodeCount] = E;
 
-            spotFound = true;
+            index = _nodeCount;
         }
+
         else
         {
             int side = binaryPick(rng);
@@ -140,12 +164,11 @@ ArrayTree::dumpToStdout()
         std::cout << _data[i] << "; ";
     }
     std::cout << std::endl;
-}
-
-void
-ArrayTree::_load(Node* n)
-{
-    
+    for(int i = 0; i < _storageSize(); ++i)
+    {
+        std::cout << _free[i] << "; ";
+    }
+    std::cout << std::endl;
 }
 
 void
@@ -202,6 +225,18 @@ ArrayTree::_increaseStorage()
     }
     delete _data;
     _data = buffer;
+
+    bool* boolBuffer = new bool[_storageSize()];
+    for(int i = 0; i < _nodeCount; ++i)
+    {
+        boolBuffer[i] = _free[i];
+    }
+    for(int i = _nodeCount; i < _storageSize(); ++i)
+    {
+        boolBuffer[i] = true;
+    }
+    delete _free;
+    _free = boolBuffer;
 }
 
 string
