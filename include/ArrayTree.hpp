@@ -36,8 +36,19 @@ public:
 
     void insert(int E);
 
+    void setData(int node, int data) {_data[node] = data;}
+
+    int getData(int node) const {return _data[node];}
+    int getParent(int node) const {return _parents[node];}
+    int getLeft(int node) const {return _lefts[node];}
+    int getRight(int node) const {return _rights[node];}
+
+    bool isFree(int node) const {return _free[node];}
+    bool isOrphan(int node) const {return _parents[node] == -1;}
     bool isLeftFree(int node) const {return _lefts[node] == -1;}
     bool isRightFree(int node) const {return _rights[node] == -1;}
+
+    int size() const {return _nodeCount;}
 
     std::string to_str();
     void dumpToStdout();
