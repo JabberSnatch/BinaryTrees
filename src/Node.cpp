@@ -90,6 +90,207 @@ Node::~Node()
 }
 
 void
+Node::insert(int E)
+{
+    if(isLeftFree())
+    {
+        _left = new Node(E, this);
+    }
+    else if(isRightFree())
+    {
+        _right = new Node(E, this);
+    }
+    else
+    {
+        int side = binaryPick(rng);
+
+        if(side == 0)
+        {
+            _left->insert(E);
+        }
+        if(side == 1)
+        {
+            _right->insert(E);
+        }
+    }
+}
+
+void 
+Node::degraph()
+{
+    if(!isOrphan())
+    {
+        if(_parent->_left == this)
+        {
+            _parent->_left = nullptr;
+        }
+        if(_parent->_right == this)
+        {
+            _parent->_right = nullptr;
+        }
+
+        _parent = nullptr;
+    }
+}
+
+bool
+Node::regraph(Node* child)
+{
+    bool success = false;
+
+    if(child->isOrphan())
+    {
+        if(isLeftFree())
+        {
+            _left = child;
+            _left->_parent = this;        
+            success = true;
+        }
+        else if(isRightFree())
+        {
+            _right = child;
+            _right->_parent = this;
+            success = true;
+        }
+    }
+
+#if DEBUG
+    assert(findRoot()->check());
+#endif
+
+    return success;
+}
+
+//NOTE: check is supposed to be called on the root of a tree
+bool 
+Node::check() const
+{
+    bool RES = false;
+
+    if(isOrphan())
+    {
+        RES = true;
+        RES &= nodeCheck();
+    }
+
+    return RES;
+}
+
+bool 
+Node::nodeCheck() const
+{
+    bool RES = false;
+    
+    if(isLeftFree() && isRightFree())
+    {
+        RES = true;
+    }
+    else
+    {
+        if(!isLeftFree())
+        {
+            if(_left->getParent() == this)
+            {
+                RES = true;
+                RES &= _left->nodeCheck();
+            }
+        }
+
+        if(!isRightFree())
+        {
+            if(_right->getParent() == this)
+            {
+                RES = true;
+                RES &= _right->nodeCheck();
+            }
+        }
+    }
+
+    return RES;
+}
+
+const Node*
+Node::findRoot() const
+{
+    const Node* target = this;
+    
+    while(!target->isOrphan())
+    {
+        target = target->_parent;
+    }
+
+    return target;
+}
+
+int 
+Node::descendantCount() const
+{
+    int num=0;
+    if(!isLeftFree())
+    {
+        num+=(_left->descendantCount()+1);
+    }
+    if(!isRightFree())
+    {
+        num+=(_right->descendantCount()+1);
+    }
+    return num;
+}
+
+Node*
+Node::nodeAt(int num)
+{
+    Node* res=nullptr;
+    if(num==0)
+        res= this;
+    else 
+    {
+        num--;
+        if(!isLeftFree())
+        {
+            res=_left->nodeAt(num);
+            num-=(_left->descendantCount()+1);
+        }
+        if(!isRightFree()) 
+        {
+            if(res==nullptr)
+            {
+                res=_right->nodeAt(num);
+            }
+        }
+    }
+    return res;
+}
+
+string
+Node::to_str()
+{
+    return _to_str("", 0);
+}
+
+string
+Node::_to_str(string acc, int depth)
+{
+    for(int i = 0; i < depth; ++i)
+    {
+        acc += " ";
+    }
+
+    acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + "\n";
+
+    if(!isLeftFree())
+    {
+        acc = _left->_to_str(acc, depth+1);
+    }
+    if(!isRightFree())
+    {
+        acc = _right->_to_str(acc, depth+1);
+    }
+
+    return acc;
+}
+
+void
 Node::SPR_ite(Node* noeud)
 {
     int i=0;
@@ -210,219 +411,5 @@ Node::_SPR_rec(Node* noeud, int count)
     }
 
     return count;
-}
-
-void
-Node::insert(int E)
-{
-    if(isLeftFree())
-    {
-        _left = new Node(E, this);
-    }
-    else if(isRightFree())
-    {
-        _right = new Node(E, this);
-    }
-    else
-    {
-        int side = binaryPick(rng);
-
-        if(side == 0)
-        {
-            _left->insert(E);
-        }
-        if(side == 1)
-        {
-            _right->insert(E);
-        }
-    }
-}
-
-void 
-Node::degraph()
-{
-    if(!isOrphan())
-    {
-        if(_parent->_left == this)
-        {
-            _parent->_left = nullptr;
-        }
-        if(_parent->_right == this)
-        {
-            _parent->_right = nullptr;
-        }
-
-        _parent = nullptr;
-    }
-}
-
-bool
-Node::regraph(Node* child)
-{
-    bool success = false;
-
-    if(child->isOrphan())
-    {
-        if(isLeftFree())
-        {
-            _left = child;
-            _left->_parent = this;        
-            success = true;
-        }
-        else if(isRightFree())
-        {
-            _right = child;
-            _right->_parent = this;
-            success = true;
-        }
-    }
-
-#if DEBUG
-    assert(findRoot()->check());
-#endif
-
-    return success;
-}
-
-//NOTE: check is supposed to be called on the root of a tree
-bool 
-Node::check() const
-{
-    bool RES = false;
-
-    if(isOrphan())
-    {
-        RES = true;
-        RES &= nodeCheck();
-    }
-
-    return RES;
-}
-
-bool 
-Node::nodeCheck() const
-{
-    bool RES = false;
-    
-    if(isLeftFree() && isRightFree())
-    {
-        RES = true;
-    }
-    else
-    {
-        if(!isLeftFree())
-        {
-            if(_left->_getParent() == this)
-            {
-                RES = true;
-                RES &= _left->nodeCheck();
-            }
-        }
-
-        if(!isRightFree())
-        {
-            if(_right->_getParent() == this)
-            {
-                RES = true;
-                RES &= _right->nodeCheck();
-            }
-        }
-    }
-
-    return RES;
-}
-
-const Node*
-Node::findRoot() const
-{
-    const Node* target = this;
-    
-    while(!target->isOrphan())
-    {
-        target = target->_parent;
-    }
-
-    return target;
-}
-
-int 
-Node::descendantCount()
-{
-    int num=0;
-    if(!isLeftFree())
-    {
-        num+=(_left->descendantCount()+1);
-    }
-    if(!isRightFree())
-    {
-        num+=(_right->descendantCount()+1);
-    }
-    return num;
-}
-
-Node*
-Node::nodeAt(int num)
-{
-    Node* res=nullptr;
-    if(num==0)
-        res= this;
-    else 
-    {
-        num--;
-        if(!isLeftFree())
-        {
-            res=_left->nodeAt(num);
-            num-=(_left->descendantCount()+1);
-        }
-        if(!isRightFree()) 
-        {
-            if(res==nullptr)
-            {
-                res=_right->nodeAt(num);
-            }
-        }
-    }
-    return res;
-}
-
-string
-Node::to_str()
-{
-    return _to_str("", 0);
-}
-
-string
-Node::_to_str(string acc, int depth)
-{
-    for(int i = 0; i < depth; ++i)
-    {
-        acc += " ";
-    }
-
-    acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + "\n";
-
-    if(!isLeftFree())
-    {
-        acc = _left->_to_str(acc, depth+1);
-    }
-    if(!isRightFree())
-    {
-        acc = _right->_to_str(acc, depth+1);
-    }
-
-    return acc;
-}
-
-
-Node*
-Node::_getParent()
-{
-    return _parent;
-}
-
-void
-Node::_setParent(Node* parent)
-{
-    _parent = parent;
 }
 

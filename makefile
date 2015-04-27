@@ -2,7 +2,6 @@ TARGET = prog
 
 SRCS = main.cpp\
        Node.cpp\
-       Node_statique.cpp\
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src
