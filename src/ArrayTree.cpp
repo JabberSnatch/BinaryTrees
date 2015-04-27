@@ -45,35 +45,49 @@ ArrayTree::ArrayTree()
 
 ArrayTree::ArrayTree(Node& root)
 {
-    _parents = new int[_storageSize()];
-    _lefts = new int[_storageSize()];
-    _rights = new int[_storageSize()];
-    _data = new int[_storageSize()];
-    _free = new bool[_storageSize()];
+    _load(&root);
 
-    for(int index = 0; index < _storageSize(); ++index)
-    {
-        _parents[index] = -1;
-        _lefts[index] = -1;
-        _rights[index] = -1;
-        _data[index] = 0;
-        _free[index] = true;
-    }
+#if DEBUG
+    // Put the check here
+#endif
 
-    for(auto it = root.begin(); it->hasNext();)
-    {
-        Node* n = it->getNext();
-
-        
-        std::cout << n->getData() << std::endl;
-        insert(n->getData());    
-    }
 }
 
-void
+int
 ArrayTree::_load(Node* n)
 {
+    int node = newNode();
 
+    _free[node] = n->isFree();
+    _data[node] = n->getData();
+
+    if(!n->isLeftFree())
+    {
+        int left = _load(n->getLeft());
+
+        _lefts[node] = left;
+        _parents[_lefts[node]] = node;
+    }
+    if(!n->isRightFree())
+    {
+        int right = _load(n->getRight());
+
+        _rights[node] = right;
+        _parents[_rights[node]] = node;
+    }
+
+    return node;
+}
+
+int
+ArrayTree::newNode()
+{
+    if(_nodeCount >= _storageSize())
+    {
+        _increaseStorage();
+    }
+
+    return _nodeCount++;
 }
 
 void
@@ -81,6 +95,8 @@ ArrayTree::insert(int E)
 {
     bool spotFound = false;
     int index = 0;
+
+    int node = newNode();
         
     while(!spotFound)
     {
@@ -94,29 +110,17 @@ ArrayTree::insert(int E)
 
         else if(isLeftFree(index))
         {
-            _nodeCount++;
-            if(_nodeCount >= _storageSize())
-            {
-                _increaseStorage();
-            }
+            _lefts[index] = node;
+            _parents[_lefts[index]] = index;
 
-            _lefts[index] = _nodeCount;
-            _parents[_nodeCount] = index;
-
-            index = _nodeCount;
+            index = _lefts[index];
         }
         else if(isRightFree(index))
         {
-            _nodeCount++;
-            if(_nodeCount >= _storageSize())
-            {
-                _increaseStorage();
-            }
+            _rights[index] = node;
+            _parents[_rights[index]] = index;
 
-            _rights[index] = _nodeCount;
-            _parents[_nodeCount] = index;
-
-            index = _nodeCount;
+            index = _rights[index];
         }
 
         else
@@ -221,7 +225,7 @@ ArrayTree::_increaseStorage()
     }
     for(int i = _nodeCount; i < _storageSize(); ++i)
     {
-        buffer[i] = -1;
+        buffer[i] = 0;
     }
     delete _data;
     _data = buffer;

@@ -32,23 +32,25 @@ public:
     ArrayTree& operator =(const ArrayTree&) = delete;
     ~ArrayTree() = default;
 
+    int newNode(); // Gives back the index of a clear node
+
     void insert(int E);
 
-    bool isLeftFree(int index) {return _lefts[index] == -1;}
-    bool isRightFree(int index) {return _rights[index] == -1;}
+    bool isLeftFree(int node) const {return _lefts[node] == -1;}
+    bool isRightFree(int node) const {return _rights[node] == -1;}
 
     std::string to_str();
     void dumpToStdout();
 
 private:
-    void _load(Node* n);
+    int _load(Node* n);
     void _increaseStorage(); //Enlarges storage by one block
 
     std::string _to_str(std::string acc, int depth, int index);
 
     int _storageSize() {return _blockCount * _blockSize;}
 
-    int _blockCount = 1;
+    int _blockCount = 0;
     int _blockSize = 5;
     int _nodeCount = 0;
 
