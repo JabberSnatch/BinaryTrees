@@ -28,7 +28,8 @@ class Node
 public:
     class NodeIter;
 
-    Node(int data = 0, Node* parent = nullptr);
+    Node() = default;
+    Node(int data, Node* parent = nullptr);
     Node(const Node&);
     Node& operator =(const Node&);
     Node* clone();
@@ -70,12 +71,12 @@ public:
 private:
     void _setParent(Node* parent) {_parent = parent;}
 
-    Node* _parent;
-    Node* _left;
-    Node* _right;
+    Node* _parent = nullptr;
+    Node* _left = nullptr;
+    Node* _right = nullptr;
 
-    int _data;
-    bool _free;
+    int _data = 0;
+    bool _free = true;
 
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;

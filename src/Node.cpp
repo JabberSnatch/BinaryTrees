@@ -27,11 +27,11 @@ mt19937 Node::rng = mt19937(random_device()());
 uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0, 1);
 
 Node::Node(int data, Node* parent)
-    :_parent(parent), _left(nullptr), _right(nullptr), _data(data)
+    :_parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
 {}
 
 Node::Node(const Node& n)
-    :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data)
+    :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
 {
     if(!n.isLeftFree())
     {
@@ -64,6 +64,7 @@ Node::operator =(const Node& n)
     {
         _parent = nullptr;
         _data = n._data;
+        _free = n.isFree();
 
         _left = nullptr;
         if(!n.isLeftFree())
@@ -92,7 +93,12 @@ Node::~Node()
 void
 Node::insert(int E)
 {
-    if(isLeftFree())
+    if(_free)
+    {
+        _data = E;
+        _free = false;
+    }
+    else if(isLeftFree())
     {
         _left = new Node(E, this);
     }

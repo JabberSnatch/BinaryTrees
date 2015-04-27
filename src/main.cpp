@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 #endif 
 
 #ifdef SAMUEL
-    Node root(0);
+    Node root;
 
 #if 0
     //NOTE(samu): This test case shows how memory is lost when running SPR
@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 1; i < 10; ++i)
+    for(int i = 10; i < 20; ++i)
     {
         root.insert(i);
     }
