@@ -28,16 +28,12 @@ class Node
 public:
     class NodeIter;
 
-    Node(int data = 0, Node* parent = nullptr);
-
+    Node() = default;
+    Node(int data, Node* parent = nullptr);
     Node(const Node&);
     Node& operator =(const Node&);
     Node* clone();
-
     ~Node();
-
-    void SPR_ite(Node* noeud);
-    void SPR_rec(Node* noeud);
 
     void insert(int E);
 
@@ -48,36 +44,46 @@ public:
     bool nodeCheck() const;
 
     const Node* findRoot() const;
+    int descendantCount() const;
 
-    int nbDescendants() const;
-    Node* nodeAt(int* num);
+    Node* nodeAt(int num);
     
-    Node::NodeIter* begin() {return new Node::NodeIter(this);}
-    std::string to_str();
+    void setData(int data) {_data = data;}
 
-    int size() const {return findRoot()->nbDescendants()+1;}
     int getData() const {return _data;}
+    Node* getParent() {return _parent;}
+    Node* getLeft() {return _left;}
+    Node* getRight() {return _right;}
 
+    bool isFree() const {return _free;}
     bool isOrphan() const {return _parent == nullptr;}
     bool isLeftFree() const {return _left == nullptr;}
     bool isRightFree() const {return _right == nullptr;}
 
+    int size() const {return findRoot()->descendantCount()+1;}
+
+    Node::NodeIter* begin() {return new Node::NodeIter(this);}
+    std::string to_str();
+
+    void SPR_ite(Node* noeud);
+    void SPR_rec(Node* noeud);
+
 private:
-    int _SPR_rec(Node* noeud, int count);
-    std::string _to_str(std::string acc, int depth);
+    void _setParent(Node* parent) {_parent = parent;}
 
-    Node* _getParent();
-    void _setParent(Node* parent);
+    Node* _parent = nullptr;
+    Node* _left = nullptr;
+    Node* _right = nullptr;
 
-    Node* _parent;
-    Node* _left;
-    Node* _right;
-
-    int _data;
+    int _data = 0;
+    bool _free = true;
 
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
 
+    int _SPR_rec(Node* noeud, int count);
+    std::string _to_str(std::string acc, int depth);
+    int _nodeAt(int num);
 
 public:
     class NodeIter
@@ -86,7 +92,7 @@ public:
 
     public:
         void begin() {_index = 0;}
-        Node* getNext() {int i = _index++; return _root->nodeAt(&i);}
+        Node* getNext() {return _root->nodeAt(_index++);}
         bool hasNext() {return _index < _size;}
         void end() {_index = _size-1;}
 
