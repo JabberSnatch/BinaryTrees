@@ -48,7 +48,7 @@ ArrayTree::ArrayTree(Node& root)
     _load(&root);
 
 #if DEBUG
-    // Put the check here
+    // TODO : Put the check here
 #endif
 
 }
@@ -137,6 +137,47 @@ ArrayTree::insert(int E)
             }
         }
     }
+}
+
+ArrayTree&
+ArrayTree::degraph(int node)
+{
+    if(!isOrphan(node))
+    {
+        if(getLeft(getParent(node)) == node)
+        {
+            _lefts[_parents[node]] = -1;
+        }
+        if(getRight(getParent(node)) == node)
+        {
+            _rights[_parents[node]] = -1;
+        }
+
+        _parents[node] = -1;
+    }
+
+    // TODO : extract the degraphed tree
+}
+
+bool
+ArrayTree::regraph(ArrayTree& child, int node)
+{
+    bool success = false;
+
+    if(isLeftFree(node))
+    {
+        // TODO : insert the tree left
+    }
+    else if(isRightFree(node))
+    {
+        // TODO : insert the tree right
+    }
+
+#if DEBUG
+    // TODO : put the check here
+#endif
+
+    return success;
 }
 
 string
