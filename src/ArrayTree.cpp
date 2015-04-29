@@ -53,6 +53,59 @@ ArrayTree::ArrayTree(Node& root)
 
 }
 
+ArrayTree::ArrayTree(const ArrayTree& at)
+    :_blockCount(at._blockCount), _blockSize(at._blockSize), _nodeCount(at._nodeCount)
+{ 
+    _parents = new int[_storageSize()];
+    _lefts = new int[_storageSize()];
+    _rights = new int[_storageSize()];
+    _data = new int[_storageSize()];
+    _free = new bool[_storageSize()];
+
+    for(int index = 0; index < _storageSize(); ++index)
+    {
+        _parents[index] = at._parents[index];
+        _lefts[index] = at._lefts[index];
+        _rights[index] = at._rights[index];
+        _data[index] = at._data[index];
+        _free[index] = at._free[index];
+    }
+}
+
+ArrayTree&
+ArrayTree::operator =(const ArrayTree& at)
+{
+    _blockCount = at._blockCount;
+    _blockSize = at._blockSize;
+    _nodeCount = at._nodeCount;
+
+    if(_parents)
+    {
+        delete _parents;
+        delete _lefts;
+        delete _rights;
+        delete _data;
+        delete _free;
+    }
+
+    _parents = new int[_storageSize()];
+    _lefts = new int[_storageSize()];
+    _rights = new int[_storageSize()];
+    _data = new int[_storageSize()];
+    _free = new bool[_storageSize()];
+
+    for(int index = 0; index < _storageSize(); ++index)
+    {
+        _parents[index] = at._parents[index];
+        _lefts[index] = at._lefts[index];
+        _rights[index] = at._rights[index];
+        _data[index] = at._data[index];
+        _free[index] = at._free[index];
+    }
+
+    return *this;
+}
+
 int
 ArrayTree::_load(Node* n)
 {
@@ -71,6 +124,32 @@ ArrayTree::_load(Node* n)
     if(!n->isRightFree())
     {
         int right = _load(n->getRight());
+
+        _rights[node] = right;
+        _parents[_rights[node]] = node;
+    }
+
+    return node;
+}
+
+int
+ArrayTree::_load(ArrayTree& source, int sourceNode)
+{
+    int node = newNode();
+
+    _free[node] = source.isFree(sourceNode);
+    _data[node] = source.getData(sourceNode);
+
+    if(!source.isLeftFree(sourceNode))
+    {
+        int left = _load(source, source.getLeft(sourceNode));
+
+        _lefts[node] = left;
+        _parents[_lefts[node]] = node;
+    }
+    if(!source.isRightFree(sourceNode))
+    {
+        int right = _load(source, source.getRight(sourceNode));
 
         _rights[node] = right;
         _parents[_rights[node]] = node;
@@ -139,9 +218,11 @@ ArrayTree::insert(int E)
     }
 }
 
-ArrayTree&
+ArrayTree
 ArrayTree::degraph(int node)
 {
+    ArrayTree result;
+
     if(!isOrphan(node))
     {
         if(getLeft(getParent(node)) == node)
@@ -157,6 +238,10 @@ ArrayTree::degraph(int node)
     }
 
     // TODO : extract the degraphed tree
+
+    result._load(*this, node);
+
+    return result;
 }
 
 bool

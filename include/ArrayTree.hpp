@@ -28,15 +28,15 @@ class ArrayTree
 public:
     ArrayTree();
     ArrayTree(Node&);
-    ArrayTree(const ArrayTree&) = delete;
-    ArrayTree& operator =(const ArrayTree&) = delete;
+    ArrayTree(const ArrayTree&);
+    ArrayTree& operator =(const ArrayTree&);
     ~ArrayTree() = default;
 
     int newNode(); // Gives back the index of a clear node
 
     void insert(int E);
 
-    ArrayTree& degraph(int node);
+    ArrayTree degraph(int node);
     bool regraph(ArrayTree& child, int node);
 
     void setData(int node, int data) {_data[node] = data;}
@@ -58,6 +58,7 @@ public:
 
 private:
     int _load(Node* n);
+    int _load(ArrayTree& source, int node);
     void _increaseStorage(); //Enlarges storage by one block
 
     std::string _to_str(std::string acc, int depth, int index);

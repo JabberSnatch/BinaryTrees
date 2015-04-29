@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 #ifdef SAMUEL
     Node root;
 
-#if 0
+#if 1
     ArrayTree tree;
 
     tree.dumpToStdout();
@@ -87,9 +87,18 @@ int main(int argc, char* argv[])
         tree.insert(i);
     }
 
-    tree.dumpToStdout();
+    //tree.dumpToStdout();
 
     std::cout << tree.to_str() << std::endl;
+    
+    ArrayTree copy(tree);
+    //copy.dumpToStdout();
+    std::cout << copy.to_str() << std::endl;
+
+    ArrayTree subTree = copy.degraph(2);
+
+    std::cout << copy.to_str() << std::endl;
+    std::cout << subTree.to_str() << std::endl;
 
 #else
 
