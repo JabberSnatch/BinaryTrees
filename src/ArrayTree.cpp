@@ -133,32 +133,6 @@ ArrayTree::_load(Node* n)
 }
 
 int
-ArrayTree::_load(ArrayTree& source, int sourceNode)
-{
-    int node = newNode();
-
-    _free[node] = source.isFree(sourceNode);
-    _data[node] = source.getData(sourceNode);
-
-    if(!source.isLeftFree(sourceNode))
-    {
-        int left = _load(source, source.getLeft(sourceNode));
-
-        _lefts[node] = left;
-        _parents[_lefts[node]] = node;
-    }
-    if(!source.isRightFree(sourceNode))
-    {
-        int right = _load(source, source.getRight(sourceNode));
-
-        _rights[node] = right;
-        _parents[_rights[node]] = node;
-    }
-
-    return node;
-}
-
-int
 ArrayTree::newNode()
 {
     if(_nodeCount >= _storageSize())
@@ -240,8 +214,61 @@ ArrayTree::degraph(int node)
     // TODO : extract the degraphed tree
 
     result._load(*this, node);
+    _remove(node);
+    _defragment();
 
     return result;
+}
+
+int
+ArrayTree::_load(ArrayTree& source, int sourceNode)
+{
+    int node = newNode();
+
+    _free[node] = source.isFree(sourceNode);
+    _data[node] = source.getData(sourceNode);
+
+    if(!source.isLeftFree(sourceNode))
+    {
+        int left = _load(source, source.getLeft(sourceNode));
+
+        _lefts[node] = left;
+        _parents[_lefts[node]] = node;
+    }
+    if(!source.isRightFree(sourceNode))
+    {
+        int right = _load(source, source.getRight(sourceNode));
+
+        _rights[node] = right;
+        _parents[_rights[node]] = node;
+    }
+
+    return node;
+}
+
+void
+ArrayTree::_remove(int node)
+{
+    std::cout << "removing node n°" << node << std::endl;
+
+    if(!isLeftFree(node))
+    {
+        int left = getLeft(node);
+        _remove(left);
+    }
+    if(!isRightFree(node))
+    {
+        int right = getRight(node);
+        _remove(right);
+    }
+
+    _data[node] = 0; // NOTE : this should be removed in the templated version
+
+    _free[node] = true;
+    _parents[node] = -1;
+    _lefts[node] = -1;
+    _rights[node] = -1;
+    _nodeCount--;
 }
 
 bool
@@ -299,6 +326,71 @@ ArrayTree::dumpToStdout()
         std::cout << _free[i] << "; ";
     }
     std::cout << std::endl;
+}
+
+void
+ArrayTree::_defragment()
+{
+    for(int i = 0; i < _storageSize(); ++i)
+    {
+        for(int j = 1; j < _storageSize(); ++j)
+        {
+            if(_free[j-1] > _free[j])
+            {
+                // NOTE : these three tests should be integrated to _swap
+                if(!isOrphan(j))
+                {
+                    int parent = getParent(j);
+
+                    if(getLeft(parent) == j)
+                    {
+                        _lefts[parent] = j-1;
+                    }
+                    if(getRight(parent) == j)
+                    {
+                        _rights[parent] = j-1;
+                    }
+                }
+                if(!isLeftFree(j))
+                {
+                    _parents[getLeft(j)] = j-1;
+                }
+                if(!isRightFree(j))
+                {
+                    _parents[getRight(j)] = j-1;
+                }
+
+                _swap(j-1, j);
+            }
+        }
+    }
+}
+
+// TODO : _swap should update the links between nodes
+void
+ArrayTree::_swap(int nodeA, int nodeB)
+{
+    int tmp[3];
+    int data;
+    bool free;
+
+    tmp[0] = _parents[nodeA];
+    tmp[1] = _lefts[nodeA];
+    tmp[2] = _rights[nodeA];
+    data = _data[nodeA];
+    free = _free[nodeA];
+
+    _parents[nodeA] = _parents[nodeB];
+    _lefts[nodeA] = _lefts[nodeB];
+    _rights[nodeA] = _rights[nodeB];
+    _data[nodeA] = _data[nodeB];
+    _free[nodeA] = _free[nodeB];
+
+    _parents[nodeB] = tmp[0];
+    _lefts[nodeB] = tmp[1];
+    _rights[nodeB] = tmp[2];
+    _data[nodeB] = data;
+    _free[nodeB] = free;
 }
 
 void

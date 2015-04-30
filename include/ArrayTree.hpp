@@ -59,7 +59,14 @@ public:
 private:
     int _load(Node* n);
     int _load(ArrayTree& source, int node);
+
+    void _remove(int node);
+
+    void _defragment();
+    void _swap(int nodeA, int nodeB);
+
     void _increaseStorage(); //Enlarges storage by one block
+    // TODO : implement a method to fit storage to the stored nodes
 
     std::string _to_str(std::string acc, int depth, int index);
 

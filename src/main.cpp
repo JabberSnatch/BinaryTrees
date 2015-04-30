@@ -100,6 +100,9 @@ int main(int argc, char* argv[])
     std::cout << copy.to_str() << std::endl;
     std::cout << subTree.to_str() << std::endl;
 
+    copy.dumpToStdout();
+    subTree.dumpToStdout();
+
 #else
 
     for(int i = 9; i < 20; ++i)
