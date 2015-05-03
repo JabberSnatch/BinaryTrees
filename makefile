@@ -2,7 +2,7 @@ TARGET = prog
 
 SRCS = main.cpp\
        Node.cpp\
-       Testenv.cpp\
+       TestEnv.cpp\
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src
