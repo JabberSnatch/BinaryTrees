@@ -39,6 +39,8 @@ public:
     ArrayTree degraph(int node);
     int regraph(ArrayTree& child, int node);
 
+    bool check(int node) const;
+
     void setData(int node, int data) {_data[node] = data;}
 
     int getData(int node) const {return _data[node];}

@@ -18,6 +18,8 @@
 
 #include "ArrayTree.hpp"
 
+#include <cassert>
+
 #include "Node.hpp"
 
 using namespace std;
@@ -48,7 +50,7 @@ ArrayTree::ArrayTree(Node& root)
     _load(&root);
 
 #if DEBUG
-    // TODO : Put the check here
+    assert(check(0));
 #endif
 
 }
@@ -211,14 +213,12 @@ ArrayTree::degraph(int node)
         _parents[node] = -1;
     }
 
-    // TODO : extract the degraphed tree
-
     result._load(*this, node);
     _remove(node);
     _defragment();
 
 #if DEBUG
-    // put the check here
+    assert(check(0));
 #endif
 
     return result;
@@ -298,10 +298,51 @@ ArrayTree::regraph(ArrayTree& child, int node)
     }
 
 #if DEBUG
-    // TODO : put the check here
+    assert(check(0));
 #endif
 
     return result;
+}
+
+bool
+ArrayTree::check(int node) const
+{
+    bool RES = false;
+
+    if(node == 0)
+    {
+        if(!isOrphan(node))
+        {
+            return RES;
+        }
+    }
+
+    if(isLeftFree(node) && isRightFree(node))
+    {
+        RES = true;
+    }
+    else
+    {
+        if(!isLeftFree(node))
+        {
+            if(getParent(getLeft(node)) == node)
+            {
+                RES = true;
+                RES &= check(getLeft(node));
+            }
+        }
+
+        if(!isRightFree(node))
+        {
+            if(getParent(getLeft(node)) == node)
+            {
+                RES = true;
+                RES &= check(getRight(node));
+            }
+        }
+    }
+
+    return RES;
 }
 
 string
@@ -503,7 +544,8 @@ ArrayTree::SPR_rec(int node)
     return _SPR_rec(subTree, 0, 0);
 }
 
-// NOTE : to be tested later
+// NOTE : This version doesn't resize the storage after a degraph. Maybe it should, but it's
+//        probably faster this way
 int
 ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
 {
