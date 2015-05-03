@@ -217,6 +217,10 @@ ArrayTree::degraph(int node)
     _remove(node);
     _defragment();
 
+#if DEBUG
+    // put the check here
+#endif
+
     return result;
 }
 
@@ -278,11 +282,21 @@ ArrayTree::regraph(ArrayTree& child, int node)
 
     if(isLeftFree(node))
     {
-        // TODO : insert the tree left
+        int left = _load(child, 0);
+
+        _parents[left] = node;
+        _lefts[node] = left;
+
+        success = true;
     }
     else if(isRightFree(node))
     {
-        // TODO : insert the tree right
+        int right = _load(child, 0);
+
+        _parents[right] = node;
+        _rights[node] = right;
+
+        success = true;
     }
 
 #if DEBUG
@@ -481,5 +495,35 @@ ArrayTree::_to_str(string acc, int depth, int index)
     }
 
     return acc;
+}
+
+int
+ArrayTree::SPR_rec(int node)
+{
+    ArrayTree subTree = degraph(node);
+
+    return _SPR_rec(subTree, 0, 0);
+}
+
+// NOTE : to be tested later
+int
+ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
+{
+    if(regraph(subTree, node))
+    {
+        count++;
+    }   
+    degraph(node);
+
+    if(!isLeftFree(node))
+    {
+        count = _SPR_rec(subTree, getLeft(node), count);
+    }
+    if(!isRightFree())
+    {
+        count = _SPR_rec(subTree, getRight(node), count);
+    }
+
+    return count;
 }
 

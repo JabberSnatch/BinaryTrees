@@ -103,6 +103,11 @@ int main(int argc, char* argv[])
     copy.dumpToStdout();
     subTree.dumpToStdout();
 
+    std::cout << copy.regraph(subTree, 2) << std::endl;
+
+    std::cout << copy.to_str() << std::endl;
+
+
 #else
 
     for(int i = 9; i < 20; ++i)
