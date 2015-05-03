@@ -77,7 +77,7 @@ int main(int argc, char* argv[])
 #ifdef SAMUEL
     Node root;
 
-#if 1
+#if 0
     ArrayTree tree;
 
     tree.dumpToStdout();
@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 9; i < 20; ++i)
+    for(int i = 0; i < 1000; ++i)
     {
         root.insert(i);
     }
@@ -119,9 +119,13 @@ int main(int argc, char* argv[])
 
     ArrayTree tree(root);
 
-    tree.dumpToStdout();
-
     std::cout << tree.to_str() << std::endl;
+    std::cout << tree.SPR_rec(3) << std::endl;
+    std::cout << tree.to_str() << std::endl;
+
+    std::cout << root.to_str() << std::endl;
+    root.SPR_rec(root.nodeAt(3));
+    std::cout << root.to_str() << std::endl;
 
 #endif
 

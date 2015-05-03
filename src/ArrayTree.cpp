@@ -253,8 +253,6 @@ ArrayTree::_load(ArrayTree& source, int sourceNode)
 void
 ArrayTree::_remove(int node)
 {
-    std::cout << "removing node n°" << node << std::endl;
-
     if(!isLeftFree(node))
     {
         int left = getLeft(node);
@@ -275,10 +273,10 @@ ArrayTree::_remove(int node)
     _nodeCount--;
 }
 
-bool
+int
 ArrayTree::regraph(ArrayTree& child, int node)
 {
-    bool success = false;
+    int result = -1;
 
     if(isLeftFree(node))
     {
@@ -287,7 +285,7 @@ ArrayTree::regraph(ArrayTree& child, int node)
         _parents[left] = node;
         _lefts[node] = left;
 
-        success = true;
+        result = left;
     }
     else if(isRightFree(node))
     {
@@ -296,14 +294,14 @@ ArrayTree::regraph(ArrayTree& child, int node)
         _parents[right] = node;
         _rights[node] = right;
 
-        success = true;
+        result = right;
     }
 
 #if DEBUG
     // TODO : put the check here
 #endif
 
-    return success;
+    return result;
 }
 
 string
@@ -509,17 +507,18 @@ ArrayTree::SPR_rec(int node)
 int
 ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
 {
-    if(regraph(subTree, node))
+    int regraphIndex = regraph(subTree, node);
+    if(regraphIndex != -1)
     {
         count++;
+        degraph(regraphIndex);
     }   
-    degraph(node);
 
     if(!isLeftFree(node))
     {
         count = _SPR_rec(subTree, getLeft(node), count);
     }
-    if(!isRightFree())
+    if(!isRightFree(node))
     {
         count = _SPR_rec(subTree, getRight(node), count);
     }

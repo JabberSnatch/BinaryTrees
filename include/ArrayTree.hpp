@@ -37,7 +37,7 @@ public:
     void insert(int E);
 
     ArrayTree degraph(int node);
-    bool regraph(ArrayTree& child, int node);
+    int regraph(ArrayTree& child, int node);
 
     void setData(int node, int data) {_data[node] = data;}
 
@@ -55,6 +55,8 @@ public:
 
     std::string to_str();
     void dumpToStdout();
+
+    int SPR_rec(int node);
 
 private:
     int _load(Node* n);
@@ -85,6 +87,7 @@ private:
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
 
+    int _SPR_rec(ArrayTree& subTree, int node, int count);
 };
 
 #endif // ARRAYTREE_H_INCLUDED
