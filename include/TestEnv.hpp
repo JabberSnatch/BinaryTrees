@@ -22,7 +22,7 @@
 #include <string>
 #include <chrono>
 #include <ctime>
-enum testType {itVsrec,statiqueVsdynamique};
+enum testType {ITVSREC,STATVSDYN};
 class TestEnv 
 {
 public:
@@ -38,6 +38,10 @@ private:
     std::vector<bool> _floatBoolPar;
     std::vector<std::string> _stringPar;
     std::vector<bool> _stringBoolPar;
+    
+    void _itVsrec();
+    void _statiqueVsdynamique();
+    
     
     class Chrono
     {

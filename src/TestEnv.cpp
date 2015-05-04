@@ -34,6 +34,8 @@ uniform_int_distribution<int> binaryPick = uniform_int_distribution<int>(0, 1);
 TestEnv::TestEnv(testType test,std::vector<float> floatPar,std::vector<bool> floatBoolPar, std::vector<std::string> stringPar,std::vector<bool> stringBoolPar): _type(test),_floatPar(floatPar),_floatBoolPar(floatBoolPar), _stringPar(stringPar),_stringBoolPar(stringBoolPar)
 {}
 
+
+
 /**
     
 
@@ -42,6 +44,14 @@ TestEnv::TestEnv(testType test,std::vector<float> floatPar,std::vector<bool> flo
 
 void
 TestEnv::runTest()
+{
+    if(_type==ITVSREC)
+        _itVsrec();
+   
+    else if (_type==STATVSDYN)
+        _statiqueVsdynamique();
+}
+
 /**
     How to build a new test :
     
@@ -54,23 +64,27 @@ TestEnv::runTest()
         -Needed : 
         -Optionnal:
 */
-{
 
-    if(_type==itVsrec)
-    /**
-        test for iteratif versus recursif
-        FloatList : 
-        -Needed : 
-            float nbInsert : how many insert inside trees
-        -Optionnal:
-            float randomNode : which node is choosen for spr. Default value = random value between 0 and nbInsert
-            float nbRound : number of round made 
-            boolean timeShown : boolean if the time of both test are shown
-            
-        StringList:
-        -Needed : 
-        -Optionnal:
-    */
+
+
+
+/**
+    test for iteratif versus recursif
+    FloatList : 
+    -Needed : 
+        float nbInsert : how many insert inside trees
+    -Optionnal:
+        float randomNode : which node is choosen for spr. Default value = random value between 0 and nbInsert
+        float nbRound : number of round made 
+        boolean timeShown : boolean if the time of both test are shown
+        
+    StringList:
+    -Needed : 
+    -Optionnal:
+*/
+void
+TestEnv::_itVsrec()
+{
     {
         float nbInsert = _floatPar[0];
         int nbOption=1;
@@ -117,9 +131,9 @@ TestEnv::runTest()
         }
         
     }
-    
-    else if (_type==statiqueVsdynamique)
-    /**
+}
+
+/**
         test for statique vs dynamique
         FloatList : 
         -Needed : 
@@ -129,12 +143,10 @@ TestEnv::runTest()
         -Needed : 
         -Optionnal:
     */
-    {
+void
+TestEnv::_statiqueVsdynamique()
+{
     
-    }
-    
-
-
 }
 
 

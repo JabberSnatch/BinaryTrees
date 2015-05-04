@@ -30,16 +30,17 @@ void debug()
 {
 #ifdef RODOLPHE
     std::vector<bool> floatBoolList={true,true,true};
-    std::vector<float> floatList={5000,5,2,0};
-    TestEnv myTest(itVsrec,floatList,floatBoolList);
+    std::vector<float> floatList={5000,15,1,1};
+    TestEnv myTest(ITVSREC,floatList,floatBoolList);
     myTest.runTest();
+    
     
 #endif 
 
 #ifdef SAMUEL
     Node root(0);
 
-#if 1
+#if 0
     //NOTE(samu): This test case shows how memory is lost when running SPR
     //            Maybe we should consider switching to smart pointer in order to avoid
     //            having to manually free the SPR'ed node
@@ -73,6 +74,7 @@ void debug()
     int nb=25;
     root.SPR_rec(root.nodeAt(nb));
     root.SPR_ite(root.nodeAt(nb));
+    std::cout << root.to_str() << std::endl;
 
 #endif
 #endif
