@@ -31,7 +31,7 @@ using namespace std;
 mt19937 rng = mt19937(random_device()());
 uniform_int_distribution<int> binaryPick = uniform_int_distribution<int>(0, 1);
 
-TestEnv::TestEnv(testType test,vector<float> floatPar, vector<string> stringPar): _type(test),_floatPar(floatPar),_stringPar(stringPar)
+TestEnv::TestEnv(testType test,std::vector<float> floatPar,std::vector<bool> floatBoolPar, std::vector<std::string> stringPar,std::vector<bool> stringBoolPar): _type(test),_floatPar(floatPar),_floatBoolPar(floatBoolPar), _stringPar(stringPar),_stringBoolPar(stringBoolPar)
 {}
 
 /**
@@ -73,20 +73,10 @@ TestEnv::runTest()
     */
     {
         float nbInsert = _floatPar[0];
-        float randomNode = binaryPick(rng) * nbInsert;
-        float nbRound=1;
-        bool timeShown=false;
-        switch (_floatPar.size())
-        {
-            case 4:
-                randomNode = _floatPar[1];
-            
-            case 3:
-                nbRound=_floatPar[2];
-            
-            case 2:
-                timeShown=_floatPar[3];
-        }
+        int nbOption=1;
+        float randomNode = (_floatBoolPar[0])? _floatPar[nbOption++]:( binaryPick(rng) * nbInsert);
+        float nbRound= (_floatBoolPar[1])? _floatPar[nbOption++]:1;
+        bool timeShown=(_floatBoolPar[2])? _floatPar[nbOption++]:false;
         
         TestEnv::Chrono myChrono;
         float temps1 =0;

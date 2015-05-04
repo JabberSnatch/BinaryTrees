@@ -29,8 +29,9 @@
 void debug()
 {
 #ifdef RODOLPHE
-    std::vector<float> floatList={10000,25,15,0};
-    TestEnv myTest(itVsrec,floatList);
+    std::vector<bool> floatBoolList={true,true,true};
+    std::vector<float> floatList={5000,5,2,0};
+    TestEnv myTest(itVsrec,floatList,floatBoolList);
     myTest.runTest();
     
 #endif 

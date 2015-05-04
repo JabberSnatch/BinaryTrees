@@ -27,7 +27,7 @@ class TestEnv
 {
 public:
     
-    TestEnv(testType test,std::vector<float> floatPar=std::vector<float> (), std::vector<std::string> stringPar=std::vector<std::string>());
+    TestEnv(testType test,std::vector<float> floatPar=std::vector<float> (),std::vector<bool> floatBoolPar=std::vector<bool> (), std::vector<std::string> stringPar=std::vector<std::string>(),std::vector<bool> stringBoolPar=std::vector<bool> ());
     
     void runTest();
     
@@ -35,7 +35,9 @@ public:
 private:
     testType _type;
     std::vector<float> _floatPar;
+    std::vector<bool> _floatBoolPar;
     std::vector<std::string> _stringPar;
+    std::vector<bool> _stringBoolPar;
     
     class Chrono
     {
