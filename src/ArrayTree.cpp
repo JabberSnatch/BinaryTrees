@@ -52,7 +52,6 @@ ArrayTree::ArrayTree(Node& root)
 #if DEBUG
     assert(check(0));
 #endif
-
 }
 
 ArrayTree::ArrayTree(const ArrayTree& at)
@@ -194,6 +193,7 @@ ArrayTree::insert(int E)
     }
 }
 
+// TODO : Do not return a new ArrayTree, keep the subtreee inside instead
 ArrayTree
 ArrayTree::degraph(int node)
 {

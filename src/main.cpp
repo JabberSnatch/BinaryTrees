@@ -123,9 +123,11 @@ int main(int argc, char* argv[])
     std::cout << tree.SPR_rec(3) << std::endl;
     std::cout << tree.to_str() << std::endl;
 
+    /* 
     std::cout << root.to_str() << std::endl;
     root.SPR_rec(root.nodeAt(3));
     std::cout << root.to_str() << std::endl;
+    */
 
 #endif
 
