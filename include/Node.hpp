@@ -40,8 +40,10 @@ public:
     void degraph();
     bool regraph(Node* child);
 
-    bool check() const;
-    bool nodeCheck() const;
+    bool check();
+    bool nodeCheck();
+
+    Node* findRoot();
 
     const Node* findRoot() const;
     int descendantCount() const;
@@ -71,12 +73,12 @@ public:
 private:
     void _setParent(Node* parent) {_parent = parent;}
 
-    Node* _parent = nullptr;
-    Node* _left = nullptr;
-    Node* _right = nullptr;
+    Node* _parent;
+    Node* _left;
+    Node* _right;
 
-    int _data = 0;
-    bool _free = true;
+    int _data;
+    bool _free;
 
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
@@ -108,5 +110,6 @@ public:
     };
 
 };
+
 
 #endif // __NODE_H_INCLUDED__

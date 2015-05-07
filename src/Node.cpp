@@ -28,7 +28,14 @@ uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0
 
 Node::Node(int data, Node* parent)
     :_parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
-{}
+{
+
+    _parent = nullptr;
+    _left = nullptr;
+    _right = nullptr;
+    _data = 0;
+    _free = true;
+}
 
 Node::Node(const Node& n)
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
@@ -169,7 +176,7 @@ Node::regraph(Node* child)
 
 //NOTE: check is supposed to be called on the root of a tree
 bool 
-Node::check() const
+Node::check()
 {
     bool RES = false;
 
@@ -183,7 +190,7 @@ Node::check() const
 }
 
 bool 
-Node::nodeCheck() const
+Node::nodeCheck()
 {
     bool RES = false;
     
@@ -215,10 +222,10 @@ Node::nodeCheck() const
     return RES;
 }
 
-const Node*
-Node::findRoot() const
+Node*
+Node::findRoot()
 {
-    const Node* target = this;
+    Node* target = this;
     
     while(!target->isOrphan())
     {
@@ -227,6 +234,7 @@ Node::findRoot() const
 
     return target;
 }
+
 
 int 
 Node::descendantCount() const
