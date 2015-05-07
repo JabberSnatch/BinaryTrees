@@ -110,24 +110,34 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 0; i < 1000; ++i)
+    for(int i = 0; i < 10; ++i)
     {
         root.insert(i);
     }
     std::cout << root.check() << std::endl;
     std::cout << root.to_str() << std::endl;
 
+    Node* n = root.nodeAt(3);
+    n->degraph();
+
+    std::cout << root.to_str() << std::endl;
+    std::cout << n->getParent()->to_str() << std::endl;
+
+    root.nodeAt(1)->regraph(n);
+
+    std::cout << root.to_str() << std::endl; 
+
+#if 0
     ArrayTree tree(root);
 
     std::cout << tree.to_str() << std::endl;
     std::cout << tree.SPR_rec(3) << std::endl;
     std::cout << tree.to_str() << std::endl;
 
-    /* 
     std::cout << root.to_str() << std::endl;
     root.SPR_rec(root.nodeAt(3));
     std::cout << root.to_str() << std::endl;
-    */
+#endif
 
 #endif
 

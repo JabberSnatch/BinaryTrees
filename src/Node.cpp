@@ -84,7 +84,17 @@ Node::operator =(const Node& n)
 
 Node::~Node()
 {
-    degraph();
+    if(!isOrphan())
+    {
+        if(_parent->_left == this)
+        {
+            _parent->_left = nullptr;
+        }
+        if(_parent->_right == this)
+        {
+            _parent->_right = nullptr;
+        }
+    }
 
     delete _left;
     delete _right;
@@ -121,6 +131,8 @@ Node::insert(int E)
     }
 }
 
+// The parent is degraphed along with the calling node
+// The parent's other child is attached to the parent's parent
 void 
 Node::degraph()
 {
@@ -128,14 +140,47 @@ Node::degraph()
     {
         if(_parent->_left == this)
         {
-            _parent->_left = nullptr;
-        }
-        if(_parent->_right == this)
-        {
-            _parent->_right = nullptr;
+            if(!_parent->isOrphan())
+            {
+                if(_parent->_parent->_left == _parent)
+                {
+                    _parent->_parent->_left = _parent->_right;
+                }
+                if(_parent->_parent->_right == _parent)
+                {
+                    _parent->_parent->_right = _parent->_right;
+                }
+            }
+
+            if(!_parent->isRightFree())
+            {
+                _parent->_right->_parent = _parent->_parent;
+                _parent->_right = nullptr;
+            }
         }
 
-        _parent = nullptr;
+        if(_parent->_right == this)
+        {
+            if(!_parent->isOrphan())
+            {
+                if(_parent->_parent->_left == _parent)
+                {
+                    _parent->_parent->_left = _parent->_left;
+                }
+                if(_parent->_parent->_right == _parent)
+                {
+                    _parent->_parent->_right = _parent->_left;
+                }
+            }
+
+            if(!_parent->isLeftFree())
+            {
+                _parent->_left->_parent = _parent->_parent;
+                _parent->_left = nullptr;
+            }
+        }
+
+        _parent->_parent = nullptr;
     }
 }
 
@@ -144,6 +189,55 @@ Node::regraph(Node* child)
 {
     bool success = false;
 
+    if(isLeftFree())
+    {
+        _left = child->_parent;
+        _left->_parent = this;
+        success = true;
+    }
+    else if(isRightFree())
+    {
+        _right = child->_parent;
+        _right->_parent = this;
+        success = true;
+    }
+    else
+    {
+        int side = binaryPick(rng);
+
+        if(side == 0)
+        {
+            _left->_parent = child->_parent;
+
+            if(child->_parent->_left == child)
+            {
+                child->_parent->_right = _left;
+            }
+            if(child->_parent->_right == child)
+            {
+                child->_parent->_left = _left;
+            }
+
+            _left = child->_parent;
+        }
+        if(side == 1)
+        {
+            _right->_parent = child->_parent;
+
+            if(child->_parent->_left == child)
+            {
+                child->_parent->_right = _right;
+            }
+            if(child->_parent->_right == child)
+            {
+                child->_parent->_left = _right;
+            }
+
+            _right = child->_parent;
+        }
+    }
+
+#if 0
     if(child->isOrphan())
     {
         if(isLeftFree())
@@ -159,6 +253,7 @@ Node::regraph(Node* child)
             success = true;
         }
     }
+#endif
 
 #if DEBUG
     assert(findRoot()->check());
