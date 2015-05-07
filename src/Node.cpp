@@ -131,6 +131,35 @@ Node::insert(int E)
     }
 }
 
+void
+Node::insertBalanced(int E)
+{
+    if(_free)
+    {
+        _data = E;
+        _free = false;
+    }
+    else if(isLeftFree())
+    {
+        _left = new Node(E, this);
+    }
+    else if(isRightFree())
+    {
+        _right = new Node(E, this);
+    }
+    else
+    {
+        if(_right->descendantCount() > _left->descendantCount())
+        {
+            _left->insertBalanced(E);
+        }
+        else
+        {
+            _right->insertBalanced(E);
+        }
+    }
+}
+
 // The parent is degraphed along with the calling node
 // The parent's other child is attached to the parent's parent
 void 

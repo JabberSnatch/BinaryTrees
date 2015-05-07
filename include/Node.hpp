@@ -36,6 +36,7 @@ public:
     ~Node();
 
     void insert(int E);
+    void insertBalanced(int E);
 
     void degraph();
     bool regraph(Node* child);

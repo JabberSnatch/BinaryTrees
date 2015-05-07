@@ -112,7 +112,7 @@ int main(int argc, char* argv[])
 
     for(int i = 0; i < 10; ++i)
     {
-        root.insert(i);
+        root.insertBalanced(i);
     }
     std::cout << root.check() << std::endl;
     std::cout << root.to_str() << std::endl;
@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
     std::cout << root.to_str() << std::endl;
     std::cout << n->getParent()->to_str() << std::endl;
 
-    root.nodeAt(1)->regraph(n);
+    //root.nodeAt(1)->regraph(n);
 
     std::cout << root.to_str() << std::endl; 
 
