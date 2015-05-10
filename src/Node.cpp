@@ -213,76 +213,41 @@ Node::degraph()
     }
 }
 
+
+// NOTE : As degraph takes the parent away with the node, regraph plugs the child's parent
+//        above the calling node.
+//        The operation is garanteed to work
 bool
 Node::regraph(Node* child)
 {
     bool success = false;
 
-    if(isLeftFree())
+    Node* regraphedNode = child->_parent;
+
+    if(regraphedNode->isLeftFree())
     {
-        _left = child->_parent;
-        _left->_parent = this;
-        success = true;
+        regraphedNode->_left = this;
     }
-    else if(isRightFree())
+    if(regraphedNode->isRightFree())
     {
-        _right = child->_parent;
-        _right->_parent = this;
-        success = true;
-    }
-    else
-    {
-        int side = binaryPick(rng);
-
-        if(side == 0)
-        {
-            _left->_parent = child->_parent;
-
-            if(child->_parent->_left == child)
-            {
-                child->_parent->_right = _left;
-            }
-            if(child->_parent->_right == child)
-            {
-                child->_parent->_left = _left;
-            }
-
-            _left = child->_parent;
-        }
-        if(side == 1)
-        {
-            _right->_parent = child->_parent;
-
-            if(child->_parent->_left == child)
-            {
-                child->_parent->_right = _right;
-            }
-            if(child->_parent->_right == child)
-            {
-                child->_parent->_left = _right;
-            }
-
-            _right = child->_parent;
-        }
+        regraphedNode->_right = this;
     }
 
-#if 0
-    if(child->isOrphan())
+    regraphedNode->_parent = _parent;
+    if(!isOrphan())
     {
-        if(isLeftFree())
+        if(_parent->_left == this)
         {
-            _left = child;
-            _left->_parent = this;        
-            success = true;
+            _parent->_left = regraphedNode;
         }
-        else if(isRightFree())
+        if(_parent->_right == this)
         {
-            _right = child;
-            _right->_parent = this;
-            success = true;
+            _parent->_right = regraphedNode;
         }
     }
-#endif
+    _parent = regraphedNode;
+
+    success = true;
 
 #if DEBUG
     assert(findRoot()->check());
@@ -392,6 +357,23 @@ Node::nodeAt(int num)
     return res;
 }
 
+int
+Node::leafCount()
+{
+    int count = 0;
+
+    for(int index = 0; index < size(); ++index)
+    {
+        Node* n = nodeAt(index);
+        if(n->isLeftFree() && n->isRightFree())
+        {
+            count++;
+        }
+    }
+
+    return count;
+}
+
 string
 Node::to_str()
 {
@@ -418,6 +400,39 @@ Node::_to_str(string acc, int depth)
     }
 
     return acc;
+}
+
+void
+Node::SPR_list(Node* noeud)
+{
+    int count = 0;
+    int expectedSize = size();
+    std::vector<Node*> nodes;
+
+    noeud->degraph();
+
+    for(NodeIter* it = begin(); it->hasNext();)
+    {
+        Node* n = it->getNext();
+        if(n)
+        {
+            nodes.push_back(n);
+        }
+    }
+
+    // NOTE : The root is not regraphed because of regraph's new 
+    //        tendency to crash when called on root
+    for(unsigned int i = 0; i < nodes.size(); ++i)
+    {
+        if(nodes[i]->regraph(noeud))
+        {
+            assert(expectedSize == size());
+            count++;
+        }
+        noeud->degraph();
+    }
+
+    std::cout << count << std::endl;
 }
 
 void
