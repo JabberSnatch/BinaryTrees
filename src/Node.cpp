@@ -277,11 +277,11 @@ Node::dataCount()
     
     if(!isLeftFree())
     {
-        res+=_left->nodeCount();
+        res+=_left->dataCount();
     }
     if(!isRightFree())
     {
-        res+=_right->nodeCount();
+        res+=_right->dataCount();
     }
     
     return res;
@@ -296,25 +296,35 @@ Node::nodeCount()
 std::string 
 Node::newick()
 {
-    std::string res="(";
     
-    if(!isLeftFree())
+    std::string res;
+    if(!isLeftFree() & !isRightFree())
     {
+        res="(";
         res+=(_left->newick());
+        res+=(","+_right->newick());
+        res+=")";
     }
-    if(!isRightFree())
+    else if(!isLeftFree()& isRightFree())
     {
-        res+=",",_right->newick();
+        res= _left->newick();
     }
-    if(isRightFree() & isLeftFree())
+    else if(isLeftFree()& !isRightFree())
+    {
+        res= _left->newick();
+    }
+    else if(isRightFree() & isLeftFree())
     {
         stringstream ss;
         ss << _data;
-        string str = ss.str();
-        return str;
+        res = ss.str();
+    }
+    else
+    {
+    cerr << "erreur dans newick, arbre mal formé" << endl;
     }
     
-    return res+")";
+    return res;
 }
 
 string
@@ -437,13 +447,16 @@ Node::SPR_ite(Node* noeud)
             }
         }
     }
-    std::cout << i << std::endl;
+    //number of regraph
+    //std::cout << i << std::endl;
 }
 
 void
 Node::SPR_rec(Node* noeud)
 {
-    std::cout << _SPR_rec(noeud, 0) << std::endl;
+    //number of regraph
+    //std::cout << _SPR_rec(noeud, 0) << std::endl;
+    _SPR_rec(noeud, 0);
 }
 
 int

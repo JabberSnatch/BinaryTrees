@@ -31,12 +31,11 @@
 void debug()
 {
 #ifdef RODOLPHE
-    std::vector<bool> floatBoolList={true,true,true,true,true};
-    std::vector<float> floatList={50,15,true,true,true};
-    TestEnv myTest(ITVSREC,floatList,floatBoolList);
+    std::vector<bool> floatBoolList={false,false,true,true,true,false};
+    std::vector<float> floatList={500,true,true,true};
+    TestEnv myTest(STATVSDYN,floatList,floatBoolList);
     myTest.runTest();
-    
-    
+        
 #endif 
 
 #ifdef SAMUEL

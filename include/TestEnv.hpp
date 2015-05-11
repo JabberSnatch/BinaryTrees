@@ -22,7 +22,7 @@
 #include <string>
 #include <chrono>
 #include <ctime>
-enum testType {ITVSREC,STATVSDYN};
+enum testType {ITVSREC,STATVSDYN,RECVSLIST};
 class TestEnv 
 {
 public:
@@ -41,6 +41,7 @@ private:
     
     void _itVsrec();
     void _statiqueVsdynamique();
+    void _recVslist();
     
     
     class Chrono

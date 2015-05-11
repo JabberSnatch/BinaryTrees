@@ -25,11 +25,12 @@
 #include <ctime>
 #include <vector>
 #include "Node.hpp"
+#include "ArrayTree.hpp"
 
 using namespace std;
 
 mt19937 rng = mt19937(random_device()());
-uniform_int_distribution<int> binaryPick = uniform_int_distribution<int>(0, 1);
+
 
 TestEnv::TestEnv(testType test,std::vector<float> floatPar,std::vector<bool> floatBoolPar, std::vector<std::string> stringPar,std::vector<bool> stringBoolPar): _type(test),_floatPar(floatPar),_floatBoolPar(floatBoolPar), _stringPar(stringPar),_stringBoolPar(stringBoolPar)
 {}
@@ -71,9 +72,9 @@ TestEnv::runTest()
 /**
     test for iteratif versus recursif
     FloatList : 
-    -Needed : 
+    -1 Needed : 
         float nbInsert : how many insert inside trees
-    -Optionnal:
+    -6 Optionnal:
         float randomNode : which node is choosen for spr. Default value = random value between 0 and nbInsert
         float nbRound : number of round made 
         boolean timeShown : boolean if the time of both test are shown
@@ -82,8 +83,8 @@ TestEnv::runTest()
         boolean treeShown : boolean if tree is shown
         
     StringList:
-    -Needed : 
-    -Optionnal:
+    -0 Needed : 
+    -0 Optionnal:
 */
 void
 TestEnv::_itVsrec()
@@ -91,7 +92,8 @@ TestEnv::_itVsrec()
     {
         float nbInsert = _floatPar[0];
         int nbOption=1;
-        float randomNode = (_floatBoolPar[0])? _floatPar[nbOption++]:( binaryPick(rng) * nbInsert);
+        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+        float randomNode = (_floatBoolPar[0])? _floatPar[nbOption++]:( randomPick(rng));
         float nbRound= (_floatBoolPar[1])? _floatPar[nbOption++]:1;
         bool timeShown=(_floatBoolPar[2])? _floatPar[nbOption++]:false;
         bool dataCountShown=(_floatBoolPar[3])? _floatPar[nbOption++]:false;
@@ -103,6 +105,7 @@ TestEnv::_itVsrec()
         float temps2 =0 ;
         float tempsTot=0;
         Node* rootNode;
+        Node* saveParent;
         Node* copyNode;
         
         for(;nbRound>0;nbRound--)
@@ -115,7 +118,10 @@ TestEnv::_itVsrec()
             Node copy(root);
             myChrono.start();
                 rootNode = root.nodeAt(randomNode);
+                saveParent=rootNode->getParent();
                 root.SPR_rec(rootNode);
+                if(saveParent!=nullptr)
+                    saveParent->regraph(rootNode);
             myChrono.stop();
             temps1+=myChrono.getDuration();
             if(timeShown !=0)
@@ -128,7 +134,10 @@ TestEnv::_itVsrec()
             myChrono.reset();
             myChrono.start();
                 copyNode = copy.nodeAt(randomNode);
+                saveParent=copyNode->getParent();
                 copy.SPR_ite(copyNode);
+                if(saveParent!=nullptr)
+                    saveParent->regraph(copyNode);
             myChrono.stop();
             temps2 +=myChrono.getDuration();
             if(timeShown !=0)
@@ -163,7 +172,89 @@ TestEnv::_itVsrec()
 void
 TestEnv::_statiqueVsdynamique()
 {
+    {
+        float nbInsert = _floatPar[0];
+        int nbOption=1;
+        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+        float randomNode = (_floatBoolPar[0])? _floatPar[nbOption++]:( randomPick(rng));
+        float nbRound= (_floatBoolPar[1])? _floatPar[nbOption++]:1;
+        bool timeShown=(_floatBoolPar[2])? _floatPar[nbOption++]:false;
+        bool dataCountShown=(_floatBoolPar[3])? _floatPar[nbOption++]:false;
+        bool nodeCountShown=(_floatBoolPar[4])? _floatPar[nbOption++]:false;
+        bool treeShown=(_floatBoolPar[5])? _floatPar[nbOption++]:false;
+        
+        TestEnv::Chrono myChrono;
+        float temps1 =0;
+        float temps2 =0 ;
+        float tempsTot=0;
+        Node* rootNode;
+        Node* saveParent;
+        
+        for(;nbRound>0;nbRound--)
+        {
+            Node root(0);
+            for(int i = 1; i < nbInsert; ++i)
+            {
+                root.insert(i);
+            }
+            Node copy(root);
+            ArrayTree rootArray(copy);
+            
+            myChrono.start();
+                rootNode = root.nodeAt(randomNode);
+                saveParent=rootNode->getParent();
+                root.SPR_rec(rootNode);
+                if(saveParent!=nullptr)
+                    saveParent->regraph(rootNode);
+            myChrono.stop();
+            temps1+=myChrono.getDuration();
+            if(timeShown !=0)
+                cout << "durée du calcul: " << myChrono.getDuration() << endl;   
+            if(dataCountShown!=0)
+                cout << "somme de données: " << root.dataCount() << endl;
+            if(nodeCountShown!=0)
+                cout << "nombre de données: " << root.nodeCount() << endl; 
+            
+            myChrono.reset();
+            myChrono.start();
+                rootArray.SPR_rec(randomNode);
+            myChrono.stop();
+            temps2 +=myChrono.getDuration();
+            if(timeShown !=0)
+                cout << "durée du calcul: " << myChrono.getDuration() << endl;   
+            if(dataCountShown!=0)
+                cout << "somme de données: " << copy.dataCount() << endl;
+            if(nodeCountShown!=0)
+                cout << "nombre de données: " << copy.nodeCount() << endl;
+            myChrono.reset();
+
+
+            if(treeShown)
+                cout << root.newick() << endl;            
+            tempsTot= temps2/temps1 * 100;
+            
+            cout << "Temps stat / dyn : " << tempsTot << endl;
+        }
+        
+    }
     
+}
+
+
+/**
+        test for statique vs dynamique
+        FloatList : 
+        -Needed : 
+        -Optionnal:
+        
+        StringList:
+        -Needed : 
+        -Optionnal:
+    */
+void
+TestEnv::_recVslist()
+{
+
 }
 
 

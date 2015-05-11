@@ -76,15 +76,15 @@ private:
 
     int _storageSize() {return _blockCount * _blockSize;}
 
-    int _blockCount;
-    int _blockSize;
-    int _nodeCount;
+    int _blockCount = 0;
+    int _blockSize = 5;
+    int _nodeCount = 0;
 
-    int* _parents;
-    int* _lefts;
-    int* _rights;
-    int* _data;
-    bool* _free;
+    int* _parents = nullptr;
+    int* _lefts = nullptr;
+    int* _rights = nullptr;
+    int* _data = nullptr;
+    bool* _free = nullptr;
 
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
