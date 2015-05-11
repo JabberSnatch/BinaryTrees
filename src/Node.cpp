@@ -21,6 +21,7 @@
 
 #include <cassert>
 
+
 using namespace std;
 
 mt19937 Node::rng = mt19937(random_device()());
@@ -28,14 +29,7 @@ uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0
 
 Node::Node(int data, Node* parent)
     :_parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
-{
-
-    _parent = nullptr;
-    _left = nullptr;
-    _right = nullptr;
-    _data = 0;
-    _free = true;
-}
+{}
 
 Node::Node(const Node& n)
     :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
@@ -274,6 +268,53 @@ Node::nodeAt(int num)
         }
     }
     return res;
+}
+
+int
+Node::dataCount()
+{ 
+    int res=_data;
+    
+    if(!isLeftFree())
+    {
+        res+=_left->nodeCount();
+    }
+    if(!isRightFree())
+    {
+        res+=_right->nodeCount();
+    }
+    
+    return res;
+}
+
+int 
+Node::nodeCount()
+{
+    return descendantCount()+1;
+}
+
+std::string 
+Node::newick()
+{
+    std::string res="(";
+    
+    if(!isLeftFree())
+    {
+        res+=(_left->newick());
+    }
+    if(!isRightFree())
+    {
+        res+=",",_right->newick();
+    }
+    if(isRightFree() & isLeftFree())
+    {
+        stringstream ss;
+        ss << _data;
+        string str = ss.str();
+        return str;
+    }
+    
+    return res+")";
 }
 
 string

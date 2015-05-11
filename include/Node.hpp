@@ -22,6 +22,7 @@
 #include <string>
 #include <random>
 #include <iostream>
+#include <sstream>
 
 class Node
 {
@@ -50,9 +51,13 @@ public:
 
     Node* nodeAt(int num);
     
+    int dataCount();
+    int nodeCount();
+    std::string newick();
+    
     void setData(int data) {_data = data;}
-
     int getData() const {return _data;}
+    
     Node* getParent() {return _parent;}
     Node* getLeft() {return _left;}
     Node* getRight() {return _right;}
