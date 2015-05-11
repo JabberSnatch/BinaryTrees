@@ -491,7 +491,9 @@ Node::SPR_list(Node* noeud)
         noeud->degraph();
     }
 
+#if DEBUG
     std::cout << count << std::endl;
+#endif
 }
 
 void
@@ -586,16 +588,22 @@ Node::SPR_ite(Node* noeud)
             }
         }
     }
+#if DEBUG
     //number of regraph
-    //std::cout << i << std::endl;
+    std::cout << i << std::endl;
+#endif
+
 }
 
 void
 Node::SPR_rec(Node* noeud)
 {
+#if DEBUG
     //number of regraph
-    //std::cout << _SPR_rec(noeud, 0) << std::endl;
+    std::cout << _SPR_rec(noeud, 0) << std::endl;
+#else
     _SPR_rec(noeud, 0);
+#endif
 }
 
 int
