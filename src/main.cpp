@@ -31,9 +31,9 @@
 void debug()
 {
 #ifdef RODOLPHE
-    std::vector<bool> floatBoolList={false,false,true,true,true,false};
-    std::vector<float> floatList={500,true,true,true};
-    TestEnv myTest(STATVSDYN,floatList,floatBoolList);
+    std::vector<bool> floatBoolList={false,true,false,false,false,false};
+    std::vector<float> floatList={5000,50};
+    TestEnv myTest(ITVSREC,floatList,floatBoolList);
     myTest.runTest();
         
 #endif 
@@ -81,6 +81,24 @@ void debug()
     std::cout << root.check() << std::endl;
     std::cout << root.to_str() << std::endl;
 
+    #if 0
+    Node* n = root.nodeAt(3);
+    n->degraph();
+
+    std::cout << root.to_str() << std::endl;
+    std::cout << n->getParent()->to_str() << std::endl;
+
+    root.nodeAt(1)->regraph(n);
+
+    std::cout << root.to_str() << std::endl; 
+    #else
+    Node* n = root.nodeAt(368);
+    std::cout << n->getParent()->to_str() << std::endl;
+    root.SPR_list(n);
+    std::cout << root.to_str() << std::endl;
+    #endif
+
+#if 0
     ArrayTree tree(root);
 
     std::cout << tree.to_str() << std::endl;
@@ -90,6 +108,7 @@ void debug()
     std::cout << root.to_str() << std::endl;
     root.SPR_rec(root.nodeAt(3));
     std::cout << root.to_str() << std::endl;
+#endif
 
 #endif
 #endif

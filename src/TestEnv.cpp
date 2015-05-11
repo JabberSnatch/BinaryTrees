@@ -51,6 +51,9 @@ TestEnv::runTest()
    
     else if (_type==STATVSDYN)
         _statiqueVsdynamique();
+        
+    else if (_type==RECVSLIST)
+        _recVslist();
 }
 
 /**
@@ -105,8 +108,9 @@ TestEnv::_itVsrec()
         float temps2 =0 ;
         float tempsTot=0;
         Node* rootNode;
-        Node* saveParent;
+        //Node* saveParent;
         Node* copyNode;
+        //Node* saveCopyParent;
         
         for(;nbRound>0;nbRound--)
         {
@@ -118,10 +122,10 @@ TestEnv::_itVsrec()
             Node copy(root);
             myChrono.start();
                 rootNode = root.nodeAt(randomNode);
-                saveParent=rootNode->getParent();
+                //saveParent=rootNode->getParent();
                 root.SPR_rec(rootNode);
-                if(saveParent!=nullptr)
-                    saveParent->regraph(rootNode);
+                //if(saveParent!=nullptr)
+                //    rootNode->regraph(saveParent);
             myChrono.stop();
             temps1+=myChrono.getDuration();
             if(timeShown !=0)
@@ -134,10 +138,10 @@ TestEnv::_itVsrec()
             myChrono.reset();
             myChrono.start();
                 copyNode = copy.nodeAt(randomNode);
-                saveParent=copyNode->getParent();
+                //saveCopyParent=copyNode->getParent();
                 copy.SPR_ite(copyNode);
-                if(saveParent!=nullptr)
-                    saveParent->regraph(copyNode);
+                /*if(saveCopyParent!=nullptr)
+                    saveCopyParent->regraph(copyNode);*/
             myChrono.stop();
             temps2 +=myChrono.getDuration();
             if(timeShown !=0)

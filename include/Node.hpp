@@ -37,14 +37,13 @@ public:
     ~Node();
 
     void insert(int E);
+    void insertBalanced(int E);
 
     void degraph();
     bool regraph(Node* child);
 
-    bool check();
-    bool nodeCheck();
-
-    Node* findRoot();
+    bool check() const;
+    bool nodeCheck() const;
 
     const Node* findRoot() const;
     int descendantCount() const;
@@ -68,10 +67,12 @@ public:
     bool isRightFree() const {return _right == nullptr;}
 
     int size() const {return findRoot()->descendantCount()+1;}
+    int leafCount();
 
     Node::NodeIter* begin() {return new Node::NodeIter(this);}
     std::string to_str();
 
+    void SPR_list(Node* noeud);
     void SPR_ite(Node* noeud);
     void SPR_rec(Node* noeud);
 
