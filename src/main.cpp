@@ -32,7 +32,7 @@ void debug()
 {
 #ifdef RODOLPHE
     std::vector<bool> floatBoolList={false,true,true,true,true,false};
-    std::vector<float> floatList={5000,10,true,true,true};
+    std::vector<float> floatList={15000,2,true,true,true};
     TestEnv myTest(RECVSLIST,floatList,floatBoolList);
     myTest.runTest();
         

@@ -58,6 +58,8 @@ public:
     bool isRightFree(int node) const {return _rights[node] == -1;}
 
     int size() const {return _nodeCount;}
+    int dataCount();
+    int nodeCount() {return _nodeCount;}
 
     std::string to_str();
     void dumpToStdout();

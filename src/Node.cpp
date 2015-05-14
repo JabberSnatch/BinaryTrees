@@ -161,6 +161,25 @@ Node::insertBalanced(int E)
     }
 }
 
+bool
+Node::addChild(Node* noeud)
+{
+    if(isLeftFree())
+    {
+        _left=noeud;
+        return true;
+    }
+    else if (isRightFree())
+    {
+        _right=noeud;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 // The parent is degraphed along with the calling node
 // The parent's other child is attached to the parent's parent
 void 
@@ -462,14 +481,9 @@ Node::_to_str(string acc, int depth)
 }
 
 void
-Node::SPR_list(Node* noeud)
+Node::SPR_list_init(Node* noeud)
 {
-    int count = 0;
-    int expectedSize = size();
-    std::vector<Node*> nodes;
-
     noeud->degraph();
-
     for(NodeIter* it = begin(); it->hasNext();)
     {
         Node* n = it->getNext();
@@ -478,14 +492,24 @@ Node::SPR_list(Node* noeud)
             nodes.push_back(n);
         }
     }
+    
+    
+}
 
+
+void
+Node::SPR_list(Node* noeud)
+{
+    //int expectedSize = size()+noeud->nodeCount()+1;
+    int count = 0;
     // NOTE : The root is not regraphed because of regraph's new 
     //        tendency to crash when called on root
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         if(nodes[i]->regraph(noeud))
         {
-            assert(expectedSize == size());
+            //take too much time (double sometimes !)
+            //assert(expectedSize == size());
             count++;
         }
         noeud->degraph();
@@ -500,93 +524,20 @@ void
 Node::SPR_ite(Node* noeud)
 {
     int i=0;
+    Node* copy(noeud);
     noeud->degraph();
-    Node * nodeActual=this;
-    bool fin=false,remonte=false;
-
-    while(fin==false)
+    Node* res=nodeAt(i);
+    while(res!=nullptr)
     {
-        if(remonte)// si on est en train de remonter
-        {
-            remonte=false;
-            if(nodeActual->_parent!=nullptr)//si on est pas a la racine
-            {
-                if(nodeActual->_parent->_right!=nodeActual)//si on est dans le fils gauche
-                {
-                    if(nodeActual->_parent->_right!=nullptr)// si le fils droit est libre
-                    {
-                        nodeActual=nodeActual->_parent->_right;
-                    }
-                    else// s'il n'y a pas de fils droit
-                    {
-                        nodeActual=nodeActual->_parent;
-                        remonte=true;
-                    }
-                }
-                else//si on est dans le fils droit
-                {
-                    nodeActual=nodeActual->_parent;
-                    remonte=true;
-                }
-            }
-            else
-            {
-                fin =true;
-            }
-        }
-    
-        else
-        {
-            
-            if(nodeActual->regraph(noeud))
-            {
-                i++;
-                noeud->degraph();
-            }
-            if(nodeActual->_left!=nullptr)// si on peut aller a gauche
-            {
-                nodeActual=nodeActual->_left;
-            }
-            else if (nodeActual->_right!=nullptr)// si on peut aller a droite
-            {
-                nodeActual=nodeActual->_right;
-            }
-            else if((nodeActual->_parent)->_parent==nullptr)//si on est juste après la racine
-            {
-                if((nodeActual->_parent)->_right==nodeActual)   //si on est a droite
-                {
-                    fin =true;
-                }
-                else                                    //si on est a gauche
-                {
-                    if((nodeActual->_parent)->_right!=nullptr)
-                    {
-                        nodeActual=(nodeActual->_parent)->_right;
-                    }
-                    else
-                    {
-                        fin=true;              
-                    }
-                }
-            }
-            else if(nodeActual==((nodeActual->_parent)->_right))//si on est a droite du noeud _parent
-            {
-                remonte=true;
-                nodeActual=nodeActual->_parent;
-            }
-            else// si on est a gauche du noeud _parent
-            {
-                if((nodeActual->_parent)->_right!=nullptr)
-                {
-                    nodeActual=(nodeActual->_parent)->_right;
-                }
-                else
-                {
-                    nodeActual=nodeActual->_parent;
-                    remonte=true;                
-                }
-            }
-        }
+        res->regraph(noeud);
+        noeud->degraph();     
+        res=nodeAt(++i);   
+    }
+    if(!(copy->_parent)->addChild(copy))
+    {
+#if DEBUG
+    cerr << "le rajout du noeud n'a pas marché" << endl;
+#endif    
     }
 #if DEBUG
     //number of regraph

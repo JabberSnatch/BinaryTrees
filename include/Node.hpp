@@ -38,6 +38,7 @@ public:
 
     void insert(int E);
     void insertBalanced(int E);
+    bool addChild(Node * noeud);
 
     void degraph();
     bool regraph(Node* child);
@@ -71,7 +72,9 @@ public:
 
     Node::NodeIter* begin() {return new Node::NodeIter(this);}
     std::string to_str();
-
+    
+    
+    void SPR_list_init(Node* noeud);
     void SPR_list(Node* noeud);
     void SPR_ite(Node* noeud);
     void SPR_rec(Node* noeud);
@@ -82,6 +85,7 @@ private:
     Node* _parent;
     Node* _left;
     Node* _right;
+    std::vector<Node*> nodes;
 
     int _data;
     bool _free;

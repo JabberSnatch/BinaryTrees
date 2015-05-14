@@ -158,6 +158,8 @@ TestEnv::_itVsrec()
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps it / rec : " << tempsTot << endl;
+            if(nbRound-1>0)
+                cout << "------------------" << endl;
         }
         
     }
@@ -234,9 +236,9 @@ TestEnv::_statiqueVsdynamique()
             if(timeShown !=0)
                 cout << "durée du calcul: " << myChrono.getDuration() << endl;   
             if(dataCountShown!=0)
-                cout << "somme de données: " << copy.dataCount() << endl;
+                cout << "somme de données: " << rootArray.dataCount() << endl;
             if(nodeCountShown!=0)
-                cout << "nombre de données: " << copy.nodeCount() << endl;
+                cout << "nombre de données: " << rootArray.nodeCount() << endl;
             myChrono.reset();
 
 
@@ -245,6 +247,8 @@ TestEnv::_statiqueVsdynamique()
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps stat / dyn : " << tempsTot << endl;
+            if(nbRound-1>0)
+                cout << "------------------" << endl;
         }
         
     }
@@ -300,8 +304,8 @@ TestEnv::_recVslist()
                 root.insert(i);
             }
             Node copy(root);
-            myChrono.start();
                 rootNode = root.nodeAt(randomNode);
+            myChrono.start();
                 //saveParent=rootNode->getParent();
                 root.SPR_rec(rootNode);
                 //if(saveParent!=nullptr)
@@ -316,8 +320,9 @@ TestEnv::_recVslist()
                 cout << "nombre de données: " <<root.nodeCount() << endl; 
             
             myChrono.reset();
-            myChrono.start();
                 copyNode = copy.nodeAt(randomNode);
+                copy.SPR_list_init(copyNode);
+            myChrono.start();
                 //saveCopyParent=copyNode->getParent();
                 copy.SPR_list(copyNode);
                 /*if(saveCopyParent!=nullptr)
