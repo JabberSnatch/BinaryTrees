@@ -18,22 +18,99 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <random>
 #include <ctime>
+#include <string.h>
+#include <stdio.h>
 
 #include <cassert>
 #include "Node.hpp"
 #include "TestEnv.hpp"
 
 #include "ArrayTree.hpp"
+int maxSizeBoolPar=50;
+int maxSizeFloatPar=50;
 
-void debug()
+
+void debug(int argc, char* argv[])
 {
 #ifdef RODOLPHE
-    std::vector<bool> floatBoolList={false,true,true,true,true,false};
-    std::vector<float> floatList={15000,2,true,true,true};
-    TestEnv myTest(RECVSLIST,floatList,floatBoolList);
+    std::vector<float> floatList={};
+    bool floatBoolList[maxSizeFloatPar];
+    for(int i=0;i<maxSizeFloatPar;i++)
+        floatBoolList[i]=false;
+        
+    bool boolList[maxSizeBoolPar];
+    for(int i=0;i<maxSizeBoolPar;i++)
+        boolList[i]=false;
+        
+    testType test;
+    if(strcmp(argv[1],"--help")==0)
+    {
+        std::ifstream fichier("help.txt");
+        if(!fichier) 
+        {
+            std::cerr << "Le fichier help n'existe pas" << std::endl;
+        }
+        else
+        {
+            std::string line;
+            while(std::getline(fichier,line))
+            {
+                std::cout << line << std::endl;
+            }
+        }
+    }
+    else if(strcmp(argv[1],"RECVSLIST")==0)
+    {
+        test=RECVSLIST;
+    }
+    else if(strcmp(argv[1],"STATVSDYN")==0)
+    {
+        test=STATVSDYN;
+    }
+    else
+    {
+        std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+    }
+    for(int i=2;i<argc;i++)
+    {
+        if(strlen(argv[i])!=3)
+        {
+            std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu" << std::endl;
+        }
+        if(argv[i][0]=='-')
+        {
+            if(argv[i][1]=='f')
+            {
+                float puissance=1;
+                float nombre=0;
+                floatBoolList[(int)(argv[i][2])-49]=true;
+                i++;
+                for(int j=strlen(argv[i])-1;j>=0;j--)
+                {
+                    nombre=nombre+(argv[i][j]-48)*puissance;
+                    puissance*=10;
+                }
+                floatList.push_back(nombre);
+                std::cout << nombre << "|" << floatList[0] << "|" << floatBoolList[0] << "|" << floatBoolList[1] << std::endl; 
+            }
+            else if(argv[i][1]=='b')
+            {
+                boolList[(int)(argv[i][2])-49]=true;
+            }
+            else
+            {
+                std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu, début non reconnu" << std::endl;
+            }
+        }
+    }
+            
+            
+            
+    TestEnv myTest(test,floatList,floatBoolList,boolList);
     myTest.runTest();
         
 #endif 
@@ -121,7 +198,7 @@ int main(int argc, char* argv[])
     std::chrono::duration<int> s_oneday(60*60*24);
     std::cout << s_oneday.count() << std::endl;
 
-    debug();
+    debug(argc,argv);
 
     return 0;
 }

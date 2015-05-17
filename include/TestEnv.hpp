@@ -22,12 +22,12 @@
 #include <string>
 #include <chrono>
 #include <ctime>
-enum testType {ITVSREC,STATVSDYN,RECVSLIST};
+enum testType {STATVSDYN,RECVSLIST};
 class TestEnv 
 {
 public:
     
-    TestEnv(testType test,std::vector<float> floatPar=std::vector<float> (),std::vector<bool> floatBoolPar=std::vector<bool> (), std::vector<std::string> stringPar=std::vector<std::string>(),std::vector<bool> stringBoolPar=std::vector<bool> ());
+    TestEnv(testType test,std::vector<float> floatPar=std::vector<float> (),bool *floatBoolPar=nullptr, bool* boolPar=nullptr);
     
     void runTest();
     
@@ -35,9 +35,8 @@ public:
 private:
     testType _type;
     std::vector<float> _floatPar;
-    std::vector<bool> _floatBoolPar;
-    std::vector<std::string> _stringPar;
-    std::vector<bool> _stringBoolPar;
+    bool* _floatBoolPar;
+    bool* _boolPar;
     
     void _itVsrec();
     void _statiqueVsdynamique();

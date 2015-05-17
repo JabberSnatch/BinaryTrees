@@ -1,0 +1,37 @@
+test for statique vs dynamique
+        FloatList : 
+    -2 Needed : 
+        -f1 : float nbInsert : how many insert inside trees
+            Default : 5.000
+        -f2 : float randomNode : which node is choosen for spr
+            Default : random value between 0 and nbInsert
+    -1 Optionnal:
+        -f3 : float nbRound : number of round made 
+        
+        
+        BoolList:
+    -4 boolean:
+        -b1: boolean timeShown : boolean if the time of both test are shown
+        -b2: boolean dataCountShown : boolean if dataCount is shown
+        -b3: boolean nodeCountShown : boolean if nodeCount is shown
+        -b4: boolean treeShown : boolean if tree is shown
+        
+        
+___________________________________________
+
+test for recursif versus list
+        FloatList : 
+    -1 Needed : 
+        float nbInsert : how many insert inside trees
+    -2 Optionnal:
+        float randomNode : which node is choosen for spr. Default value = random value between 0 and nbInsert
+        float nbRound : number of round made 
+        
+        
+        BoolList:
+    -5 boolean:
+        -b1: boolean timeShown : boolean if the time of both test are shown
+        -b2: boolean dataCountShown : boolean if dataCount is shown
+        -b3: boolean nodeCountShown : boolean if nodeCount is shown
+        -b4: boolean treeShown : boolean if tree is shown
+        -b5: boolean timeListCreationShown : boolean if the creation of the list is timed.
