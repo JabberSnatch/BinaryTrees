@@ -46,7 +46,7 @@ public:
     bool check() const;
     bool nodeCheck() const;
 
-    const Node* findRoot() const;
+    Node* findRoot();
     int descendantCount() const;
 
     Node* nodeAt(int num);
@@ -67,7 +67,7 @@ public:
     bool isLeftFree() const {return _left == nullptr;}
     bool isRightFree() const {return _right == nullptr;}
 
-    int size() const {return findRoot()->descendantCount()+1;}
+    int size() {return findRoot()->descendantCount()+1;}
     int leafCount();
 
     Node::NodeIter* begin() {return new Node::NodeIter(this);}

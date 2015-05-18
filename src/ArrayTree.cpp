@@ -547,12 +547,17 @@ ArrayTree::_to_str(string acc, int depth, int index)
     return acc;
 }
 
-int
+void
 ArrayTree::SPR_rec(int node)
 {
     ArrayTree subTree = degraph(node);
 
-    return _SPR_rec(subTree, 0, 0);
+#if DEBUG
+     cout << _SPR_rec(subTree, 0, 0) << " degraph/regraph" << endl;
+#else
+    _SPR_rec(subTree, 0, 0);
+#endif
+    
 }
 
 // NOTE : This version doesn't resize the storage after a degraph. Maybe it should, but it's

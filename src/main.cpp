@@ -47,7 +47,12 @@ void debug(int argc, char* argv[])
         boolList[i]=false;
         
     testType test;
-    if(strcmp(argv[1],"--help")==0)
+    if(argc<2)
+    {
+        std::cout << "Donnez un test à faire, --help pour plus d'info" << std::endl;
+    
+    }
+    else if(strcmp(argv[1],"--help")==0)
     {
         std::ifstream fichier("help.txt");
         if(!fichier) 
@@ -63,13 +68,17 @@ void debug(int argc, char* argv[])
             }
         }
     }
-    else if(strcmp(argv[1],"RECVSLIST")==0)
+    else if(strcmp(argv[1],"ITVSLIST")==0)
     {
-        test=RECVSLIST;
+        test=ITVSLIST;
     }
     else if(strcmp(argv[1],"STATVSDYN")==0)
     {
         test=STATVSDYN;
+    }
+    else if(strcmp(argv[1],"ITVSREC")==0)
+    {
+        test=ITVSREC;
     }
     else
     {
@@ -95,7 +104,6 @@ void debug(int argc, char* argv[])
                     puissance*=10;
                 }
                 floatList.push_back(nombre);
-                std::cout << nombre << "|" << floatList[0] << "|" << floatBoolList[0] << "|" << floatBoolList[1] << std::endl; 
             }
             else if(argv[i][1]=='b')
             {

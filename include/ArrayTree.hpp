@@ -64,7 +64,7 @@ public:
     std::string to_str();
     void dumpToStdout();
 
-    int SPR_rec(int node);
+    void SPR_rec(int node);
 
 private:
     int _load(Node* n);

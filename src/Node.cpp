@@ -324,10 +324,10 @@ Node::nodeCheck() const
     return RES;
 }
 
-const Node*
-Node::findRoot() const
+Node*
+Node::findRoot()
 {
-    const Node* target = this;
+    Node* target = this;
     
     while(!target->isOrphan())
     {
@@ -516,9 +516,10 @@ Node::SPR_list(Node* noeud)
     }
 
 #if DEBUG
-    std::cout << count << std::endl;
+    std::cout << count << " degraph/regraph" << std::endl;
 #endif
 }
+
 
 void
 Node::SPR_ite(Node* noeud)
@@ -526,13 +527,94 @@ Node::SPR_ite(Node* noeud)
     int i=0;
     Node* copy(noeud);
     noeud->degraph();
-    Node* res=nodeAt(i);
-    while(res!=nullptr)
+    Node * nodeActual=this;
+    bool fin=false,remonte=false;
+    while(fin==false)
     {
-        res->regraph(noeud);
-        noeud->degraph();     
-        res=nodeAt(++i);   
+        if(remonte)// si on est en train de remonter
+        {
+            remonte=false;
+            if(nodeActual->_parent!=nullptr)//si on est pas a la racine
+            {
+                if(nodeActual->_parent->_right!=nodeActual)//si on est dans le fils gauche
+                {
+                    if(nodeActual->_parent->_right!=nullptr)// si le fils droit est libre
+                    {
+                        nodeActual=nodeActual->_parent->_right;
+                    }
+                    else// s'il n'y a pas de fils droit
+                    {
+                        nodeActual=nodeActual->_parent;
+                        remonte=true;
+                    }
+                }
+                else//si on est dans le fils droit
+                {
+                    nodeActual=nodeActual->_parent;
+                    remonte=true;
+                }
+            }
+            else
+            {
+                fin =true;
+            }
+        }
+    
+        else
+        {
+            
+            if(nodeActual->regraph(noeud))
+            {
+                i++;
+                noeud->degraph();
+            }
+            if(nodeActual->_left!=nullptr)// si on peut aller a gauche
+            {
+                nodeActual=nodeActual->_left;
+            }
+            else if (nodeActual->_right!=nullptr)// si on peut aller a droite
+            {
+                nodeActual=nodeActual->_right;
+            }
+            else if((nodeActual->_parent)->_parent==nullptr)//si on est juste après la racine
+            {
+                if((nodeActual->_parent)->_right==nodeActual)   //si on est a droite
+                {
+                    fin =true;
+                }
+                else                                    //si on est a gauche
+                {
+                    if((nodeActual->_parent)->_right!=nullptr)
+                    {
+                        nodeActual=(nodeActual->_parent)->_right;
+                    }
+                    else
+                    {
+                        fin=true;              
+                    }
+                }
+            }
+            else if(nodeActual==((nodeActual->_parent)->_right))//si on est a droite du noeud _parent
+            {
+                remonte=true;
+                nodeActual=nodeActual->_parent;
+            }
+            else// si on est a gauche du noeud _parent
+            {
+                if((nodeActual->_parent)->_right!=nullptr)
+                {
+                    nodeActual=(nodeActual->_parent)->_right;
+                }
+                else
+                {
+                    nodeActual=nodeActual->_parent;
+                    remonte=true;                
+                }
+            }
+        }
     }
+    
+    
     if(!(copy->_parent)->addChild(copy))
     {
 #if DEBUG
@@ -541,7 +623,7 @@ Node::SPR_ite(Node* noeud)
     }
 #if DEBUG
     //number of regraph
-    std::cout << i << std::endl;
+    std::cout << i <<" degraph/regraph"<< std::endl;
 #endif
 
 }
@@ -551,7 +633,7 @@ Node::SPR_rec(Node* noeud)
 {
 #if DEBUG
     //number of regraph
-    std::cout << _SPR_rec(noeud, 0) << std::endl;
+    std::cout << _SPR_rec(noeud, 0) << " degraph/regraph"<<std::endl;
 #else
     _SPR_rec(noeud, 0);
 #endif
