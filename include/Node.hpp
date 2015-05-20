@@ -23,8 +23,11 @@
 #include <random>
 #include <iostream>
 
+class NodeTree;
+
 class Node
 {
+friend class NodeTree;
 public:
     class NodeIter;
 
@@ -51,6 +54,7 @@ public:
     
     void setData(int data) {_data = data;}
 
+    NodeTree* getTree() {return _tree;}
     int getData() const {return _data;}
     Node* getParent() {return _parent;}
     Node* getLeft() {return _left;}
@@ -72,7 +76,10 @@ public:
     void SPR_rec(Node* noeud);
 
 private:
+    void _setTree(NodeTree* tree) {_tree = tree;}
     void _setParent(Node* parent) {_parent = parent;}
+
+    NodeTree* _tree = nullptr;
 
     Node* _parent = nullptr;
     Node* _left = nullptr;

@@ -165,23 +165,15 @@ Node::insertBalanced(int E)
 void 
 Node::degraph()
 {
+    Node* sibling;
+
     if(!isOrphan())
     {
         if(_parent->_left == this)
         {
-            if(!_parent->isOrphan())
-            {
-                if(_parent->_parent->_left == _parent)
-                {
-                    _parent->_parent->_left = _parent->_right;
-                }
-                if(_parent->_parent->_right == _parent)
-                {
-                    _parent->_parent->_right = _parent->_right;
-                }
-            }
+            sibling = _parent->_right;
 
-            if(!_parent->isRightFree())
+            if(sibling)
             {
                 _parent->_right->_parent = _parent->_parent;
                 _parent->_right = nullptr;
@@ -190,23 +182,29 @@ Node::degraph()
 
         if(_parent->_right == this)
         {
-            if(!_parent->isOrphan())
-            {
-                if(_parent->_parent->_left == _parent)
-                {
-                    _parent->_parent->_left = _parent->_left;
-                }
-                if(_parent->_parent->_right == _parent)
-                {
-                    _parent->_parent->_right = _parent->_left;
-                }
-            }
+            sibling = _parent->_left;
 
-            if(!_parent->isLeftFree())
+            if(sibling)
             {
                 _parent->_left->_parent = _parent->_parent;
                 _parent->_left = nullptr;
             }
+        }
+
+        if(!_parent->isOrphan())
+        {
+            if(_parent->_parent->_left == _parent)
+            {
+                _parent->_parent->_left = sibling;
+            }
+            if(_parent->_parent->_right == _parent)
+            {
+                _parent->_parent->_right = sibling;
+            }
+        }
+        else
+        {
+            std::cout << "Parent is root" << std::endl;
         }
 
         _parent->_parent = nullptr;

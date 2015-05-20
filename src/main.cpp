@@ -110,14 +110,14 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 0; i < 10000; ++i)
+    for(int i = 0; i < 10; ++i)
     {
         root.insert(i);
     }
     std::cout << root.check() << std::endl;
     std::cout << root.to_str() << std::endl;
 
-    #if 0
+    #if 1
     Node* n = root.nodeAt(3);
     n->degraph();
 
@@ -128,7 +128,7 @@ int main(int argc, char* argv[])
 
     std::cout << root.to_str() << std::endl; 
     #else
-    Node* n = root.nodeAt(368);
+    Node* n = root.nodeAt(4);
     std::cout << n->getParent()->to_str() << std::endl;
     root.SPR_list(n);
     std::cout << root.to_str() << std::endl;
