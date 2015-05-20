@@ -18,12 +18,12 @@
 #ifndef __NODETREE_H_INCLUDED__
 #define __NODETREE_H_INCLUDED__
 
-class Node;
+#include "Node.hpp"
 
 class NodeTree
 {
 public:
-    NodeTree() = default;
+    NodeTree();
     NodeTree(const Node&);
     ~NodeTree() = default;
 
@@ -35,13 +35,13 @@ public:
     Node* nodeAt(int num);
 
     void setRoot(Node* n);
-    Node* getRoot();
+    Node* getRoot() {return _root;}
 
     int size() const {return _root->descendantCount()+1;}
     int leafCount();
 
 private:
     Node* _root;
-}
+};
 
 #endif // __NODETREE_H_INCLUDED__
