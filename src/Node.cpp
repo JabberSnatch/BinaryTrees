@@ -205,6 +205,7 @@ Node::degraph()
         else
         {
             std::cout << "Parent is root" << std::endl;
+            // NOTE : call _tree.setRoot(sibling)
         }
 
         _parent->_parent = nullptr;
