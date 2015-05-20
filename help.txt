@@ -15,7 +15,7 @@ TEST : 2) STATVSDYN
         -b1: boolean timeShown : boolean if the time of both test are shown
         -b2: boolean dataCountShown : boolean if dataCount is shown
         -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean treeShown : boolean if tree is shown
+        -b4: boolean randomNodeShown : boolean if tree is shown
         
         
 ___________________________________________
@@ -36,5 +36,5 @@ TEST : 3) RECVSLIST
         -b1: boolean timeShown : boolean if the time of both test are shown
         -b2: boolean dataCountShown : boolean if dataCount is shown
         -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean treeShown : boolean if tree is shown
+        -b4: boolean randomNodeShown : boolean if tree is shown
         -b5: boolean timeListCreationShown : boolean if the creation of the list is timed.

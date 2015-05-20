@@ -82,7 +82,7 @@ TestEnv::_itVsrec()
         bool timeShown=(_boolPar[0])? true:false;
         bool dataCountShown=(_boolPar[1])? true:false;
         bool nodeCountShown=(_boolPar[2])? true:false;
-        bool treeShown=(_boolPar[3])? true:false;
+        bool randomNodeShown=(_boolPar[3])? true:false;
         
         TestEnv::Chrono myChrono;
         TestEnv::Chrono myChrono2;
@@ -102,6 +102,7 @@ TestEnv::_itVsrec()
             Node copy(root);
             
             rootNode = root.nodeAt(randomNode);
+            cout << "Premier Test : it" << endl;
             myChrono.start();
                 root.SPR_ite(rootNode);
             myChrono.stop();
@@ -117,6 +118,7 @@ TestEnv::_itVsrec()
             cout << endl;
             
             copyNode = copy.nodeAt(randomNode);
+            cout << "Deuxième test : rec" << endl;
             myChrono.start();
                 copy.SPR_rec(copyNode);
             myChrono.stop();
@@ -130,8 +132,10 @@ TestEnv::_itVsrec()
             myChrono.reset();
 
 
-            if(treeShown)
-                cout << root.newick() << endl;            
+            if(randomNodeShown){
+                cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+                cout << rootNode->to_str() << endl;
+            }            
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps it / rec : " << tempsTot << endl;
@@ -156,7 +160,7 @@ TestEnv::_statiqueVsdynamique()
         bool timeShown=(_boolPar[0])? true:false;
         bool dataCountShown=(_boolPar[1])? true:false;
         bool nodeCountShown=(_boolPar[2])? true:false;
-        bool treeShown=(_boolPar[3])? true:false;
+        bool randomNodeShown=(_boolPar[3])? true:false;
         
         TestEnv::Chrono myChrono;
         float temps1 =0;
@@ -175,6 +179,7 @@ TestEnv::_statiqueVsdynamique()
             ArrayTree rootArray(copy);
             
             rootNode = root.nodeAt(randomNode);
+            cout << "Premier Test : it dynamique" << endl;
             myChrono.start();
                 root.SPR_ite(rootNode);
             myChrono.stop();
@@ -189,6 +194,7 @@ TestEnv::_statiqueVsdynamique()
             myChrono.reset();
             cout << endl;
             
+            cout << "Deuxième test : rec statique" << endl;
             myChrono.start();
                 rootArray.SPR_rec(randomNode);
             myChrono.stop();
@@ -202,8 +208,10 @@ TestEnv::_statiqueVsdynamique()
             myChrono.reset();
 
 
-            if(treeShown)
-                cout << root.newick() << endl;            
+            if(randomNodeShown){
+                cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+                cout << rootNode->to_str() << endl;
+            }          
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps stat / dyn : " << tempsTot << endl;
@@ -229,7 +237,7 @@ TestEnv::_itVslist()
         bool timeShown=(_boolPar[0])? true:false;
         bool dataCountShown=(_boolPar[1])? true:false;
         bool nodeCountShown=(_boolPar[2])? true:false;
-        bool treeShown=(_boolPar[3])? true:false;
+        bool randomNodeShown=(_boolPar[3])? true:false;
         bool timeListCreationShown=(_boolPar[4])? true:false;
         
         TestEnv::Chrono myChrono;
@@ -249,6 +257,7 @@ TestEnv::_itVslist()
             }
             Node copy(root);
             rootNode = root.nodeAt(randomNode);
+            cout << "Premier Test : it" << endl;
             myChrono.start();
                 root.SPR_ite(rootNode);
             myChrono.stop();
@@ -262,6 +271,7 @@ TestEnv::_itVslist()
             
             myChrono.reset();
             cout << endl;
+            cout << "Deuxième test : list" << endl;
             if(timeListCreationShown)
             {
                 myChrono2.start();
@@ -286,8 +296,10 @@ TestEnv::_itVslist()
             myChrono.reset();
 
 
-            if(treeShown)
-                cout << root.newick() << endl;            
+            if(randomNodeShown){
+                cout << "\n" << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+                cout << rootNode->to_str() << endl;
+            }            
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps rec / list : " << tempsTot << endl;
