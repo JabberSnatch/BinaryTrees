@@ -21,6 +21,8 @@
 
 #include <cassert>
 
+#include "NodeTree.hpp"
+
 using namespace std;
 
 mt19937 Node::rng = mt19937(random_device()());
@@ -100,21 +102,26 @@ Node::~Node()
     delete _right;
 }
 
-void
+Node*
 Node::insert(int E)
 {
+    Node* result = nullptr;
+
     if(_free)
     {
         _data = E;
         _free = false;
+        result = this;
     }
     else if(isLeftFree())
     {
         _left = new Node(E, this);
+        result = _left;
     }
     else if(isRightFree())
     {
         _right = new Node(E, this);
+        result = _right;
     }
     else
     {
@@ -122,42 +129,51 @@ Node::insert(int E)
 
         if(side == 0)
         {
-            _left->insert(E);
+            result = _left->insert(E);
         }
         if(side == 1)
         {
-            _right->insert(E);
+            result = _right->insert(E);
         }
     }
+
+    return result;
 }
 
-void
+Node*
 Node::insertBalanced(int E)
 {
+    Node* result = nullptr;
+
     if(_free)
     {
         _data = E;
         _free = false;
+        result = this;
     }
     else if(isLeftFree())
     {
         _left = new Node(E, this);
+        result = _left;
     }
     else if(isRightFree())
     {
         _right = new Node(E, this);
+        result = _right;
     }
     else
     {
         if(_right->descendantCount() > _left->descendantCount())
         {
-            _left->insertBalanced(E);
+            result = _left->insertBalanced(E);
         }
         else
         {
-            _right->insertBalanced(E);
+            result = _right->insertBalanced(E);
         }
     }
+
+    return result;
 }
 
 // The parent is degraphed along with the calling node
@@ -205,7 +221,10 @@ Node::degraph()
         else
         {
             std::cout << "Parent is root" << std::endl;
-            // NOTE : call _tree.setRoot(sibling)
+            if(_tree)
+            {
+                _tree->setRoot(sibling);
+            }
         }
 
         _parent->_parent = nullptr;

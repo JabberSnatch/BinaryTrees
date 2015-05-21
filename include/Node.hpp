@@ -38,8 +38,8 @@ public:
     Node* clone();
     ~Node();
 
-    void insert(int E);
-    void insertBalanced(int E);
+    Node* insert(int E);
+    Node* insertBalanced(int E);
 
     void degraph();
     bool regraph(Node* child);

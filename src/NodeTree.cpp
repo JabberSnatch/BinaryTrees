@@ -18,6 +18,8 @@
 
 #include "NodeTree.hpp"
 
+#include <cassert>
+
 NodeTree::NodeTree()
 {
     _root = new Node();
@@ -33,15 +35,15 @@ NodeTree::NodeTree(const Node& n)
 void
 NodeTree::insert(int E)
 {
-    _root->insert(E);
-    // Should Node's insert return a pointer to the node now holding the data ?
+    Node* node = _root->insert(E);
+    node->_setTree(this);
 }
 
 void
 NodeTree::insertBalanced(int E)
 {
-    _root->insertBalanced(E);
-    // ditto
+    Node* node = _root->insertBalanced(E);
+    node->_setTree(this);
 }
 
 bool
@@ -56,9 +58,11 @@ NodeTree::nodeAt(int num)
     return _root->nodeAt(num);
 }
 
+// Can only change root to a node that already is in the tree
 void
 NodeTree::setRoot(Node* n)
 {
+    assert(n->getTree() == this);
     // Should the node not be made root if it has parent or should it be orphaned ?
 #if 0
     if(n->isOrphan())

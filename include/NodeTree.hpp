@@ -40,6 +40,8 @@ public:
     int size() const {return _root->descendantCount()+1;}
     int leafCount();
 
+    std::string to_str() {return _root->to_str();}
+
 private:
     Node* _root;
 };

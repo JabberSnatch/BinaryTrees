@@ -21,10 +21,10 @@
 #include <chrono>
 #include <random>
 #include <ctime>
-
 #include <cassert>
-#include "Node.hpp"
 
+#include "Node.hpp"
+#include "NodeTree.hpp"
 #include "ArrayTree.hpp"
 
 int main(int argc, char* argv[])
@@ -109,29 +109,30 @@ int main(int argc, char* argv[])
 
 
 #else
+    NodeTree nTree;
 
     for(int i = 0; i < 10; ++i)
     {
-        root.insert(i);
+        nTree.insert(i);
     }
-    std::cout << root.check() << std::endl;
-    std::cout << root.to_str() << std::endl;
+    std::cout << nTree.check() << std::endl;
+    std::cout << nTree.to_str() << std::endl;
 
-    #if 1
-    Node* n = root.nodeAt(3);
+    #if 0
+    Node* n = nTree.nodeAt(3);
     n->degraph();
 
-    std::cout << root.to_str() << std::endl;
+    std::cout << nTree.to_str() << std::endl;
     std::cout << n->getParent()->to_str() << std::endl;
 
-    root.nodeAt(1)->regraph(n);
+    nTree.nodeAt(1)->regraph(n);
 
-    std::cout << root.to_str() << std::endl; 
+    std::cout << nTree.to_str() << std::endl; 
     #else
-    Node* n = root.nodeAt(4);
+    Node* n = nTree.nodeAt(4);
     std::cout << n->getParent()->to_str() << std::endl;
-    root.SPR_list(n);
-    std::cout << root.to_str() << std::endl;
+    nTree.getRoot()->SPR_list(n);
+    std::cout << nTree.to_str() << std::endl;
     #endif
 
 #if 0
