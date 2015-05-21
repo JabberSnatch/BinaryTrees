@@ -248,7 +248,7 @@ Node::regraph(Node* child)
     {
         regraphedNode->_left = this;
     }
-    if(regraphedNode->isRightFree())
+    else if(regraphedNode->isRightFree())
     {
         regraphedNode->_right = this;
     }
@@ -260,7 +260,7 @@ Node::regraph(Node* child)
         {
             _parent->_left = regraphedNode;
         }
-        if(_parent->_right == this)
+        else if(_parent->_right == this)
         {
             _parent->_right = regraphedNode;
         }

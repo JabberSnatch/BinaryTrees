@@ -196,7 +196,7 @@ TestEnv::_statiqueVsdynamique()
             
             cout << "Deuxième test : rec statique" << endl;
             myChrono.start();
-                rootArray.SPR_rec(randomNode);
+                rootArray.SPR_ite(randomNode);
             myChrono.stop();
             temps2 +=myChrono.getDuration();
             if(timeShown !=0)

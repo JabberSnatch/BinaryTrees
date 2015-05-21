@@ -36,7 +36,7 @@ public:
 
     void insert(int E);
 
-    ArrayTree degraph(int node);
+    ArrayTree* degraph(int node);
     int regraph(ArrayTree& child, int node);
 
     // New versions, degraph let the data inside the arraytree and returns the index of the degraphed node
@@ -65,6 +65,7 @@ public:
     void dumpToStdout();
 
     void SPR_rec(int node);
+    void SPR_ite(int node);
 
 private:
     int _load(Node* n);
@@ -85,7 +86,7 @@ private:
     int _blockCount = 0;
     int _blockSize = 5;
     int _nodeCount = 0;
-
+    
     int* _parents = nullptr;
     int* _lefts = nullptr;
     int* _rights = nullptr;

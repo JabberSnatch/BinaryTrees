@@ -194,10 +194,9 @@ ArrayTree::insert(int E)
 }
 
 // TODO : Do not return a new ArrayTree, keep the subtreee inside instead
-ArrayTree
+ArrayTree*
 ArrayTree::degraph(int node)
 {
-    ArrayTree result;
 
     if(!isOrphan(node))
     {
@@ -212,16 +211,26 @@ ArrayTree::degraph(int node)
 
         _parents[node] = -1;
     }
-
-    result._load(*this, node);
-    _remove(node);
-    _defragment();
+    _swap(node,_nodeCount-1);
+    if(!isOrphan(node))
+    {
+        if(getLeft(getParent(node)) == (_nodeCount-1))
+        {
+            _lefts[_parents[node]] = node;
+        }
+        if(getRight(getParent(node)) == (_nodeCount-1))
+        {
+            _rights[_parents[node]] = node;
+        }
+    }
+    
+    _remove(_nodeCount-1);
 
 #if DEBUG
     assert(check(0));
 #endif
 
-    return result;
+    return this;
 }
 
 
@@ -550,10 +559,10 @@ ArrayTree::_to_str(string acc, int depth, int index)
 void
 ArrayTree::SPR_rec(int node)
 {
-    ArrayTree subTree = degraph(node);
+    ArrayTree* subTree = degraph(node);
 
 #if DEBUG
-     cout << _SPR_rec(subTree, 0, 0) << " degraph/regraph" << endl;
+     cout << _SPR_rec(*subTree, 0, 0) << " degraph/regraph" << endl;
 #else
     _SPR_rec(subTree, 0, 0);
 #endif
@@ -583,4 +592,108 @@ ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
 
     return count;
 }
+
+
+
+void
+ArrayTree::SPR_ite(int noeud)
+{
+    int i=0;
+    int regraphIndex;
+    ArrayTree* child=degraph(noeud);
+    int nodeActual=0;
+    bool fin=false,remonte=false;
+    while(fin==false)
+    {
+        if(remonte)// si on est en train de remonter
+        {
+            remonte=false;
+            if(getParent(nodeActual)!=-1)//si on est pas a la racine
+            {
+                if(getRight(getParent(nodeActual))!=nodeActual)//si on est dans le fils gauche
+                {
+                    if(getRight(getParent(nodeActual))!=-1)// si le fils droit est libre
+                    {
+                        nodeActual=getRight(getParent(nodeActual));
+                    }
+                    else// s'il n'y a pas de fils droit
+                    {
+                        nodeActual=getParent(nodeActual);
+                        remonte=true;
+                    }
+                }
+                else//si on est dans le fils droit
+                {
+                    nodeActual=getParent(nodeActual);
+                    remonte=true;
+                }
+            }
+            else
+            {
+                fin =true;
+            }
+        }
+    
+        else
+        {
+            regraphIndex=regraph(*child,nodeActual);
+            if(regraphIndex!=-1)
+            {
+                i++;
+                degraph(regraphIndex);
+            }
+            if(getLeft(nodeActual)!=-1)// si on peut aller a gauche
+            {
+                nodeActual=getLeft(nodeActual);
+            }
+            else if (getRight(nodeActual)!=-1)// si on peut aller a droite
+            {
+                nodeActual=getRight(nodeActual);
+            }
+            else if(getParent(getParent(nodeActual))==-1)//si on est juste après la racine
+            {
+                if(getRight(getParent(nodeActual))==nodeActual)   //si on est a droite
+                {
+                    fin =true;
+                }
+                else                                    //si on est a gauche
+                {
+                    if(getRight(getParent(nodeActual))!=-1)
+                    {
+                        nodeActual=getRight(getParent(nodeActual));
+                    }
+                    else
+                    {
+                        fin=true;              
+                    }
+                }
+            }
+            else if(nodeActual==getRight(getParent(nodeActual)))//si on est a droite du noeud _parent
+            {
+                remonte=true;
+                nodeActual=getParent(nodeActual);
+            }
+            else// si on est a gauche du noeud _parent
+            {
+                if(getRight(getParent(nodeActual))!=-1)
+                {
+                    nodeActual=getRight(getParent(nodeActual));
+                }
+                else
+                {
+                    nodeActual=getParent(nodeActual);
+                    remonte=true;                
+                }
+            }
+        }
+    }
+    
+    
+#if DEBUG
+    //number of regraph
+    std::cout << i <<" degraph/regraph"<< std::endl;
+#endif
+
+}
+
 
