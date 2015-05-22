@@ -42,6 +42,8 @@ public:
 
     std::string to_str() {return _root->to_str();}
 
+    void SPR_list(Node* noeud);
+
 private:
     Node* _root;
 };

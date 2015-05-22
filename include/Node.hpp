@@ -71,7 +71,7 @@ public:
     Node::NodeIter* begin() {return new Node::NodeIter(this);}
     std::string to_str();
 
-    void SPR_list(Node* noeud);
+    void SPR_list(Node* noeud); // Deprecated, use NodeTree's version instead
     void SPR_ite(Node* noeud);
     void SPR_rec(Node* noeud);
 

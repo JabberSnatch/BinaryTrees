@@ -242,6 +242,7 @@ Node::regraph(Node* child)
 
     Node* regraphedNode = child->_parent;
 
+    // Plug the node under the child's parent
     if(regraphedNode->isLeftFree())
     {
         regraphedNode->_left = this;
@@ -265,10 +266,26 @@ Node::regraph(Node* child)
     }
     _parent = regraphedNode;
 
+    // Change the root of the tree, if the node is assigned to one
+    if(_tree)
+    {
+        if(_tree->getRoot() == this)
+        {
+            _tree->setRoot(_parent);
+        }
+    }
+
     success = true;
 
 #if DEBUG
-    assert(findRoot()->check());
+    if(_tree)
+    {
+        assert(_tree->check());
+    }
+    else
+    {
+        assert(findRoot()->check());
+    }
 #endif
 
     return success;
@@ -284,6 +301,10 @@ Node::check() const
     {
         RES = true;
         RES &= nodeCheck();
+    }
+    else
+    {
+        std::cout << "root has parent" << std::endl;
     }
 
     return RES;
@@ -307,6 +328,10 @@ Node::nodeCheck() const
                 RES = true;
                 RES &= _left->nodeCheck();
             }
+            else
+            {
+                std::cout << "left node isn't linked back to current node" << std::endl;
+            }
         }
 
         if(!isRightFree())
@@ -315,6 +340,10 @@ Node::nodeCheck() const
             {
                 RES = true;
                 RES &= _right->nodeCheck();
+            }
+            else
+            {
+                std::cout << "right node isn't linked back to current node" << std::endl;
             }
         }
     }
@@ -428,6 +457,7 @@ Node::SPR_list(Node* noeud)
     std::vector<Node*> nodes;
 
     noeud->degraph();
+    std::cout << noeud->to_str() << std::endl;
 
     for(NodeIter* it = begin(); it->hasNext();)
     {
@@ -438,13 +468,13 @@ Node::SPR_list(Node* noeud)
         }
     }
 
-    // NOTE : The root is not regraphed because of regraph's new 
-    //        tendency to crash when called on root
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         if(nodes[i]->regraph(noeud))
         {
+#if DEBUG
             assert(expectedSize == size());
+#endif
             count++;
         }
         noeud->degraph();

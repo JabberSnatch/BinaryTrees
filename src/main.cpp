@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
 #else
     NodeTree nTree;
 
-    for(int i = 0; i < 10; ++i)
+    for(int i = 0; i < 1000; ++i)
     {
         nTree.insert(i);
     }
@@ -129,9 +129,9 @@ int main(int argc, char* argv[])
 
     std::cout << nTree.to_str() << std::endl; 
     #else
-    Node* n = nTree.nodeAt(4);
+    Node* n = nTree.nodeAt(5);
     std::cout << n->getParent()->to_str() << std::endl;
-    nTree.getRoot()->SPR_list(n);
+    nTree.SPR_list(n);
     std::cout << nTree.to_str() << std::endl;
     #endif
 

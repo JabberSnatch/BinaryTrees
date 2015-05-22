@@ -80,3 +80,43 @@ NodeTree::leafCount()
 {
     return _root->leafCount();
 }
+
+void
+NodeTree::SPR_list(Node* noeud)
+{
+    int count = 0;
+    int expectedSize = size();
+    std::vector<Node*> nodes;
+
+    noeud->degraph();
+#if DEBUG
+    std::cout << noeud->to_str() << std::endl;
+#endif
+
+    for(Node::NodeIter* it = _root->begin(); it->hasNext();)
+    {
+        Node* n = it->getNext();
+        if(n)
+        {
+            nodes.push_back(n);
+        }
+    }
+
+    for(unsigned int i = 0; i < nodes.size(); ++i)
+    {
+        if(nodes[i]->regraph(noeud))
+        {
+#if DEBUG
+            assert(expectedSize = size());
+#endif
+            count++;
+        }
+        noeud->degraph();
+    }
+
+#if DEBUG
+    std::cout << count << "degraph/regraph" << std::endl;
+#endif
+
+}
+
