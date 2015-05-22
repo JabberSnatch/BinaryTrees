@@ -193,6 +193,8 @@ ArrayTree::insert(int E)
     }
 }
 
+
+/*
 // TODO : Do not return a new ArrayTree, keep the subtreee inside instead
 ArrayTree*
 ArrayTree::degraph(int node)
@@ -231,9 +233,66 @@ ArrayTree::degraph(int node)
 #endif
 
     return this;
+}*/
+
+
+ArrayTree*
+ArrayTree::degraph(int node)
+{
+    if(!isOrphan(node))
+    {
+        if(getLeft(getParent(node))==node)
+        {
+            if(!isOrphan(getParent(node)))
+            {
+                if(getLeft(getParent(getParent(node)))==getParent(node))
+                {
+                    _lefts[_parents[_parents[node]]]=getRight(getParent(node));
+                }
+                if(getRight(getParent(getParent(node)))==getParent(node))
+                {
+                    _rights[_parents[_parents[node]]]=getRight(getParent(node));
+                }
+            }
+            
+            if(!isRightFree(getParent(node)))
+            {
+                _parents[_rights[_parents[node]]]=getParent(getParent(node));
+                _rights[_parents[node]]=-1;
+            }
+        }
+        
+        if(getRight(getParent(node))==node)
+        {
+            if(!isOrphan(getParent(node)))
+            {
+                if(getLeft(getParent(getParent(node)))==getParent(node))
+                {
+                    _lefts[_parents[_parents[node]]]=getLeft(getParent(node));
+                }
+                if(getRight(getParent(getParent(node)))==getParent(node))
+                {
+                    _rights[_parents[_parents[node]]]=getLeft(getParent(node));
+                }
+            }
+            
+            if(!isRightFree(getParent(node)))
+            {
+                _parents[_rights[_parents[node]]]=getParent(getParent(node));
+                _lefts[_parents[node]]=-1;
+            }
+        }
+        
+        _parents[_parents[node]]=-1;
+    }
+    
+    ArrayTree* res= new ArrayTree;
+    res->_load(*this,node);
+    
+    return res;
 }
 
-
+/*
 int
 ArrayTree::regraph(ArrayTree& child, int node)
 {
@@ -263,6 +322,42 @@ ArrayTree::regraph(ArrayTree& child, int node)
 #endif
 
     return result;
+}*/
+
+int
+ArrayTree::regraph(ArrayTree& child,int node)
+{
+    int result=-1;
+    
+    int nodeParent=_parents[node];
+    
+    _load(child,nodeParent);
+    result = nodeParent;
+    
+    _parents[nodeParent]=getParent(node);
+    
+    if(!isOrphan(node))
+    {
+        if(getLeft(getParent(node))==node)
+        {
+            _lefts[_parents[node]]=nodeParent;
+        }
+        else if(getRight(getParent(node))==node)
+        {
+            _rights[_parents[node]]=nodeParent;
+        }
+    }
+    
+    _parents[node]=nodeParent;
+    
+#if DEBUG
+    assert(check(0));
+#endif
+
+    return result;
+    
+    
+    
 }
 
 bool
@@ -596,11 +691,11 @@ ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
 
 
 void
-ArrayTree::SPR_ite(int noeud)
+ArrayTree::SPR_ite(int node)
 {
     int i=0;
     int regraphIndex;
-    ArrayTree* child=degraph(noeud);
+    ArrayTree* child=degraph(node);
     int nodeActual=0;
     bool fin=false,remonte=false;
     while(fin==false)

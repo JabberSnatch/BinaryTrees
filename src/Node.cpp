@@ -646,8 +646,8 @@ Node::_SPR_rec(Node* noeud, int count)
     if(regraph(noeud))
     {
         count++;
+        noeud->degraph();
     }
-    noeud->degraph();
 
     if(!isLeftFree())
     {
