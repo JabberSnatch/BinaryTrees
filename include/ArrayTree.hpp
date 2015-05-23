@@ -22,12 +22,14 @@
 #include <random>
 
 class Node;
+class NodeTree;
 
 class ArrayTree
 {
 public:
     ArrayTree();
     ArrayTree(Node&);
+    ArrayTree(NodeTree&);
     ArrayTree(const ArrayTree&);
     ArrayTree& operator =(const ArrayTree&);
     ~ArrayTree() = default;
@@ -36,17 +38,14 @@ public:
 
     void insert(int E);
 
-    ArrayTree degraph(int node);
-    int regraph(ArrayTree& child, int node);
-
-    // New versions, degraph let the data inside the arraytree and returns the index of the degraphed node
-    // int degraph(int node); 
-    // int regraph(int child, int node);
+    int degraph(int node); 
+    int regraph(int child, int node);
 
     bool check(int node) const;
 
     void setData(int node, int data) {_data[node] = data;}
 
+    int getRoot() const {return _root;}
     int getData(int node) const {return _data[node];}
     int getParent(int node) const {return _parents[node];}
     int getLeft(int node) const {return _lefts[node];}
@@ -71,6 +70,8 @@ private:
     void _remove(int node);
 
     void _defragment();
+
+    void _setRoot(int node) {_root = node;}
     void _swap(int nodeA, int nodeB);
 
     void _increaseStorage(); //Enlarges storage by one block
@@ -84,6 +85,8 @@ private:
     int _blockSize = 5;
     int _nodeCount = 0;
 
+    int _root = 0;
+
     int* _parents = nullptr;
     int* _lefts = nullptr;
     int* _rights = nullptr;
@@ -93,7 +96,7 @@ private:
     static std::mt19937 rng;
     static std::uniform_int_distribution<int> binaryPick;
 
-    int _SPR_rec(ArrayTree& subTree, int node, int count);
+    int _SPR_rec(int subTreeRoot, int currentNode, int count);
 };
 
 #endif // ARRAYTREE_H_INCLUDED

@@ -21,6 +21,7 @@
 #include <cassert>
 
 #include "Node.hpp"
+#include "NodeTree.hpp"
 
 using namespace std;
 
@@ -50,7 +51,16 @@ ArrayTree::ArrayTree(Node& root)
     _load(&root);
 
 #if DEBUG
-    assert(check(0));
+    assert(check(_root));
+#endif
+}
+
+ArrayTree::ArrayTree(NodeTree& tree)
+{
+    _load(tree.getRoot());
+
+#if DEBUG
+    assert(check(_root));
 #endif
 }
 
@@ -148,7 +158,7 @@ void
 ArrayTree::insert(int E)
 {
     bool spotFound = false;
-    int index = 0;
+    int index = _root;
 
     int node = newNode();
         
@@ -193,35 +203,60 @@ ArrayTree::insert(int E)
     }
 }
 
-// TODO : Do not return a new ArrayTree, keep the subtreee inside instead
-ArrayTree
+int
 ArrayTree::degraph(int node)
 {
-    ArrayTree result;
+    int sibling = -1;
 
     if(!isOrphan(node))
     {
         if(getLeft(getParent(node)) == node)
         {
-            _lefts[_parents[node]] = -1;
+            sibling = _rights[_parents[node]];
+
+            if(sibling != -1)
+            {
+                _parents[_rights[_parents[node]]] = _parents[_parents[node]];
+                _rights[_parents[node]] = -1;
+            }
         }
+
         if(getRight(getParent(node)) == node)
         {
-            _rights[_parents[node]] = -1;
+            sibling = _lefts[_parents[node]];
+
+            if(sibling != -1)
+            {
+                _parents[_lefts[_parents[node]]] = _parents[_parents[node]];
+                _lefts[_parents[node]] = -1;
+            }
         }
 
-        _parents[node] = -1;
+        if(!isOrphan(getParent(node)))
+        {
+            if(getLeft(getParent(getParent(node))) == getParent(node))
+            {
+                _lefts[_parents[_parents[node]]] = sibling;
+            }
+            if(getRight(getParent(getParent(node))) == getParent(node))
+            {
+                _rights[_parents[_parents[node]]] = sibling;
+            }
+        }
+        else
+        {
+            std::cout << "Parent is root" << std::endl;
+            _setRoot(sibling);
+        }
+
+        _parents[_parents[node]] = -1;
     }
 
-    result._load(*this, node);
-    _remove(node);
-    _defragment();
-
 #if DEBUG
-    assert(check(0));
+    assert(check(_root));
 #endif
 
-    return result;
+    return _parents[node];
 }
 
 int
@@ -274,45 +309,56 @@ ArrayTree::_remove(int node)
 }
 
 int
-ArrayTree::regraph(ArrayTree& child, int node)
+ArrayTree::regraph(int child, int node)
 {
-    int result = -1;
+    int regraphedNode = _parents[child];
 
-    if(isLeftFree(node))
+    if(isLeftFree(regraphedNode))
     {
-        int left = _load(child, 0);
-
-        _parents[left] = node;
-        _lefts[node] = left;
-
-        result = left;
+        _lefts[regraphedNode] = node;
     }
-    else if(isRightFree(node))
+    if(isRightFree(regraphedNode))
     {
-        int right = _load(child, 0);
+        _rights[regraphedNode] = node;
+    }
 
-        _parents[right] = node;
-        _rights[node] = right;
+    _parents[regraphedNode] = _parents[node];
+    if(!isOrphan(node))
+    {
+        if(getLeft(getParent(node)) == node)
+        {
+            _lefts[_parents[node]] = regraphedNode;
+        }
+        if(getRight(getParent(node)) == node)
+        {
+            _rights[_parents[node]] = regraphedNode;
+        }
+    }
+    _parents[node] = regraphedNode;
 
-        result = right;
+    if(node == _root)
+    {
+        _setRoot(_parents[node]);
     }
 
 #if DEBUG
-    assert(check(0));
+    assert(check(_root));
 #endif
 
-    return result;
+    return child;
 }
 
 bool
 ArrayTree::check(int node) const
 {
     bool RES = false;
+    std::cout << "checking node n°" << node << std::endl;
 
-    if(node == 0)
+    if(node == _root)
     {
         if(!isOrphan(node))
         {
+            std::cout << "root has parent" << std::endl;
             return RES;
         }
     }
@@ -330,6 +376,10 @@ ArrayTree::check(int node) const
                 RES = true;
                 RES &= check(getLeft(node));
             }
+            else
+            {
+                std::cout << "left node isn't linked back to current node" << std::endl;
+            }
         }
 
         if(!isRightFree(node))
@@ -338,6 +388,10 @@ ArrayTree::check(int node) const
             {
                 RES = true;
                 RES &= check(getRight(node));
+            }
+            else
+            {
+                std::cout << "right node isn't linked back to current node" << std::endl;
             }
         }
     }
@@ -348,7 +402,7 @@ ArrayTree::check(int node) const
 string
 ArrayTree::to_str()
 {
-    return _to_str("", 0, 0);
+    return _to_str("", 0, _root);
 }
 
 void
@@ -390,39 +444,59 @@ ArrayTree::_defragment()
         {
             if(_free[j-1] > _free[j])
             {
-                // NOTE : these three tests should be integrated to _swap
-                if(!isOrphan(j))
-                {
-                    int parent = getParent(j);
-
-                    if(getLeft(parent) == j)
-                    {
-                        _lefts[parent] = j-1;
-                    }
-                    if(getRight(parent) == j)
-                    {
-                        _rights[parent] = j-1;
-                    }
-                }
-                if(!isLeftFree(j))
-                {
-                    _parents[getLeft(j)] = j-1;
-                }
-                if(!isRightFree(j))
-                {
-                    _parents[getRight(j)] = j-1;
-                }
-
                 _swap(j-1, j);
             }
         }
     }
 }
 
-// TODO : _swap should update the links between nodes
 void
 ArrayTree::_swap(int nodeA, int nodeB)
 {
+    // Update the nodes referencing either of these nodes
+    if(!isOrphan(nodeA))
+    {
+        int parent = _parents[nodeA];
+        if(_lefts[parent] == nodeA)
+        {
+            _lefts[parent] = nodeB;
+        }
+        else if(_rights[parent] == nodeA)
+        {
+            _rights[parent] = nodeB;
+        }
+    }
+    if(!isLeftFree(nodeA))
+    {
+        _parents[_lefts[nodeA]] = nodeB;
+    }
+    if(!isRightFree(nodeA))
+    {
+        _parents[_rights[nodeA]] = nodeB;
+    }
+
+    if(!isOrphan(nodeB))
+    {
+        int parent = _parents[nodeB];
+        if(_lefts[parent] == nodeB)
+        {
+            _lefts[parent] = nodeA;
+        }
+        else if(_rights[parent] == nodeB)
+        {
+            _rights[parent] = nodeA;
+        }
+    }
+    if(!isLeftFree(nodeB))
+    {
+        _parents[_lefts[nodeB]] = nodeA;
+    }
+    if(!isRightFree(nodeB))
+    {
+        _parents[_rights[nodeB]] = nodeA;
+    }
+
+    // Then swap
     int tmp[3];
     int data;
     bool free;
@@ -539,30 +613,30 @@ ArrayTree::_to_str(string acc, int depth, int index)
 int
 ArrayTree::SPR_rec(int node)
 {
-    ArrayTree subTree = degraph(node);
+    int position = degraph(node);
 
-    return _SPR_rec(subTree, 0, 0);
+    return _SPR_rec(position, _root, 0);
 }
 
 // NOTE : This version doesn't resize the storage after a degraph. Maybe it should, but it's
 //        probably faster this way
 int
-ArrayTree::_SPR_rec(ArrayTree& subTree, int node, int count)
+ArrayTree::_SPR_rec(int subTreeRoot, int currentNode, int count)
 {
-    int regraphIndex = regraph(subTree, node);
+    int regraphIndex = regraph(subTreeRoot, currentNode);
     if(regraphIndex != -1)
     {
         count++;
         degraph(regraphIndex);
     }   
 
-    if(!isLeftFree(node))
+    if(!isLeftFree(currentNode))
     {
-        count = _SPR_rec(subTree, getLeft(node), count);
+        count = _SPR_rec(subTreeRoot, getLeft(currentNode), count);
     }
-    if(!isRightFree(node))
+    if(!isRightFree(currentNode))
     {
-        count = _SPR_rec(subTree, getRight(node), count);
+        count = _SPR_rec(subTreeRoot, getRight(currentNode), count);
     }
 
     return count;

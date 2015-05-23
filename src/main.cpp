@@ -75,41 +75,50 @@ int main(int argc, char* argv[])
 #endif 
 
 #ifdef SAMUEL
-    Node root;
+    NodeTree nTree;
 
-#if 0
-    ArrayTree tree;
-
-    tree.dumpToStdout();
-
-    for(int i = 0; i < 11; ++i)
+#if 1
+    for(int i = 0; i < 10; ++i)
     {
-        tree.insert(i);
+        nTree.insert(i);    
     }
 
-    //tree.dumpToStdout();
+#if 1
+    ArrayTree aTree(nTree);
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(0));
+    std::cout << "Check 1 Ok" << std::endl;
+#endif
 
-    std::cout << tree.to_str() << std::endl;
-    
-    ArrayTree copy(tree);
-    //copy.dumpToStdout();
-    std::cout << copy.to_str() << std::endl;
+#if 1
+    int subTree = aTree.degraph(1);
+    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(0));
+    std::cout << "Check 2 Ok" << std::endl;
+#endif
 
-    ArrayTree subTree = copy.degraph(2);
+#if 1
+    std::cout << aTree.regraph(1, aTree.getRoot()) << std::endl;
+    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(0));
+    std::cout << "Check 3 Ok" << std::endl;
+#endif
 
-    std::cout << copy.to_str() << std::endl;
-    std::cout << subTree.to_str() << std::endl;
+    //std::cout << aTree.SPR_rec(3) << std::endl;
+    //std::cout << aTree.to_str() << std::endl;
 
-    copy.dumpToStdout();
-    subTree.dumpToStdout();
-
-    std::cout << copy.regraph(subTree, 2) << std::endl;
-
-    std::cout << copy.to_str() << std::endl;
-
+    #if 0
+    std::cout << nTree.to_str() << std::endl;
+    nTree.SPR_list(nTree.nodeAt(3));
+    std::cout << nTree.to_str() << std::endl;
+    #endif
 
 #else
-    NodeTree nTree;
 
     for(int i = 0; i < 1000; ++i)
     {
@@ -135,17 +144,6 @@ int main(int argc, char* argv[])
     std::cout << nTree.to_str() << std::endl;
     #endif
 
-#if 0
-    ArrayTree tree(root);
-
-    std::cout << tree.to_str() << std::endl;
-    std::cout << tree.SPR_rec(3) << std::endl;
-    std::cout << tree.to_str() << std::endl;
-
-    std::cout << root.to_str() << std::endl;
-    root.SPR_rec(root.nodeAt(3));
-    std::cout << root.to_str() << std::endl;
-#endif
 
 #endif
 
