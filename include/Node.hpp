@@ -1,21 +1,4 @@
-/*
- * =====================================================================================
- *
- *       Filename:  node.hpp
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  07/04/2015 09:49:43
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Samuel BOURASSEAU (SB), samuel.bourasseau@gmail.com
- *                  Rodolphe CHARLOT, charlot.rodolphe@gmail.com
- *   Organization:  
- *
- * =====================================================================================
- */
+
 #ifndef __NODE_H_INCLUDED__
 #define __NODE_H_INCLUDED__
 
@@ -24,6 +7,11 @@
 #include <iostream>
 #include <sstream>
 
+/**
+*   \file Node.hpp
+*   \brief Permet de construire un arbre binaire statique 
+*   \author Samuel et Rodolphe
+*/
 class Node
 {
 public:

@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Test:  Fichier source de Node.hpp</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Test
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">Node.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_node_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
+<a name="l00002"></a>00002 <span class="preprocessor">#ifndef __NODE_H_INCLUDED__</span>
+<a name="l00003"></a>00003 <span class="preprocessor"></span><span class="preprocessor">#define __NODE_H_INCLUDED__</span>
+<a name="l00004"></a>00004 <span class="preprocessor"></span>
+<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;random&gt;</span>
+<a name="l00007"></a>00007 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00008"></a>00008 <span class="preprocessor">#include &lt;sstream&gt;</span>
+<a name="l00009"></a>00009 
+<a name="l00010"></a><a class="code" href="class_node.html">00010</a> <span class="keyword">class </span><a class="code" href="class_node.html">Node</a>
+<a name="l00011"></a>00011 {
+<a name="l00012"></a>00012 <span class="keyword">public</span>:
+<a name="l00013"></a>00013     <span class="keyword">class </span><a class="code" href="class_node_1_1_node_iter.html">NodeIter</a>;
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015     <a class="code" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a>() = <span class="keywordflow">default</span>;
+<a name="l00016"></a>00016     <a class="code" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a>(<span class="keywordtype">int</span> data, <a class="code" href="class_node.html">Node</a>* parent = <span class="keyword">nullptr</span>);
+<a name="l00017"></a>00017     <a class="code" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a>(<span class="keyword">const</span> <a class="code" href="class_node.html">Node</a>&amp;);
+<a name="l00018"></a>00018     <a class="code" href="class_node.html">Node</a>&amp; <a class="code" href="class_node.html#a90ff04ae049a62fa2c39771ef89398a5">operator =</a>(<span class="keyword">const</span> <a class="code" href="class_node.html">Node</a>&amp;);
+<a name="l00019"></a>00019     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#af57bf0a6c23fc64a556f58c4baddd3b5">clone</a>();
+<a name="l00020"></a>00020     <a class="code" href="class_node.html#aa0840c3cb5c7159be6d992adecd2097c">~Node</a>();
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="keywordtype">void</span> <a class="code" href="class_node.html#af722f14b7291631d3eec2bef7dc08289">insert</a>(<span class="keywordtype">int</span> E);
+<a name="l00023"></a>00023     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a90a99a2e389521af22d1fccc896877eb">insertBalanced</a>(<span class="keywordtype">int</span> E);
+<a name="l00024"></a>00024     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a078d350323b31fa2e138bffedc576345">addChild</a>(<a class="code" href="class_node.html">Node</a> * noeud);
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a568ed63439a05f7f5cfe742fc3e84962">degraph</a>();
+<a name="l00027"></a>00027     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a7d84f158d2d8e83a048d988c377f0d83">regraph</a>(<a class="code" href="class_node.html">Node</a>* child);
+<a name="l00028"></a>00028 
+<a name="l00029"></a>00029     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a1f1e85ecf9c51a14f41e7e0b36c35ffe">check</a>() <span class="keyword">const</span>;
+<a name="l00030"></a>00030     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a6cba1c3052a63ea62479d3d8a448aa73">nodeCheck</a>() <span class="keyword">const</span>;
+<a name="l00031"></a>00031 
+<a name="l00032"></a>00032     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a196d9525aa470a78fce3f752fcbc4607">findRoot</a>();
+<a name="l00033"></a>00033     <span class="keywordtype">int</span> <a class="code" href="class_node.html#ac22268e4a5005892fb51ed0adad9df4e">descendantCount</a>() <span class="keyword">const</span>;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a69f953649e092e5a3bb5f3933fbfe3ef">nodeAt</a>(<span class="keywordtype">int</span> num);
+<a name="l00036"></a>00036     
+<a name="l00037"></a>00037     <span class="keywordtype">int</span> <a class="code" href="class_node.html#ae91fa11d12e88881de9a5d40454df195">dataCount</a>();
+<a name="l00038"></a>00038     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a0cc24925dd5cdaa37bcf64d0913cb250">nodeCount</a>();
+<a name="l00039"></a>00039     std::string <a class="code" href="class_node.html#a08f762d199e8bb55c80c6ba93c1169dc">newick</a>();
+<a name="l00040"></a>00040     
+<a name="l00041"></a><a class="code" href="class_node.html#a2da744e4e704b0e2684e0d7476cf8c26">00041</a>     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a2da744e4e704b0e2684e0d7476cf8c26">setData</a>(<span class="keywordtype">int</span> data) {<a class="code" href="class_node.html#a5138dd3040344b5ff7215e9c77eff122">_data</a> = data;}
+<a name="l00042"></a><a class="code" href="class_node.html#a60282a21a54540751e5a9086b4061d61">00042</a>     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a60282a21a54540751e5a9086b4061d61">getData</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_node.html#a5138dd3040344b5ff7215e9c77eff122">_data</a>;}
+<a name="l00043"></a>00043     
+<a name="l00044"></a><a class="code" href="class_node.html#a8e09d5e4fd1497c0964a0923e6f77e72">00044</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a8e09d5e4fd1497c0964a0923e6f77e72">getParent</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">_parent</a>;}
+<a name="l00045"></a><a class="code" href="class_node.html#afc93ed6080db92b02a64d9d56f9b0f1f">00045</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#afc93ed6080db92b02a64d9d56f9b0f1f">getLeft</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node.html#a8dbdad47b4ce25d012aacbde9b43102c">_left</a>;}
+<a name="l00046"></a><a class="code" href="class_node.html#a5590cacf5beaf1da596c386f90796b02">00046</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a5590cacf5beaf1da596c386f90796b02">getRight</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node.html#af8ef5e86d3537c2f7b2de67a1e0009d2">_right</a>;}
+<a name="l00047"></a>00047 
+<a name="l00048"></a><a class="code" href="class_node.html#a552d706ee314a46c8a0293399f5cb08c">00048</a>     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a552d706ee314a46c8a0293399f5cb08c">isFree</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_node.html#aea8b4dc7b756d52ead69784e3f814d11">_free</a>;}
+<a name="l00049"></a><a class="code" href="class_node.html#aedfc52538fc29d8061a0ab1870b30caa">00049</a>     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#aedfc52538fc29d8061a0ab1870b30caa">isOrphan</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">_parent</a> == <span class="keyword">nullptr</span>;}
+<a name="l00050"></a><a class="code" href="class_node.html#adcf88320a27fd4c189de67d77f3f9006">00050</a>     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#adcf88320a27fd4c189de67d77f3f9006">isLeftFree</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_node.html#a8dbdad47b4ce25d012aacbde9b43102c">_left</a> == <span class="keyword">nullptr</span>;}
+<a name="l00051"></a><a class="code" href="class_node.html#a4423e00af11b8f191fdeb79147d3bd33">00051</a>     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#a4423e00af11b8f191fdeb79147d3bd33">isRightFree</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_node.html#af8ef5e86d3537c2f7b2de67a1e0009d2">_right</a> == <span class="keyword">nullptr</span>;}
+<a name="l00052"></a>00052 
+<a name="l00053"></a><a class="code" href="class_node.html#a23604c4ea1bea0739e88ab0f6b853130">00053</a>     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a23604c4ea1bea0739e88ab0f6b853130">size</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node.html#a196d9525aa470a78fce3f752fcbc4607">findRoot</a>()-&gt;<a class="code" href="class_node.html#ac22268e4a5005892fb51ed0adad9df4e">descendantCount</a>()+1;}
+<a name="l00054"></a>00054     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a17d1d379040dbf422c53b518b0937fd8">leafCount</a>();
+<a name="l00055"></a>00055 
+<a name="l00056"></a><a class="code" href="class_node.html#a41814efa489c3fd11114d1839167b2ba">00056</a>     <a class="code" href="class_node_1_1_node_iter.html">Node::NodeIter</a>* <a class="code" href="class_node.html#a41814efa489c3fd11114d1839167b2ba">begin</a>() {<span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="class_node_1_1_node_iter.html">Node::NodeIter</a>(<span class="keyword">this</span>);}
+<a name="l00057"></a>00057     std::string <a class="code" href="class_node.html#adc06febf17e6dc0c06972284d3d1f541">to_str</a>();
+<a name="l00058"></a>00058     
+<a name="l00059"></a>00059     
+<a name="l00060"></a>00060     <span class="keywordtype">void</span> <a class="code" href="class_node.html#adc2aa81340652ea1e13aedf9df9a456b">SPR_list_init</a>(<a class="code" href="class_node.html">Node</a>* noeud);
+<a name="l00061"></a>00061     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a97880cc90217ea9143a8432d420f00f0">SPR_list</a>(<a class="code" href="class_node.html">Node</a>* noeud);
+<a name="l00062"></a>00062     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a46088fbf91ae4f6c61c9e6e056b41fc9">SPR_ite</a>(<a class="code" href="class_node.html">Node</a>* noeud);
+<a name="l00063"></a>00063     <span class="keywordtype">void</span> <a class="code" href="class_node.html#a905b8b5ef6722bd4173a193b5f9ea2d4">SPR_rec</a>(<a class="code" href="class_node.html">Node</a>* noeud);
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065 <span class="keyword">private</span>:
+<a name="l00066"></a><a class="code" href="class_node.html#afd3b6592d4d1bb03f5c7b4f94345cdd2">00066</a>     <span class="keywordtype">void</span> <a class="code" href="class_node.html#afd3b6592d4d1bb03f5c7b4f94345cdd2">_setParent</a>(<a class="code" href="class_node.html">Node</a>* parent) {<a class="code" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">_parent</a> = parent;}
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">00068</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">_parent</a>;
+<a name="l00069"></a><a class="code" href="class_node.html#a8dbdad47b4ce25d012aacbde9b43102c">00069</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#a8dbdad47b4ce25d012aacbde9b43102c">_left</a>;
+<a name="l00070"></a><a class="code" href="class_node.html#af8ef5e86d3537c2f7b2de67a1e0009d2">00070</a>     <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node.html#af8ef5e86d3537c2f7b2de67a1e0009d2">_right</a>;
+<a name="l00071"></a><a class="code" href="class_node.html#aecd8b57c226a07fd0601999f0d81be9d">00071</a>     std::vector&lt;Node*&gt; <a class="code" href="class_node.html#aecd8b57c226a07fd0601999f0d81be9d">nodes</a>;
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="class_node.html#a5138dd3040344b5ff7215e9c77eff122">00073</a>     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a5138dd3040344b5ff7215e9c77eff122">_data</a>;
+<a name="l00074"></a><a class="code" href="class_node.html#aea8b4dc7b756d52ead69784e3f814d11">00074</a>     <span class="keywordtype">bool</span> <a class="code" href="class_node.html#aea8b4dc7b756d52ead69784e3f814d11">_free</a>;
+<a name="l00075"></a>00075 
+<a name="l00076"></a><a class="code" href="class_node.html#adc47cc48f42d63364ddbd4436a3cdeb1">00076</a>     <span class="keyword">static</span> std::mt19937 <a class="code" href="class_node.html#adc47cc48f42d63364ddbd4436a3cdeb1">rng</a>;
+<a name="l00077"></a><a class="code" href="class_node.html#a3263b1db147ecbf7bd5712517db17f04">00077</a>     <span class="keyword">static</span> std::uniform_int_distribution&lt;int&gt; <a class="code" href="class_node.html#a3263b1db147ecbf7bd5712517db17f04">binaryPick</a>;
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a92b017cfa6e5759a59534f23cd307138">_SPR_rec</a>(<a class="code" href="class_node.html">Node</a>* noeud, <span class="keywordtype">int</span> count);
+<a name="l00080"></a>00080     std::string <a class="code" href="class_node.html#a57b3da2b1f339294a8cf5ec128df9428">_to_str</a>(std::string acc, <span class="keywordtype">int</span> depth);
+<a name="l00081"></a>00081     <span class="keywordtype">int</span> <a class="code" href="class_node.html#a45a5d8c936b5eee3516e495a6d061ce2">_nodeAt</a>(<span class="keywordtype">int</span> num);
+<a name="l00082"></a>00082 
+<a name="l00083"></a>00083 <span class="keyword">public</span>:
+<a name="l00084"></a><a class="code" href="class_node_1_1_node_iter.html">00084</a>     <span class="keyword">class </span><a class="code" href="class_node_1_1_node_iter.html">NodeIter</a>
+<a name="l00085"></a>00085     {
+<a name="l00086"></a><a class="code" href="class_node_1_1_node_iter.html#a6db9d28bd448a131448276ee03de1e6d">00086</a>         <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_node.html">Node</a>;
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088     <span class="keyword">public</span>:
+<a name="l00089"></a><a class="code" href="class_node_1_1_node_iter.html#ad8bf1ac590845297ae55b2992681d2ea">00089</a>         <span class="keywordtype">void</span> <a class="code" href="class_node_1_1_node_iter.html#ad8bf1ac590845297ae55b2992681d2ea">begin</a>() {<a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a> = 0;}
+<a name="l00090"></a><a class="code" href="class_node_1_1_node_iter.html#ae48ccc6d8618fdd6eaaa680b369c502b">00090</a>         <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node_1_1_node_iter.html#ae48ccc6d8618fdd6eaaa680b369c502b">getNext</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node_1_1_node_iter.html#a7ab2e5162efb5e9eba58a7922cd957cb">_root</a>-&gt;<a class="code" href="class_node.html#a69f953649e092e5a3bb5f3933fbfe3ef">nodeAt</a>(<a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a>++);}
+<a name="l00091"></a><a class="code" href="class_node_1_1_node_iter.html#a1090b22575fc5d7d7b7c8dae962a18fc">00091</a>         <span class="keywordtype">bool</span> <a class="code" href="class_node_1_1_node_iter.html#a1090b22575fc5d7d7b7c8dae962a18fc">hasNext</a>() {<span class="keywordflow">return</span> <a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a> &lt; <a class="code" href="class_node_1_1_node_iter.html#add3e65cbecfed765d4c01b9c765bf9c7">_size</a>;}
+<a name="l00092"></a><a class="code" href="class_node_1_1_node_iter.html#a50b70b7290153e854d4bb88183225a37">00092</a>         <span class="keywordtype">void</span> <a class="code" href="class_node_1_1_node_iter.html#a50b70b7290153e854d4bb88183225a37">end</a>() {<a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a> = <a class="code" href="class_node_1_1_node_iter.html#add3e65cbecfed765d4c01b9c765bf9c7">_size</a>-1;}
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094     <span class="keyword">private</span>:
+<a name="l00095"></a><a class="code" href="class_node_1_1_node_iter.html#a4e60dfcd9877601daddd848bc8dae75a">00095</a>         <a class="code" href="class_node_1_1_node_iter.html#a4e60dfcd9877601daddd848bc8dae75a">NodeIter</a>(<a class="code" href="class_node.html">Node</a>* root)
+<a name="l00096"></a>00096             :<a class="code" href="class_node_1_1_node_iter.html#a7ab2e5162efb5e9eba58a7922cd957cb">_root</a>(root), <a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a>(0), <a class="code" href="class_node_1_1_node_iter.html#add3e65cbecfed765d4c01b9c765bf9c7">_size</a>(root-&gt;<a class="code" href="class_node.html#a23604c4ea1bea0739e88ab0f6b853130">size</a>())
+<a name="l00097"></a>00097         {}
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="class_node_1_1_node_iter.html#a7ab2e5162efb5e9eba58a7922cd957cb">00099</a>         <a class="code" href="class_node.html">Node</a>* <a class="code" href="class_node_1_1_node_iter.html#a7ab2e5162efb5e9eba58a7922cd957cb">_root</a>;
+<a name="l00100"></a><a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">00100</a>         <span class="keywordtype">int</span> <a class="code" href="class_node_1_1_node_iter.html#aaf76d5a837a02c3c8b90dfc3c3ea3374">_index</a>;
+<a name="l00101"></a><a class="code" href="class_node_1_1_node_iter.html#add3e65cbecfed765d4c01b9c765bf9c7">00101</a>         <span class="keywordtype">int</span> <a class="code" href="class_node_1_1_node_iter.html#add3e65cbecfed765d4c01b9c765bf9c7">_size</a>;
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103     };
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 };
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107 
+<a name="l00108"></a>00108 <span class="preprocessor">#endif // __NODE_H_INCLUDED__</span>
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Énumérations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valeurs énumérées</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Amis</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 23 2015 20:43:03 pour Test par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>

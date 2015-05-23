@@ -311,7 +311,7 @@ TestEnv::_itVslist()
 }
 
 
-TestEnv::Chrono::Chrono(float elapsed_time,string newPrecision, bool isCalculing):_elapsed_time(elapsed_time),_precision(newPrecision),_isCalculing(isCalculing)
+TestEnv::Chrono::Chrono(float elapsed_time,string newPrecision):_elapsed_time(elapsed_time),_precision(newPrecision),_isCalculing(false)
 {}
 
 

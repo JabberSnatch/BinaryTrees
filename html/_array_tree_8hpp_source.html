@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>Test:  Fichier source de ArrayTree.hpp</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Test
+   
+   </div>
+   
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- Généré par Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+</div>
+<div class="header">
+  <div class="headertitle">
+<div class="title">ArrayTree.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_array_tree_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =====================================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  ArrayTree.hpp</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  </span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Version:  1.0</span>
+<a name="l00009"></a>00009 <span class="comment"> *        Created:  13/04/2015 13:35:10</span>
+<a name="l00010"></a>00010 <span class="comment"> *       Revision:  none</span>
+<a name="l00011"></a>00011 <span class="comment"> *       Compiler:  gcc</span>
+<a name="l00012"></a>00012 <span class="comment"> *</span>
+<a name="l00013"></a>00013 <span class="comment"> *         Author:  Samuel BOURASSEAU (SB), samuel.bourasseau@gmail.com</span>
+<a name="l00014"></a>00014 <span class="comment"> *   Organization:  </span>
+<a name="l00015"></a>00015 <span class="comment"> *</span>
+<a name="l00016"></a>00016 <span class="comment"> * =====================================================================================</span>
+<a name="l00017"></a>00017 <span class="comment"> */</span>
+<a name="l00018"></a>00018 <span class="preprocessor">#ifndef ARRAYTREE_H_INCLUDED</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span><span class="preprocessor">#define ARRAYTREE_H_INCLUDED</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;random&gt;</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a>00024 <span class="keyword">class </span><a class="code" href="class_node.html">Node</a>;
+<a name="l00025"></a>00025 
+<a name="l00026"></a><a class="code" href="class_array_tree.html">00026</a> <span class="keyword">class </span><a class="code" href="class_array_tree.html">ArrayTree</a>
+<a name="l00027"></a>00027 {
+<a name="l00028"></a>00028 <span class="keyword">public</span>:
+<a name="l00029"></a>00029     <a class="code" href="class_array_tree.html#a16fb8b789a1ee18220e7ec178adaa1b3">ArrayTree</a>();
+<a name="l00030"></a>00030     <a class="code" href="class_array_tree.html#a16fb8b789a1ee18220e7ec178adaa1b3">ArrayTree</a>(<a class="code" href="class_node.html">Node</a>&amp;);
+<a name="l00031"></a>00031     <a class="code" href="class_array_tree.html#a16fb8b789a1ee18220e7ec178adaa1b3">ArrayTree</a>(<span class="keyword">const</span> <a class="code" href="class_array_tree.html">ArrayTree</a>&amp;);
+<a name="l00032"></a>00032     <a class="code" href="class_array_tree.html">ArrayTree</a>&amp; <a class="code" href="class_array_tree.html#a3acd2c4ca61b1ebef62a06ffeb2aad29">operator =</a>(<span class="keyword">const</span> <a class="code" href="class_array_tree.html">ArrayTree</a>&amp;);
+<a name="l00033"></a>00033     <a class="code" href="class_array_tree.html#abdb171b11a6529eaa5e31f3fd2e02c4e">~ArrayTree</a>() = <span class="keywordflow">default</span>;
+<a name="l00034"></a>00034 
+<a name="l00035"></a>00035     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#af548fca0db374454a9ef2f8b83cbcd4b">newNode</a>(); <span class="comment">// Gives back the index of a clear node</span>
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a15bd6b42e62cb8d17dae0d97cdf1bd85">insert</a>(<span class="keywordtype">int</span> E);
+<a name="l00038"></a>00038 
+<a name="l00039"></a>00039     <a class="code" href="class_array_tree.html">ArrayTree</a>* <a class="code" href="class_array_tree.html#a928ac69d8de5ee04fe8ac9d72b548ba9">degraph</a>(<span class="keywordtype">int</span> node);
+<a name="l00040"></a>00040     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a09c0bb5d571bf25ebb8f0c4caad5e9fe">regraph</a>(<a class="code" href="class_array_tree.html">ArrayTree</a>&amp; child, <span class="keywordtype">int</span> node);
+<a name="l00041"></a>00041 
+<a name="l00042"></a>00042     <span class="comment">// New versions, degraph let the data inside the arraytree and returns the index of the degraphed node</span>
+<a name="l00043"></a>00043     <span class="comment">// int degraph(int node); </span>
+<a name="l00044"></a>00044     <span class="comment">// int regraph(int child, int node);</span>
+<a name="l00045"></a>00045 
+<a name="l00046"></a>00046     <span class="keywordtype">bool</span> <a class="code" href="class_array_tree.html#a54e8a4278703531e14219f08e0e0b8ca">check</a>(<span class="keywordtype">int</span> node) <span class="keyword">const</span>;
+<a name="l00047"></a>00047 
+<a name="l00048"></a><a class="code" href="class_array_tree.html#a115b5eef957b62466932ece0147aff09">00048</a>     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a115b5eef957b62466932ece0147aff09">setData</a>(<span class="keywordtype">int</span> node, <span class="keywordtype">int</span> data) {<a class="code" href="class_array_tree.html#a585732f2fc3beb61a80ea34c3da503b7">_data</a>[node] = data;}
+<a name="l00049"></a>00049 
+<a name="l00050"></a><a class="code" href="class_array_tree.html#ad26f5c9ba1fd224b997ab7917e23090e">00050</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#ad26f5c9ba1fd224b997ab7917e23090e">getData</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a585732f2fc3beb61a80ea34c3da503b7">_data</a>[node];}
+<a name="l00051"></a><a class="code" href="class_array_tree.html#a419bf82a33ffab782ccad5c0630bf340">00051</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a419bf82a33ffab782ccad5c0630bf340">getParent</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a9579456258d4a35e07094331877dc616">_parents</a>[node];}
+<a name="l00052"></a><a class="code" href="class_array_tree.html#a7d7edff90c86b97ef8506d1a4a9fec4a">00052</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a7d7edff90c86b97ef8506d1a4a9fec4a">getLeft</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#ab40b72cb040931f92fb60ce6454efe73">_lefts</a>[node];}
+<a name="l00053"></a><a class="code" href="class_array_tree.html#a326377fe8a918f19c3486b8536e7d921">00053</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a326377fe8a918f19c3486b8536e7d921">getRight</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a0009e90e5d6215727ba0feb5f950f3c5">_rights</a>[node];}
+<a name="l00054"></a>00054 
+<a name="l00055"></a><a class="code" href="class_array_tree.html#aa77f04e2b80a8afae4e4f0db12ea4815">00055</a>     <span class="keywordtype">bool</span> <a class="code" href="class_array_tree.html#aa77f04e2b80a8afae4e4f0db12ea4815">isFree</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a5a4fe76f3ae23cea8fbdff0e9b0fb10f">_free</a>[node];}
+<a name="l00056"></a><a class="code" href="class_array_tree.html#a9e33efa4f24b9347ff46fcb3d92b5443">00056</a>     <span class="keywordtype">bool</span> <a class="code" href="class_array_tree.html#a9e33efa4f24b9347ff46fcb3d92b5443">isOrphan</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a9579456258d4a35e07094331877dc616">_parents</a>[node] == -1;}
+<a name="l00057"></a><a class="code" href="class_array_tree.html#adcf78da687d5024b1f8f39c058314dec">00057</a>     <span class="keywordtype">bool</span> <a class="code" href="class_array_tree.html#adcf78da687d5024b1f8f39c058314dec">isLeftFree</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#ab40b72cb040931f92fb60ce6454efe73">_lefts</a>[node] == -1;}
+<a name="l00058"></a><a class="code" href="class_array_tree.html#af5a35cfc529e696ac652b6b29a8b5659">00058</a>     <span class="keywordtype">bool</span> <a class="code" href="class_array_tree.html#af5a35cfc529e696ac652b6b29a8b5659">isRightFree</a>(<span class="keywordtype">int</span> node)<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a0009e90e5d6215727ba0feb5f950f3c5">_rights</a>[node] == -1;}
+<a name="l00059"></a>00059 
+<a name="l00060"></a><a class="code" href="class_array_tree.html#af840b3546976c5aee30f1118a7422db4">00060</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#af840b3546976c5aee30f1118a7422db4">size</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a92ce4af53381dcafbef7b733a95353fa">_nodeCount</a>;}
+<a name="l00061"></a>00061     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a97df42f164b19ae7f739b15315099b4e">dataCount</a>();
+<a name="l00062"></a><a class="code" href="class_array_tree.html#a44a3ed9c344bb4dbd9aa9500589e3b4c">00062</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a44a3ed9c344bb4dbd9aa9500589e3b4c">nodeCount</a>() {<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a92ce4af53381dcafbef7b733a95353fa">_nodeCount</a>;}
+<a name="l00063"></a>00063 
+<a name="l00064"></a>00064     std::string <a class="code" href="class_array_tree.html#a3a9a4ceb892f5d36442218a75d07221c">to_str</a>();
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a233c2969e7ca42f7e7a56a2ed531b7c6">dumpToStdout</a>();
+<a name="l00066"></a>00066 
+<a name="l00067"></a>00067     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a1b71181e6659dd9112c79f944ef9dfd8">SPR_rec</a>(<span class="keywordtype">int</span> node);
+<a name="l00068"></a>00068     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#ae172c658a939e1db4e6088b920fdc4da">SPR_ite</a>(<span class="keywordtype">int</span> node);
+<a name="l00069"></a>00069 
+<a name="l00070"></a>00070 <span class="keyword">private</span>:
+<a name="l00071"></a>00071     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a8cc786a64f8dc4f40232ea07097c42a9">_load</a>(<a class="code" href="class_node.html">Node</a>* n);
+<a name="l00072"></a>00072     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a8cc786a64f8dc4f40232ea07097c42a9">_load</a>(<a class="code" href="class_array_tree.html">ArrayTree</a>&amp; source, <span class="keywordtype">int</span> node);
+<a name="l00073"></a>00073 
+<a name="l00074"></a>00074     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a0dce58faf4fae45f97fd6ae895bc4c46">_remove</a>(<span class="keywordtype">int</span> node);
+<a name="l00075"></a>00075 
+<a name="l00076"></a>00076     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a6789996068bff605122b721962153714">_defragment</a>();
+<a name="l00077"></a>00077     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#aa291675fb261555f9ccab377c418f23c">_swap</a>(<span class="keywordtype">int</span> nodeA, <span class="keywordtype">int</span> nodeB);
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     <span class="keywordtype">void</span> <a class="code" href="class_array_tree.html#a9eca2a5f1ebd422d6598b1ad4706e0e6">_increaseStorage</a>(); <span class="comment">//Enlarges storage by one block</span>
+<a name="l00080"></a>00080     <span class="comment">// TODO : implement a method to fit storage to the stored nodes</span>
+<a name="l00081"></a>00081 
+<a name="l00082"></a>00082     std::string <a class="code" href="class_array_tree.html#a7ca32b6d6e383d9ff397da31113bbd81">_to_str</a>(std::string acc, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> index);
+<a name="l00083"></a>00083 
+<a name="l00084"></a><a class="code" href="class_array_tree.html#ae44eb079390652b548b55c8a682b5121">00084</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#ae44eb079390652b548b55c8a682b5121">_storageSize</a>() {<span class="keywordflow">return</span> <a class="code" href="class_array_tree.html#a4dcdfc7edd51b2257559bcecd8554186">_blockCount</a> * <a class="code" href="class_array_tree.html#a5f3be1c50a0d44e9b98ee2b2f3d8fcf0">_blockSize</a>;}
+<a name="l00085"></a>00085 
+<a name="l00086"></a><a class="code" href="class_array_tree.html#a4dcdfc7edd51b2257559bcecd8554186">00086</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a4dcdfc7edd51b2257559bcecd8554186">_blockCount</a> = 0;
+<a name="l00087"></a><a class="code" href="class_array_tree.html#a5f3be1c50a0d44e9b98ee2b2f3d8fcf0">00087</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a5f3be1c50a0d44e9b98ee2b2f3d8fcf0">_blockSize</a> = 5;
+<a name="l00088"></a><a class="code" href="class_array_tree.html#a92ce4af53381dcafbef7b733a95353fa">00088</a>     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a92ce4af53381dcafbef7b733a95353fa">_nodeCount</a> = 0;
+<a name="l00089"></a>00089     
+<a name="l00090"></a><a class="code" href="class_array_tree.html#a9579456258d4a35e07094331877dc616">00090</a>     <span class="keywordtype">int</span>* <a class="code" href="class_array_tree.html#a9579456258d4a35e07094331877dc616">_parents</a> = <span class="keyword">nullptr</span>;
+<a name="l00091"></a><a class="code" href="class_array_tree.html#ab40b72cb040931f92fb60ce6454efe73">00091</a>     <span class="keywordtype">int</span>* <a class="code" href="class_array_tree.html#ab40b72cb040931f92fb60ce6454efe73">_lefts</a> = <span class="keyword">nullptr</span>;
+<a name="l00092"></a><a class="code" href="class_array_tree.html#a0009e90e5d6215727ba0feb5f950f3c5">00092</a>     <span class="keywordtype">int</span>* <a class="code" href="class_array_tree.html#a0009e90e5d6215727ba0feb5f950f3c5">_rights</a> = <span class="keyword">nullptr</span>;
+<a name="l00093"></a><a class="code" href="class_array_tree.html#a585732f2fc3beb61a80ea34c3da503b7">00093</a>     <span class="keywordtype">int</span>* <a class="code" href="class_array_tree.html#a585732f2fc3beb61a80ea34c3da503b7">_data</a> = <span class="keyword">nullptr</span>;
+<a name="l00094"></a><a class="code" href="class_array_tree.html#a5a4fe76f3ae23cea8fbdff0e9b0fb10f">00094</a>     <span class="keywordtype">bool</span>* <a class="code" href="class_array_tree.html#a5a4fe76f3ae23cea8fbdff0e9b0fb10f">_free</a> = <span class="keyword">nullptr</span>;
+<a name="l00095"></a>00095 
+<a name="l00096"></a><a class="code" href="class_array_tree.html#ab6e8f758870ea614f54052df8cc3593f">00096</a>     <span class="keyword">static</span> std::mt19937 <a class="code" href="class_array_tree.html#ab6e8f758870ea614f54052df8cc3593f">rng</a>;
+<a name="l00097"></a><a class="code" href="class_array_tree.html#a5cfc3feb4c29fff2f569f4a69b945d8f">00097</a>     <span class="keyword">static</span> std::uniform_int_distribution&lt;int&gt; <a class="code" href="class_array_tree.html#a5cfc3feb4c29fff2f569f4a69b945d8f">binaryPick</a>;
+<a name="l00098"></a>00098 
+<a name="l00099"></a>00099     <span class="keywordtype">int</span> <a class="code" href="class_array_tree.html#a987c23757e7b36b391015cefcb4809f2">_SPR_rec</a>(<a class="code" href="class_array_tree.html">ArrayTree</a>&amp; subTree, <span class="keywordtype">int</span> node, <span class="keywordtype">int</span> count);
+<a name="l00100"></a>00100 };
+<a name="l00101"></a>00101 
+<a name="l00102"></a>00102 <span class="preprocessor">#endif // ARRAYTREE_H_INCLUDED</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span>
+</pre></div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Énumérations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Valeurs énumérées</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Amis</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+
+
+<hr class="footer"/><address class="footer"><small>
+Généré le Samedi Mai 23 2015 20:43:03 pour Test par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.7.6.1
+</small></address>
+
+</body>
+</html>
