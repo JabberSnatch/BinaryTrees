@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Node::NodeIter" -->
-<p>Classe pour faire un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  
+<p>Classe pour créer un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  
  <a href="class_node_1_1_node_iter.html#details">Plus de détails...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_node_8hpp_source.html">Node.hpp</a>&gt;</code></p>
@@ -116,12 +116,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#ad8bf1ac590845297ae55b2992681d2ea">begin</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Itinitialise l'itérateur.  <a href="#ad8bf1ac590845297ae55b2992681d2ea"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#ae48ccc6d8618fdd6eaaa680b369c502b">getNext</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Va au noeud suivant dans l'ordre de l'index de <a class="el" href="class_node.html#ad15651a6e2416a8f92f66dad57ffe972" title="Donne le noeud à un index donné">nodeAt()</a>  <a href="#ae48ccc6d8618fdd6eaaa680b369c502b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#a1090b22575fc5d7d7b7c8dae962a18fc">hasNext</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le noeud a un noeud suivant.  <a href="#a1090b22575fc5d7d7b7c8dae962a18fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#a50b70b7290153e854d4bb88183225a37">end</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Mets l'itérateur au dernier élément.  <a href="#a50b70b7290153e854d4bb88183225a37"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Fonctions membres privées</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#a4e60dfcd9877601daddd848bc8dae75a">NodeIter</a> (<a class="el" href="class_node.html">Node</a> *root)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de <a class="el" href="class_node_1_1_node_iter.html" title="Classe pour créer un itérateur sur Node.">NodeIter</a>.  <a href="#a4e60dfcd9877601daddd848bc8dae75a"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#a7ab2e5162efb5e9eba58a7922cd957cb">_root</a></td></tr>
@@ -132,7 +137,9 @@ Amis</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html#a6db9d28bd448a131448276ee03de1e6d">Node</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Description détaillée</h2>
-<div class="textblock"><p>Classe pour faire un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>. </p>
+<div class="textblock"><p>Classe pour créer un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>. </p>
+<p>Classe pour faire un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.</p>
+<p><a class="el" href="class_node_1_1_node_iter.html" title="Classe pour créer un itérateur sur Node.">NodeIter</a></p>
 <p>La classe permet de créer un itérateur sur les éléments dans <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> </p>
 </div><hr/><h2>Documentation des constructeurs et destructeur</h2>
 <a class="anchor" id="a4e60dfcd9877601daddd848bc8dae75a"></a><!-- doxytag: member="Node::NodeIter::NodeIter" ref="a4e60dfcd9877601daddd848bc8dae75a" args="(Node *root)" -->
@@ -149,6 +156,14 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructeur de <a class="el" href="class_node_1_1_node_iter.html" title="Classe pour créer un itérateur sur Node.">NodeIter</a>. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">root</td><td>Racine sur laquelle l'itérateur va itérer </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -167,6 +182,8 @@ Amis</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Itinitialise l'itérateur. </p>
+
 </div>
 </div>
 <a class="anchor" id="a50b70b7290153e854d4bb88183225a37"></a><!-- doxytag: member="Node::NodeIter::end" ref="a50b70b7290153e854d4bb88183225a37" args="()" -->
@@ -182,6 +199,8 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Mets l'itérateur au dernier élément. </p>
 
 </div>
 </div>
@@ -199,6 +218,9 @@ Amis</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Va au noeud suivant dans l'ordre de l'index de <a class="el" href="class_node.html#ad15651a6e2416a8f92f66dad57ffe972" title="Donne le noeud à un index donné">nodeAt()</a> </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers le prochain noeud </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a1090b22575fc5d7d7b7c8dae962a18fc"></a><!-- doxytag: member="Node::NodeIter::hasNext" ref="a1090b22575fc5d7d7b7c8dae962a18fc" args="()" -->
@@ -214,6 +236,9 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Indique si le noeud a un noeud suivant. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne faux si le noeud est le dernier </dd></dl>
 
 </div>
 </div>
@@ -242,6 +267,7 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Indice de l'élément sur lequel l'itérateur est </p>
 
 </div>
 </div>
@@ -255,6 +281,7 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Racine de l'arbre sur lequel l'itérateur itère </p>
 
 </div>
 </div>
@@ -268,6 +295,7 @@ Amis</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
+<p>Taille de l'arbre </p>
 
 </div>
 </div>
@@ -292,7 +320,7 @@ Amis</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Généré le Dimanche Mai 24 2015 18:57:52 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche Mai 24 2015 20:29:35 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

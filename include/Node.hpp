@@ -134,7 +134,7 @@ public:
 *   \return Retourne un pointeur vers le noeud demandé, nullptr sinon
 *   
 *   L'index commence à 0 et va jusqu'au nombre de noeud - 1
-*   Va chercher le noeud en regardant le noeud actuel, puis va chercher dans le noeud gauche puis le noeud droit
+*   Appelle _nodeAt() pour tout chercher
 */
     Node* nodeAt(int num);
 
@@ -191,7 +191,7 @@ public:
 *   \brief Permet l'affichage de l'arbre
 *   \return Retourne un chaine de caractère représentant l'arbre
 *
-*   Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long)
+*   Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long) grâce à _to_str()
 */
     std::string to_str();
     
@@ -218,10 +218,10 @@ public:
 */
     void SPR_ite(Node* noeud);
 /**
-*   \brief Permet de lancer le SPR_rec
+*   \brief Permet d'initialiser le SPR_rec
 *   \param noeud Noeud utilisé pour le SPR
 *
-*   Lance le SPR sur tout l'arbre en récursif
+*   Lance le SPR sur l'arbre grâce à _SPR_rec()
 */
     void SPR_rec(Node* noeud);
 
@@ -232,39 +232,83 @@ private:
 */
     void _setParent(Node* parent) {_parent = parent;}
 
+/** Parent du noeud*/
     Node* _parent;
+/** Fils gauche du noeud*/
     Node* _left;
+/** Fils droit du noeud */
     Node* _right;
+/** Vecteur de noeud, initialisé par SPR_list_init*/
     std::vector<Node*> nodes;
 
+/** Données du noeud */
     int _data;
+/** Booléen si le noeud a été initialisé*/
     bool _free;
 
+/** Moteur de RNG du noeud*/
     static std::mt19937 rng;
+/** Distribution pour l'aléatoire binaire du noeud*/
     static std::uniform_int_distribution<int> binaryPick;
 
+/** 
+*   \brief Lance SPR_rec sur tout l'arbre
+*   \param noeud Noeud utilisé pour le SPR
+*   \param count Nombre de degraph/regraph effectués
+*   \return Retourne le nombre de degraph/regraph effectués
+*
+*/
     int _SPR_rec(Node* noeud, int count);
+/**
+*   \brief Permet l'affichage de l'arbre
+*   \param acc Chaine en cours de construction
+*   \param depth hauteur à laquelle doit commencer la fonction
+*   \return Retourne un chaine de caractère représentant l'arbre
+*
+*   Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long)
+*/
     std::string _to_str(std::string acc, int depth);
+/**
+*   \brief Donne le noeud à un index donné
+*   \param num Numéro du noeud demandé sur l'arbre actuel
+*   \return Retourne le nombre de noeud restant à chercher
+* 
+*   Va chercher le noeud en regardant le noeud actuel, puis va chercher dans le noeud gauche puis le noeud droit
+*/
     int _nodeAt(int num);
 
 public:
+/**
+*   \classe NodeIter
+*   \brief Classe pour créer un itérateur sur Node
+*/
     class NodeIter
     {
         friend class Node;
 
     public:
+/** \brief Itinitialise l'itérateur*/
         void begin() {_index = 0;}
+/** \brief Va au noeud suivant dans l'ordre de l'index de nodeAt() \return Retourne un pointeur vers le prochain noeud */
         Node* getNext() {return _root->nodeAt(_index++);}
+/** \brief Indique si le noeud a un noeud suivant \return Retourne faux si le noeud est le dernier*/
         bool hasNext() {return _index < _size;}
+/** \brief Mets l'itérateur au dernier élément*/
         void end() {_index = _size-1;}
 
     private:
+/**
+*   \brief Constructeur de NodeIter
+*   \param root Racine sur laquelle l'itérateur va itérer
+*/
         NodeIter(Node* root)
             :_root(root), _index(0), _size(root->size())
         {}
-
+/** Racine de l'arbre sur lequel l'itérateur itère*/
         Node* _root;
+/** Indice de l'élément sur lequel l'itérateur est*/
         int _index;
+/** Taille de l'arbre*/
         int _size;
 
     };

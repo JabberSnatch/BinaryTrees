@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html">NodeIter</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe pour faire un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  <a href="class_node_1_1_node_iter.html#details">Plus de détails...</a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe pour créer un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  <a href="class_node_1_1_node_iter.html#details">Plus de détails...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a> ()</td></tr>
@@ -143,26 +143,45 @@ Fonctions membres publiques</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a60282a21a54540751e5a9086b4061d61">getData</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer les data d'un noeud.  <a href="#a60282a21a54540751e5a9086b4061d61"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a8e09d5e4fd1497c0964a0923e6f77e72">getParent</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer le parent.  <a href="#a8e09d5e4fd1497c0964a0923e6f77e72"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#afc93ed6080db92b02a64d9d56f9b0f1f">getLeft</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer le fils gauche du noeud.  <a href="#afc93ed6080db92b02a64d9d56f9b0f1f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a5590cacf5beaf1da596c386f90796b02">getRight</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer le fils droit du noeud.  <a href="#a5590cacf5beaf1da596c386f90796b02"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a552d706ee314a46c8a0293399f5cb08c">isFree</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le noeud a été initialisé  <a href="#a552d706ee314a46c8a0293399f5cb08c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#aedfc52538fc29d8061a0ab1870b30caa">isOrphan</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le noeud est orphelin.  <a href="#aedfc52538fc29d8061a0ab1870b30caa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adcf88320a27fd4c189de67d77f3f9006">isLeftFree</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le noeud a un fils gauche.  <a href="#adcf88320a27fd4c189de67d77f3f9006"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4423e00af11b8f191fdeb79147d3bd33">isRightFree</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Indique si le noeud a un fils droit.  <a href="#a4423e00af11b8f191fdeb79147d3bd33"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a23604c4ea1bea0739e88ab0f6b853130">size</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne la taille de l'arbre.  <a href="#a23604c4ea1bea0739e88ab0f6b853130"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a17d1d379040dbf422c53b518b0937fd8">leafCount</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne le nombre de feuille de l'arbre.  <a href="#a17d1d379040dbf422c53b518b0937fd8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node_1_1_node_iter.html">Node::NodeIter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a41814efa489c3fd11114d1839167b2ba">begin</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne un itérateur sur l'arbre.  <a href="#a41814efa489c3fd11114d1839167b2ba"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a60b1a2bf4eab548aacbb5475f0d5a50f">to_str</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet l'affichage de l'arbre.  <a href="#a60b1a2bf4eab548aacbb5475f0d5a50f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adc2aa81340652ea1e13aedf9df9a456b">SPR_list_init</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'initialiser <a class="el" href="class_node.html#a97880cc90217ea9143a8432d420f00f0" title="Permet de lancer le SPR_list.">SPR_list()</a>  <a href="#adc2aa81340652ea1e13aedf9df9a456b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a97880cc90217ea9143a8432d420f00f0">SPR_list</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de lancer le SPR_list.  <a href="#a97880cc90217ea9143a8432d420f00f0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a46088fbf91ae4f6c61c9e6e056b41fc9">SPR_ite</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de lancer le SPR_ite.  <a href="#a46088fbf91ae4f6c61c9e6e056b41fc9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a905b8b5ef6722bd4173a193b5f9ea2d4">SPR_rec</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'initialiser le SPR_rec.  <a href="#a905b8b5ef6722bd4173a193b5f9ea2d4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-methods"></a>
 Fonctions membres privées</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#afd3b6592d4d1bb03f5c7b4f94345cdd2">_setParent</a> (<a class="el" href="class_node.html">Node</a> *parent)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Change le parent par le nouveau en paramètre.  <a href="#afd3b6592d4d1bb03f5c7b4f94345cdd2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a92b017cfa6e5759a59534f23cd307138">_SPR_rec</a> (<a class="el" href="class_node.html">Node</a> *noeud, int count)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Lance SPR_rec sur tout l'arbre.  <a href="#a92b017cfa6e5759a59534f23cd307138"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#aa3420e15fc5de95977ca797007e8dd20">_to_str</a> (std::string acc, int depth)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet l'affichage de l'arbre.  <a href="#aa3420e15fc5de95977ca797007e8dd20"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a45a5d8c936b5eee3516e495a6d061ce2">_nodeAt</a> (int num)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne le noeud à un index donné  <a href="#a45a5d8c936b5eee3516e495a6d061ce2"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4609e1daa55bd61615102d7ca6e439d6">_parent</a></td></tr>
@@ -297,6 +316,16 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Donne le noeud à un index donné </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Numéro du noeud demandé sur l'arbre actuel </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de noeud restant à chercher</dd></dl>
+<p>Va chercher le noeud en regardant le noeud actuel, puis va chercher dans le noeud gauche puis le noeud droit </p>
+
 </div>
 </div>
 <a class="anchor" id="afd3b6592d4d1bb03f5c7b4f94345cdd2"></a><!-- doxytag: member="Node::_setParent" ref="afd3b6592d4d1bb03f5c7b4f94345cdd2" args="(Node *parent)" -->
@@ -313,6 +342,14 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Change le parent par le nouveau en paramètre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>Nouveau parent du noeud </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -341,6 +378,16 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Lance SPR_rec sur tout l'arbre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td>Noeud utilisé pour le SPR </td></tr>
+    <tr><td class="paramname">count</td><td>Nombre de degraph/regraph effectués </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de degraph/regraph effectués </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="aa3420e15fc5de95977ca797007e8dd20"></a><!-- doxytag: member="Node::_to_str" ref="aa3420e15fc5de95977ca797007e8dd20" args="(std::string acc, int depth)" -->
@@ -367,6 +414,17 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet l'affichage de l'arbre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acc</td><td>Chaine en cours de construction </td></tr>
+    <tr><td class="paramname">depth</td><td>hauteur à laquelle doit commencer la fonction </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un chaine de caractère représentant l'arbre</dd></dl>
+<p>Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long) </p>
 
 </div>
 </div>
@@ -409,6 +467,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Donne un itérateur sur l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers un itérateur sur l'arbre </dd></dl>
 
 </div>
 </div>
@@ -562,6 +623,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet de récupérer le fils gauche du noeud. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers le fils gauche du noeud </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a8e09d5e4fd1497c0964a0923e6f77e72"></a><!-- doxytag: member="Node::getParent" ref="a8e09d5e4fd1497c0964a0923e6f77e72" args="()" -->
@@ -578,6 +642,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet de récupérer le parent. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourn un pointeur vers le parent </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a5590cacf5beaf1da596c386f90796b02"></a><!-- doxytag: member="Node::getRight" ref="a5590cacf5beaf1da596c386f90796b02" args="()" -->
@@ -593,6 +660,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de récupérer le fils droit du noeud. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers le fils droite du noeud </dd></dl>
 
 </div>
 </div>
@@ -662,6 +732,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Indique si le noeud a été initialisé </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne vrai si le noeud est initalisé (_free) </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="adcf88320a27fd4c189de67d77f3f9006"></a><!-- doxytag: member="Node::isLeftFree" ref="adcf88320a27fd4c189de67d77f3f9006" args="() const " -->
@@ -677,6 +750,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Indique si le noeud a un fils gauche. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne vrai si le noeud n'a pas de fils gauche </dd></dl>
 
 </div>
 </div>
@@ -694,6 +770,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Indique si le noeud est orphelin. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne vrai si le noeud n'a pas de parent </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a4423e00af11b8f191fdeb79147d3bd33"></a><!-- doxytag: member="Node::isRightFree" ref="a4423e00af11b8f191fdeb79147d3bd33" args="() const " -->
@@ -710,6 +789,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Indique si le noeud a un fils droit. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne vrai si le noeud n'a pas de fils droit </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a17d1d379040dbf422c53b518b0937fd8"></a><!-- doxytag: member="Node::leafCount" ref="a17d1d379040dbf422c53b518b0937fd8" args="()" -->
@@ -725,6 +807,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Donne le nombre de feuille de l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre feuille dans l'arbre sur lequel la fonction est appelé </dd></dl>
 
 </div>
 </div>
@@ -771,7 +856,7 @@ std::uniform_int_distribution<br class="typebreak"/>
   </dd>
 </dl>
 <dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers le noeud demandé, nullptr sinon</dd></dl>
-<p>L'index commence à 0 et va jusqu'au nombre de noeud - 1 Va chercher le noeud en regardant le noeud actuel, puis va chercher dans le noeud gauche puis le noeud droit </p>
+<p>L'index commence à 0 et va jusqu'au nombre de noeud - 1 Appelle <a class="el" href="class_node.html#a45a5d8c936b5eee3516e495a6d061ce2" title="Donne le noeud à un index donné">_nodeAt()</a> pour tout chercher </p>
 
 </div>
 </div>
@@ -900,6 +985,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Donne la taille de l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de noeud dans l'arbre du noeud sur lequel la fonction est appelé </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a46088fbf91ae4f6c61c9e6e056b41fc9"></a><!-- doxytag: member="Node::SPR_ite" ref="a46088fbf91ae4f6c61c9e6e056b41fc9" args="(Node *noeud)" -->
@@ -916,6 +1004,15 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de lancer le SPR_ite. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td>Noeud utilisé pour le SPR</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Lance le SPR sur tout l'arbre en itératif </p>
 
 </div>
 </div>
@@ -934,6 +1031,15 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet de lancer le SPR_list. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td>Noeud utilisé pour le SPR</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Doit avec été initialisé par SPR_init(). Lance le SPR sur tout l'arbre grâce au vector nodes' </p>
+
 </div>
 </div>
 <a class="anchor" id="adc2aa81340652ea1e13aedf9df9a456b"></a><!-- doxytag: member="Node::SPR_list_init" ref="adc2aa81340652ea1e13aedf9df9a456b" args="(Node *noeud)" -->
@@ -950,6 +1056,15 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet d'initialiser <a class="el" href="class_node.html#a97880cc90217ea9143a8432d420f00f0" title="Permet de lancer le SPR_list.">SPR_list()</a> </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td>Noeud utilisé pour le SPR</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Créer la liste contenant les éléments de l'arbre (sous forme de vecteur) </p>
 
 </div>
 </div>
@@ -968,6 +1083,15 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet d'initialiser le SPR_rec. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td>Noeud utilisé pour le SPR</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Lance le SPR sur l'arbre grâce à <a class="el" href="class_node.html#a92b017cfa6e5759a59534f23cd307138" title="Lance SPR_rec sur tout l&#39;arbre.">_SPR_rec()</a> </p>
+
 </div>
 </div>
 <a class="anchor" id="a60b1a2bf4eab548aacbb5475f0d5a50f"></a><!-- doxytag: member="Node::to_str" ref="a60b1a2bf4eab548aacbb5475f0d5a50f" args="()" -->
@@ -984,6 +1108,10 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet l'affichage de l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un chaine de caractère représentant l'arbre</dd></dl>
+<p>Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long) grâce à <a class="el" href="class_node.html#aa3420e15fc5de95977ca797007e8dd20" title="Permet l&#39;affichage de l&#39;arbre.">_to_str()</a> </p>
+
 </div>
 </div>
 <hr/><h2>Documentation des données membres</h2>
@@ -997,6 +1125,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Données du noeud </p>
 
 </div>
 </div>
@@ -1010,6 +1139,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Booléen si le noeud a été initialisé </p>
 
 </div>
 </div>
@@ -1023,6 +1153,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Fils gauche du noeud </p>
 
 </div>
 </div>
@@ -1036,6 +1167,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Parent du noeud </p>
 
 </div>
 </div>
@@ -1049,6 +1181,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Fils droit du noeud </p>
 
 </div>
 </div>
@@ -1062,6 +1195,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Distribution pour l'aléatoire binaire du noeud </p>
 
 </div>
 </div>
@@ -1075,6 +1209,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Vecteur de noeud, initialisé par SPR_list_init </p>
 
 </div>
 </div>
@@ -1088,6 +1223,7 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+<p>Moteur de RNG du noeud </p>
 
 </div>
 </div>
@@ -1113,7 +1249,7 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 
 <hr class="footer"/><address class="footer"><small>
-Généré le Dimanche Mai 24 2015 18:57:52 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche Mai 24 2015 20:29:35 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
