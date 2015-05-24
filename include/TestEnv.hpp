@@ -39,7 +39,7 @@ enum testType {ITVSREC,STATVSDYN,ITVSLIST};
 
 /**
 *   \class TestEnv
-*   \brief classe pour construire un test
+*   \brief Classe pour construire un test
 *   
 *   La classe permet de construire un test en fonction du type de test et des paramètres donnés en vecteurs.
 *   Elle contient aussi un chronomètre pour récupérer le temps du test   

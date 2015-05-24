@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Test: Référence de la classe Node</title>
+<title>My Project: Référence de la classe Node</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,7 +27,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Test
+   <div id="projectname">My Project
    
    </div>
    
@@ -87,6 +87,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div><!--header-->
 <div class="contents">
 <!-- doxytag: class="Node" -->
+<p>Classe représentant un arbre binaire statique.  
+ <a href="class_node.html#details">Plus de détails...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_node_8hpp_source.html">Node.hpp</a>&gt;</code></p>
 
 <p><a href="class_node-members.html">Liste de tous les membres</a></p>
@@ -94,29 +97,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node_1_1_node_iter.html">NodeIter</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Classe pour faire un itérateur sur <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  <a href="class_node_1_1_node_iter.html#details">Plus de détails...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par défaut.  <a href="#ad7a34779cad45d997bfd6d3d8043c75f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#af80624a589a83d03921a58afa9a96e59">Node</a> (int data, <a class="el" href="class_node.html">Node</a> *parent=nullptr)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur avec rajout de donnée et d'un parent.  <a href="#af80624a589a83d03921a58afa9a96e59"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a4053c6deca192c41824fad14c4f4eb76">Node</a> (const <a class="el" href="class_node.html">Node</a> &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a90ff04ae049a62fa2c39771ef89398a5">operator=</a> (const <a class="el" href="class_node.html">Node</a> &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#af57bf0a6c23fc64a556f58c4baddd3b5">clone</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur par recopie.  <a href="#a4053c6deca192c41824fad14c4f4eb76"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ac225620e1cb280466ee7a1a50e44a5cb">operator=</a> (const <a class="el" href="class_node.html">Node</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajout d'un opérateur =.  <a href="#ac225620e1cb280466ee7a1a50e44a5cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a6cfad9482bb1b1afb499a5ecee683305">clone</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de cloner une node.  <a href="#a6cfad9482bb1b1afb499a5ecee683305"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#aa0840c3cb5c7159be6d992adecd2097c">~Node</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>.  <a href="#aa0840c3cb5c7159be6d992adecd2097c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#af722f14b7291631d3eec2bef7dc08289">insert</a> (int E)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'insérer une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> dans un arbre.  <a href="#af722f14b7291631d3eec2bef7dc08289"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a90a99a2e389521af22d1fccc896877eb">insertBalanced</a> (int E)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'insérer de façon équilibrée une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> dans un arbre.  <a href="#a90a99a2e389521af22d1fccc896877eb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a078d350323b31fa2e138bffedc576345">addChild</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ajouter un fils à un noeud.  <a href="#a078d350323b31fa2e138bffedc576345"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a568ed63439a05f7f5cfe742fc3e84962">degraph</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Enlève enlève le parent du noeud de l'arbre dans lequel il est.  <a href="#a568ed63439a05f7f5cfe742fc3e84962"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a7d84f158d2d8e83a048d988c377f0d83">regraph</a> (<a class="el" href="class_node.html">Node</a> *child)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Raccroche un noeud à l'arbre.  <a href="#a7d84f158d2d8e83a048d988c377f0d83"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a1f1e85ecf9c51a14f41e7e0b36c35ffe">check</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie l'arbre, doit être appelé sur la racine.  <a href="#a1f1e85ecf9c51a14f41e7e0b36c35ffe"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a6cba1c3052a63ea62479d3d8a448aa73">nodeCheck</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a196d9525aa470a78fce3f752fcbc4607">findRoot</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si les noeud sont bien conforme.  <a href="#a6cba1c3052a63ea62479d3d8a448aa73"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ad130ebe4806cbf310ff9ab8f78449724">findRoot</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer la racine de l'arbre.  <a href="#ad130ebe4806cbf310ff9ab8f78449724"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ac22268e4a5005892fb51ed0adad9df4e">descendantCount</a> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a69f953649e092e5a3bb5f3933fbfe3ef">nodeAt</a> (int num)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne le nombre de descendants.  <a href="#ac22268e4a5005892fb51ed0adad9df4e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ad15651a6e2416a8f92f66dad57ffe972">nodeAt</a> (int num)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne le noeud à un index donné  <a href="#ad15651a6e2416a8f92f66dad57ffe972"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#ae91fa11d12e88881de9a5d40454df195">dataCount</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne la somme des data.  <a href="#ae91fa11d12e88881de9a5d40454df195"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a0cc24925dd5cdaa37bcf64d0913cb250">nodeCount</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Donne le nombre de noeud en tout.  <a href="#a0cc24925dd5cdaa37bcf64d0913cb250"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a08f762d199e8bb55c80c6ba93c1169dc">newick</a> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche l'arbre.  <a href="#a08f762d199e8bb55c80c6ba93c1169dc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a2da744e4e704b0e2684e0d7476cf8c26">setData</a> (int data)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de changer les data d'un noeud.  <a href="#a2da744e4e704b0e2684e0d7476cf8c26"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a60282a21a54540751e5a9086b4061d61">getData</a> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de récupérer les data d'un noeud.  <a href="#a60282a21a54540751e5a9086b4061d61"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a8e09d5e4fd1497c0964a0923e6f77e72">getParent</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#afc93ed6080db92b02a64d9d56f9b0f1f">getLeft</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a5590cacf5beaf1da596c386f90796b02">getRight</a> ()</td></tr>
@@ -127,7 +152,7 @@ Fonctions membres publiques</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a23604c4ea1bea0739e88ab0f6b853130">size</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a17d1d379040dbf422c53b518b0937fd8">leafCount</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_node_1_1_node_iter.html">Node::NodeIter</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a41814efa489c3fd11114d1839167b2ba">begin</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adc06febf17e6dc0c06972284d3d1f541">to_str</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a60b1a2bf4eab548aacbb5475f0d5a50f">to_str</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adc2aa81340652ea1e13aedf9df9a456b">SPR_list_init</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a97880cc90217ea9143a8432d420f00f0">SPR_list</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a46088fbf91ae4f6c61c9e6e056b41fc9">SPR_ite</a> (<a class="el" href="class_node.html">Node</a> *noeud)</td></tr>
@@ -136,7 +161,7 @@ Fonctions membres publiques</h2></td></tr>
 Fonctions membres privées</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#afd3b6592d4d1bb03f5c7b4f94345cdd2">_setParent</a> (<a class="el" href="class_node.html">Node</a> *parent)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a92b017cfa6e5759a59534f23cd307138">_SPR_rec</a> (<a class="el" href="class_node.html">Node</a> *noeud, int count)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a57b3da2b1f339294a8cf5ec128df9428">_to_str</a> (std::string acc, int depth)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#aa3420e15fc5de95977ca797007e8dd20">_to_str</a> (std::string acc, int depth)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a45a5d8c936b5eee3516e495a6d061ce2">_nodeAt</a> (int num)</td></tr>
 <tr><td colspan="2"><h2><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
@@ -148,12 +173,15 @@ Attributs privés</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#aea8b4dc7b756d52ead69784e3f814d11">_free</a></td></tr>
 <tr><td colspan="2"><h2><a name="pri-static-attribs"></a>
 Attributs privés statiques</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#adc47cc48f42d63364ddbd4436a3cdeb1">rng</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static std::mt19937&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a6224e8a7f913457075b47f3fcc878b31">rng</a> = mt19937(random_device()())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <br class="typebreak"/>
 std::uniform_int_distribution<br class="typebreak"/>
-&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a3263b1db147ecbf7bd5712517db17f04">binaryPick</a></td></tr>
+&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_node.html#a47c529b101f32cd937afb4445c8ee45f">binaryPick</a> = uniform_int_distribution&lt;int&gt;(0, 1)</td></tr>
 </table>
-<hr/><h2>Documentation des constructeurs et destructeur</h2>
+<hr/><a name="details" id="details"></a><h2>Description détaillée</h2>
+<div class="textblock"><p>Classe représentant un arbre binaire statique. </p>
+<p>La classe construit une racine pour un arbre binaire, à laquelle on rajoute des noeuds par insert ou insertBalanced On peut après lui appliquer les actions sur les arbres binaires, dont le SPR en itératif, récursif, list. </p>
+</div><hr/><h2>Documentation des constructeurs et destructeur</h2>
 <a class="anchor" id="ad7a34779cad45d997bfd6d3d8043c75f"></a><!-- doxytag: member="Node::Node" ref="ad7a34779cad45d997bfd6d3d8043c75f" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -167,6 +195,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructeur par défaut. </p>
+<p>Mets toutes les valeurs a nullptr (pas de parent, pas de fils et pas de data) </p>
 
 </div>
 </div>
@@ -195,6 +226,15 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Constructeur avec rajout de donnée et d'un parent. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>Donnée contenu dans le noeud </td></tr>
+    <tr><td class="paramname">parent</td><td><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> parent pour la nouvelle node </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a4053c6deca192c41824fad14c4f4eb76"></a><!-- doxytag: member="Node::Node" ref="a4053c6deca192c41824fad14c4f4eb76" args="(const Node &amp;)" -->
@@ -205,12 +245,20 @@ std::uniform_int_distribution<br class="typebreak"/>
           <td class="memname"><a class="el" href="class_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node::Node</a> </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_node.html">Node</a> &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Constructeur par recopie. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a></td><td><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> utilisé pour copier les données </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -227,6 +275,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Destructeur de <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>. </p>
+<p>Permet de détruire un arbre binaire entier </p>
 
 </div>
 </div>
@@ -292,12 +343,12 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="a57b3da2b1f339294a8cf5ec128df9428"></a><!-- doxytag: member="Node::_to_str" ref="a57b3da2b1f339294a8cf5ec128df9428" args="(std::string acc, int depth)" -->
+<a class="anchor" id="aa3420e15fc5de95977ca797007e8dd20"></a><!-- doxytag: member="Node::_to_str" ref="aa3420e15fc5de95977ca797007e8dd20" args="(std::string acc, int depth)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string <a class="el" href="class_node.html#a57b3da2b1f339294a8cf5ec128df9428">Node::_to_str</a> </td>
+          <td class="memname">string <a class="el" href="class_node.html#aa3420e15fc5de95977ca797007e8dd20">Node::_to_str</a> </td>
           <td>(</td>
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>acc</em>, </td>
@@ -334,6 +385,15 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet d'ajouter un fils à un noeud. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">noeud</td><td><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> a rajouté </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne si l'ajout de la node a réussi </dd></dl>
+
 </div>
 </div>
 <a class="anchor" id="a41814efa489c3fd11114d1839167b2ba"></a><!-- doxytag: member="Node::begin" ref="a41814efa489c3fd11114d1839167b2ba" args="()" -->
@@ -366,14 +426,18 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Vérifie l'arbre, doit être appelé sur la racine. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne si l'arbre est bien conforme</dd></dl>
+<p>Lance la vérification sur les noeuds </p>
+
 </div>
 </div>
-<a class="anchor" id="af57bf0a6c23fc64a556f58c4baddd3b5"></a><!-- doxytag: member="Node::clone" ref="af57bf0a6c23fc64a556f58c4baddd3b5" args="()" -->
+<a class="anchor" id="a6cfad9482bb1b1afb499a5ecee683305"></a><!-- doxytag: member="Node::clone" ref="a6cfad9482bb1b1afb499a5ecee683305" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_node.html">Node</a>* <a class="el" href="class_node.html#af57bf0a6c23fc64a556f58c4baddd3b5">Node::clone</a> </td>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> * <a class="el" href="class_node.html#a6cfad9482bb1b1afb499a5ecee683305">Node::clone</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -381,6 +445,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de cloner une node. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers un nouveau <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> contenant les données du noeud actuel </dd></dl>
 
 </div>
 </div>
@@ -398,6 +465,10 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Donne la somme des data. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de data en int</dd></dl>
+<p>Va chercher la somme des data à gauche puis à droit et les ajoute et renvoie </p>
+
 </div>
 </div>
 <a class="anchor" id="a568ed63439a05f7f5cfe742fc3e84962"></a><!-- doxytag: member="Node::degraph" ref="a568ed63439a05f7f5cfe742fc3e84962" args="()" -->
@@ -413,6 +484,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Enlève enlève le parent du noeud de l'arbre dans lequel il est. </p>
+<p>La fonction enlève le parent du parent du noeud à nullptr, le père devient donc une racine. </p>
 
 </div>
 </div>
@@ -430,14 +504,17 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Donne le nombre de descendants. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de fils du noeud </dd></dl>
+
 </div>
 </div>
-<a class="anchor" id="a196d9525aa470a78fce3f752fcbc4607"></a><!-- doxytag: member="Node::findRoot" ref="a196d9525aa470a78fce3f752fcbc4607" args="()" -->
+<a class="anchor" id="ad130ebe4806cbf310ff9ab8f78449724"></a><!-- doxytag: member="Node::findRoot" ref="ad130ebe4806cbf310ff9ab8f78449724" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_node.html">Node</a>* <a class="el" href="class_node.html#a196d9525aa470a78fce3f752fcbc4607">Node::findRoot</a> </td>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> * <a class="el" href="class_node.html#ad130ebe4806cbf310ff9ab8f78449724">Node::findRoot</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -445,6 +522,10 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de récupérer la racine de l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers la racine</dd></dl>
+<p>La fonction cherche le parent le plus haut, et retourne un pointeur vers ce noeud. Peut-être appelé dans tout l'arbre </p>
 
 </div>
 </div>
@@ -461,6 +542,9 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de récupérer les data d'un noeud. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne les data d'un noeud </dd></dl>
 
 </div>
 </div>
@@ -527,6 +611,15 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Permet d'insérer une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> dans un arbre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">E</td><td>data de la nouvelle de <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Insert une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>, va au hasard à droite ou à gauche le node a deux fils et réessaie d'insérer la node dans les fils </p>
+
 </div>
 </div>
 <a class="anchor" id="a90a99a2e389521af22d1fccc896877eb"></a><!-- doxytag: member="Node::insertBalanced" ref="a90a99a2e389521af22d1fccc896877eb" args="(int E)" -->
@@ -543,6 +636,15 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet d'insérer de façon équilibrée une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> dans un arbre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">E</td><td>data de la nouvelle <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Insert une <a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a>, va chercher le premier noeud pour laisser l'arbre équilibré et l'insert </p>
 
 </div>
 </div>
@@ -640,14 +742,18 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Affiche l'arbre. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Renvoie une chaine de caractère</dd></dl>
+<p>Affiche l'arbre selon la méthode de newick. </p>
+
 </div>
 </div>
-<a class="anchor" id="a69f953649e092e5a3bb5f3933fbfe3ef"></a><!-- doxytag: member="Node::nodeAt" ref="a69f953649e092e5a3bb5f3933fbfe3ef" args="(int num)" -->
+<a class="anchor" id="ad15651a6e2416a8f92f66dad57ffe972"></a><!-- doxytag: member="Node::nodeAt" ref="ad15651a6e2416a8f92f66dad57ffe972" args="(int num)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_node.html">Node</a>* <a class="el" href="class_node.html#a69f953649e092e5a3bb5f3933fbfe3ef">Node::nodeAt</a> </td>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> * <a class="el" href="class_node.html#ad15651a6e2416a8f92f66dad57ffe972">Node::nodeAt</a> </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>num</em></td><td>)</td>
@@ -656,6 +762,16 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Donne le noeud à un index donné </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>Numéro du noeud demandé </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne un pointeur vers le noeud demandé, nullptr sinon</dd></dl>
+<p>L'index commence à 0 et va jusqu'au nombre de noeud - 1 Va chercher le noeud en regardant le noeud actuel, puis va chercher dans le noeud gauche puis le noeud droit </p>
 
 </div>
 </div>
@@ -673,6 +789,10 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Vérifie si les noeud sont bien conforme. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne si les noeuds sont bien conformes</dd></dl>
+<p>Vérifie si l'arbre est conforme (si le noeud A a bien le noeud B en fils et si le noeud B a bien le noeud A en parent) </p>
+
 </div>
 </div>
 <a class="anchor" id="a0cc24925dd5cdaa37bcf64d0913cb250"></a><!-- doxytag: member="Node::nodeCount" ref="a0cc24925dd5cdaa37bcf64d0913cb250" args="()" -->
@@ -689,22 +809,34 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Donne le nombre de noeud en tout. </p>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne le nombre de noeud</dd></dl>
+<p>Dans les faits, utilise <a class="el" href="class_node.html#ac22268e4a5005892fb51ed0adad9df4e" title="Donne le nombre de descendants.">descendantCount()</a> et rajoute 1 </p>
+
 </div>
 </div>
-<a class="anchor" id="a90ff04ae049a62fa2c39771ef89398a5"></a><!-- doxytag: member="Node::operator=" ref="a90ff04ae049a62fa2c39771ef89398a5" args="(const Node &amp;)" -->
+<a class="anchor" id="ac225620e1cb280466ee7a1a50e44a5cb"></a><!-- doxytag: member="Node::operator=" ref="ac225620e1cb280466ee7a1a50e44a5cb" args="(const Node &amp;)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_node.html">Node</a>&amp; Node::operator= </td>
+          <td class="memname"><a class="el" href="class_node.html">Node</a> &amp; Node::operator= </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_node.html">Node</a> &amp;&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Ajout d'un opérateur =. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a></td><td><a class="el" href="class_node.html" title="Classe représentant un arbre binaire statique.">Node</a> avec laquelle est comparée la node sur laquelle l'opérateur est appelé </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -723,6 +855,16 @@ std::uniform_int_distribution<br class="typebreak"/>
 </div>
 <div class="memdoc">
 
+<p>Raccroche un noeud à l'arbre. </p>
+<dl class="params"><dt><b>Paramètres:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">child</td><td>Noeud qui est raccrochée à l'arbre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Renvoie:</b></dt><dd>Retourne si l'opération réussie</dd></dl>
+<p>Cette fonction rajoute un fils sur le noeud sur lequel il est appelé, et mets en petit-fils l'ancien fils et le noeud en paramètre </p>
+
 </div>
 </div>
 <a class="anchor" id="a2da744e4e704b0e2684e0d7476cf8c26"></a><!-- doxytag: member="Node::setData" ref="a2da744e4e704b0e2684e0d7476cf8c26" args="(int data)" -->
@@ -739,6 +881,8 @@ std::uniform_int_distribution<br class="typebreak"/>
       </table>
 </div>
 <div class="memdoc">
+
+<p>Permet de changer les data d'un noeud. </p>
 
 </div>
 </div>
@@ -826,12 +970,12 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="adc06febf17e6dc0c06972284d3d1f541"></a><!-- doxytag: member="Node::to_str" ref="adc06febf17e6dc0c06972284d3d1f541" args="()" -->
+<a class="anchor" id="a60b1a2bf4eab548aacbb5475f0d5a50f"></a><!-- doxytag: member="Node::to_str" ref="a60b1a2bf4eab548aacbb5475f0d5a50f" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string <a class="el" href="class_node.html#adc06febf17e6dc0c06972284d3d1f541">Node::to_str</a> </td>
+          <td class="memname">string <a class="el" href="class_node.html#a60b1a2bf4eab548aacbb5475f0d5a50f">Node::to_str</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -908,12 +1052,12 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="a3263b1db147ecbf7bd5712517db17f04"></a><!-- doxytag: member="Node::binaryPick" ref="a3263b1db147ecbf7bd5712517db17f04" args="" -->
+<a class="anchor" id="a47c529b101f32cd937afb4445c8ee45f"></a><!-- doxytag: member="Node::binaryPick" ref="a47c529b101f32cd937afb4445c8ee45f" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::uniform_int_distribution&lt;int&gt; <a class="el" href="class_node.html#a3263b1db147ecbf7bd5712517db17f04">Node::binaryPick</a><code> [static, private]</code></td>
+          <td class="memname">uniform_int_distribution&lt; int &gt; <a class="el" href="class_node.html#a47c529b101f32cd937afb4445c8ee45f">Node::binaryPick</a> = uniform_int_distribution&lt;int&gt;(0, 1)<code> [static, private]</code></td>
         </tr>
       </table>
 </div>
@@ -934,12 +1078,12 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 </div>
 </div>
-<a class="anchor" id="adc47cc48f42d63364ddbd4436a3cdeb1"></a><!-- doxytag: member="Node::rng" ref="adc47cc48f42d63364ddbd4436a3cdeb1" args="" -->
+<a class="anchor" id="a6224e8a7f913457075b47f3fcc878b31"></a><!-- doxytag: member="Node::rng" ref="a6224e8a7f913457075b47f3fcc878b31" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::mt19937 <a class="el" href="class_node.html#adc47cc48f42d63364ddbd4436a3cdeb1">Node::rng</a><code> [static, private]</code></td>
+          <td class="memname">mt19937 <a class="el" href="class_node.html#a6224e8a7f913457075b47f3fcc878b31">Node::rng</a> = mt19937(random_device()())<code> [static, private]</code></td>
         </tr>
       </table>
 </div>
@@ -947,8 +1091,9 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 </div>
 </div>
-<hr/>La documentation de cette classe a été générée à partir du fichier suivant :<ul>
-<li><a class="el" href="_node_8hpp_source.html">Node.hpp</a></li>
+<hr/>La documentation de cette classe a été générée à partir des fichiers suivants :<ul>
+<li>include/<a class="el" href="_node_8hpp_source.html">Node.hpp</a></li>
+<li>src/<a class="el" href="_node_8cpp.html">Node.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- window showing the filter options -->
@@ -968,7 +1113,7 @@ std::uniform_int_distribution<br class="typebreak"/>
 
 
 <hr class="footer"/><address class="footer"><small>
-Généré le Samedi Mai 23 2015 20:43:03 pour Test par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche Mai 24 2015 18:57:52 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

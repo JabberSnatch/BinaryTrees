@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Test:  Fichier source de TestEnv.hpp</title>
+<title>My Project:  Fichier source de include/TestEnv.hpp</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -27,7 +27,7 @@
   
   
   <td style="padding-left: 0.5em;">
-   <div id="projectname">Test
+   <div id="projectname">My Project
    
    </div>
    
@@ -76,7 +76,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">TestEnv.hpp</div>  </div>
+<div class="title">include/TestEnv.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="_test_env_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
@@ -107,7 +107,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <a name="l00033"></a>00033 
 <a name="l00038"></a><a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62">00038</a> <span class="keyword">enum</span> <a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62" title="Nomme tous les types de test.">testType</a> {<a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62a7d1da68382098966e3e27cc6068af408">ITVSREC</a>,<a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62a404dab79989d857ab9611548971663a4">STATVSDYN</a>,<a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62a07750312af0f9a32361da24a62b1496e">ITVSLIST</a>};
 <a name="l00039"></a>00039 
-<a name="l00048"></a><a class="code" href="class_test_env.html">00048</a> <span class="keyword">class </span><a class="code" href="class_test_env.html" title="classe pour construire un test">TestEnv</a> 
+<a name="l00048"></a><a class="code" href="class_test_env.html">00048</a> <span class="keyword">class </span><a class="code" href="class_test_env.html" title="Classe pour construire un test.">TestEnv</a> 
 <a name="l00049"></a>00049 {
 <a name="l00050"></a>00050 <span class="keyword">public</span>:
 <a name="l00057"></a>00057     <a class="code" href="class_test_env.html#a0bb31c371393c225fc194f62038349ea" title="Constructeur.">TestEnv</a>(<a class="code" href="_test_env_8hpp.html#a8b84e3fdada1804a586312dc1d7b1f62" title="Nomme tous les types de test.">testType</a> test,std::vector&lt;float&gt; floatPar=std::vector&lt;float&gt; (),<span class="keywordtype">bool</span> *floatBoolPar=<span class="keyword">nullptr</span>, <span class="keywordtype">bool</span>* boolPar=<span class="keyword">nullptr</span>);
@@ -134,9 +134,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 <a name="l00136"></a>00136         <span class="keywordtype">void</span> <a class="code" href="class_test_env_1_1_chrono.html#aa4d37c58814ab724d8e56682d21ea3af" title="Remets le chrono a zéro.">reset</a>();
 <a name="l00142"></a>00142         <span class="keywordtype">float</span> <a class="code" href="class_test_env_1_1_chrono.html#a8caccc94b763e22fc05229c6ece47237" title="Renvoie la valeur de elapsed_time.">getDuration</a>();
 <a name="l00143"></a>00143     <span class="keyword">private</span>:
-<a name="l00148"></a><a class="code" href="class_test_env_1_1_chrono.html#a96c0612aac453dc421c98954a4fdca7f">00148</a>         std::chrono::time_point&lt;std::chrono::system_clock&gt; <a class="code" href="class_test_env_1_1_chrono.html#a96c0612aac453dc421c98954a4fdca7f">_start</a>;
-<a name="l00149"></a><a class="code" href="class_test_env_1_1_chrono.html#a7ea0e285dad65561d89fd367f929b4f1">00149</a>         <span class="keywordtype">float</span> <a class="code" href="class_test_env_1_1_chrono.html#a7ea0e285dad65561d89fd367f929b4f1">_elapsed_time</a>;
-<a name="l00150"></a><a class="code" href="class_test_env_1_1_chrono.html#acfa774cc89e05e74198baa432ac0dbcc">00150</a>         std::string <a class="code" href="class_test_env_1_1_chrono.html#acfa774cc89e05e74198baa432ac0dbcc">_precision</a>;
+<a name="l00145"></a><a class="code" href="class_test_env_1_1_chrono.html#a96c0612aac453dc421c98954a4fdca7f">00145</a>         std::chrono::time_point&lt;std::chrono::system_clock&gt; <a class="code" href="class_test_env_1_1_chrono.html#a96c0612aac453dc421c98954a4fdca7f">_start</a>;
+<a name="l00147"></a><a class="code" href="class_test_env_1_1_chrono.html#a7ea0e285dad65561d89fd367f929b4f1">00147</a>         <span class="keywordtype">float</span> <a class="code" href="class_test_env_1_1_chrono.html#a7ea0e285dad65561d89fd367f929b4f1">_elapsed_time</a>;
+<a name="l00149"></a><a class="code" href="class_test_env_1_1_chrono.html#acfa774cc89e05e74198baa432ac0dbcc">00149</a>         std::string <a class="code" href="class_test_env_1_1_chrono.html#acfa774cc89e05e74198baa432ac0dbcc">_precision</a>;
 <a name="l00151"></a><a class="code" href="class_test_env_1_1_chrono.html#a68d6ad92671c85f624135716dc5e9976">00151</a>         <span class="keywordtype">bool</span> <a class="code" href="class_test_env_1_1_chrono.html#a68d6ad92671c85f624135716dc5e9976">_isCalculing</a>;
 <a name="l00152"></a>00152     };
 <a name="l00153"></a>00153 };
@@ -160,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 
 
 <hr class="footer"/><address class="footer"><small>
-Généré le Samedi Mai 23 2015 20:43:03 pour Test par &#160;<a href="http://www.doxygen.org/index.html">
+Généré le Dimanche Mai 24 2015 18:57:52 pour My Project par &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
