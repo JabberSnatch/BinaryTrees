@@ -4,7 +4,7 @@
 
 /**
 *   \file Node.hpp
-*   \brief Permet de construire un arbre binaire statique 
+*   \brief Permet de construire un arbre binaire dynamique
 *   \author Samuel et Rodolphe
 */
 
@@ -17,7 +17,7 @@
 
 /**
 *   \class Node 
-*   \brief Classe représentant un arbre binaire statique 
+*   \brief Classe représentant un arbre binaire dynamique
 *
 *   La classe construit une racine pour un arbre binaire, à laquelle on rajoute des noeuds par insert ou insertBalanced
 *   On peut après lui appliquer les actions sur les arbres binaires, dont le SPR en itératif, récursif, list.
@@ -59,11 +59,7 @@ public:
 *   \return Retourne un pointeur vers un nouveau Node contenant les données du noeud actuel
 */
     Node* clone();
-/**
-*   \brief Destructeur de Node 
-*   
-*   Permet de détruire un arbre binaire entier
-*/
+/** \brief Destructeur de Node*/
     ~Node();
 
 /**
@@ -92,7 +88,7 @@ public:
 /**
 *   \brief Enlève enlève le parent du noeud de l'arbre dans lequel il est
 *   
-*   La fonction enlève le parent du parent du noeud à nullptr, le père devient donc une racine.
+*   La fonction mets le parent du parent du noeud à nullptr, le père devient donc une racine.
 */
     void degraph();
 /**
