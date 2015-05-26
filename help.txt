@@ -1,4 +1,4 @@
-Tests possibles : DIT_VS_DREC, SREC_VS_DREC, DREC_VS_DLIST, SREC_VS_SIT
+Tests possibles : DIT_VS_DREC, DREC_VS_SREC, DREC_VS_DLIST, SREC_VS_SIT
 TEST : 1) DIT_VS_DREC
         FloatList : 
     -2 Needed : 

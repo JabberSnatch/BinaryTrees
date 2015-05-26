@@ -345,13 +345,12 @@ TestEnv::_SrecVsSit()
         {
             root.insert(i);
         }
-        Node copy(root);
-        ArrayTree rootArray(copy);
+        ArrayTree rootArray(root);
+        ArrayTree rootArray2(root);
         
-        rootNode = root.nodeAt(randomNode);
-        cout << "Premier Test : rec dynamique" << endl;
+        cout << "Premier Test : rec statique" << endl;
         myChrono.start();
-            root.SPR_rec(rootNode);
+            rootArray.SPR_rec(randomNode);
         myChrono.stop();
         temps1+=myChrono.getDuration();
         if(timeShown !=0)
@@ -364,9 +363,9 @@ TestEnv::_SrecVsSit()
         myChrono.reset();
         cout << endl;
         
-        cout << "Deuxième test : rec statique" << endl;
+        cout << "Deuxième test : ite statique" << endl;
         myChrono.start();
-            rootArray.SPR_rec(randomNode);
+            rootArray2.SPR_ite(randomNode);
         myChrono.stop();
         temps2 +=myChrono.getDuration();
         if(timeShown !=0)
