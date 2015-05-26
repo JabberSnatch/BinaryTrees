@@ -33,9 +33,10 @@
 int maxSizeBoolPar=50;
 int maxSizeFloatPar=50;
 
-
 void debug(int argc, char* argv[])
 {
+
+#ifdef RODOLPHE
     std::vector<float> floatList={};
     bool floatBoolList[maxSizeFloatPar];
     for(int i=0;i<maxSizeFloatPar;i++)
@@ -120,7 +121,8 @@ void debug(int argc, char* argv[])
     TestEnv myTest(test,floatList,floatBoolList,boolList);
     myTest.runTest();
         
-#ifdef RODOLPHE
+
+
 #endif 
 
 #ifdef SAMUEL
