@@ -37,22 +37,16 @@ TestEnv::TestEnv(testType test,std::vector<float> floatPar,bool* floatBoolPar, b
 
 
 
-/**
-    
-
-
-*/
-
 void
 TestEnv::runTest()
 {
-    if(_type==ITVSREC)
-        _itVsrec();
-    else if (_type==STATVSDYN)
-        _statiqueVsdynamique();
+    if(_type==DIT_VS_DREC)
+        _DitVsDrec();
+    else if (_type==DREC_VS_SREC)
+        _DrecVsSrec();
         
-    else if (_type==ITVSLIST)
-        _itVslist();
+    else if (_type==DREC_VS_DLIST)
+        _DrecVsDlist();
 }
 
 /**
@@ -70,7 +64,7 @@ TestEnv::runTest()
 */
 
 void
-TestEnv::_itVsrec()
+TestEnv::_DitVsDrec()
 {
     {
         int nbOption=0;
@@ -133,6 +127,10 @@ TestEnv::_itVsrec()
 
 
             if(randomNodeShown){
+                if(rootNode->getParent()!=nullptr)
+                {
+                    rootNode=rootNode->getParent();
+                }
                 cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
                 cout << rootNode->to_str() << endl;
             }            
@@ -148,7 +146,7 @@ TestEnv::_itVsrec()
 
 
 void
-TestEnv::_statiqueVsdynamique()
+TestEnv::_DrecVsSrec()
 {
     {
         int nbOption=0;
@@ -179,9 +177,9 @@ TestEnv::_statiqueVsdynamique()
             ArrayTree rootArray(copy);
             
             rootNode = root.nodeAt(randomNode);
-            cout << "Premier Test : it dynamique" << endl;
+            cout << "Premier Test : rec dynamique" << endl;
             myChrono.start();
-                root.SPR_ite(rootNode);
+                root.SPR_rec(rootNode);
             myChrono.stop();
             temps1+=myChrono.getDuration();
             if(timeShown !=0)
@@ -209,6 +207,10 @@ TestEnv::_statiqueVsdynamique()
 
 
             if(randomNodeShown){
+                if(rootNode->getParent()!=nullptr)
+                {
+                    rootNode=rootNode->getParent();
+                }
                 cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
                 cout << rootNode->to_str() << endl;
             }          
@@ -225,7 +227,7 @@ TestEnv::_statiqueVsdynamique()
 
 
 void
-TestEnv::_itVslist()
+TestEnv::_DrecVsDlist()
 {
     {
         int nbOption=0;
@@ -243,7 +245,7 @@ TestEnv::_itVslist()
         TestEnv::Chrono myChrono;
         TestEnv::Chrono myChrono2;
         float temps1 =0;
-        float temps2 =0 ;
+        float temps2 =0;
         float tempsTot=0;
         Node* rootNode;
         Node* copyNode;
@@ -257,7 +259,7 @@ TestEnv::_itVslist()
             }
             Node copy(root);
             rootNode = root.nodeAt(randomNode);
-            cout << "Premier Test : it" << endl;
+            cout << "Premier Test : rec dynamique" << endl;
             myChrono.start();
                 root.SPR_ite(rootNode);
             myChrono.stop();
@@ -271,7 +273,7 @@ TestEnv::_itVslist()
             
             myChrono.reset();
             cout << endl;
-            cout << "Deuxième test : list" << endl;
+            cout << "Deuxième test : list dynamique" << endl;
             if(timeListCreationShown)
             {
                 myChrono2.start();
@@ -297,6 +299,10 @@ TestEnv::_itVslist()
 
 
             if(randomNodeShown){
+                if(rootNode->getParent()!=nullptr)
+                {
+                    rootNode=rootNode->getParent();
+                }
                 cout << "\n" << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
                 cout << rootNode->to_str() << endl;
             }            

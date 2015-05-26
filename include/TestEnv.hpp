@@ -35,7 +35,7 @@
 *   \enum testType
 *   \brief Nomme tous les types de test
 */
-enum testType {ITVSREC,STATVSDYN,ITVSLIST};
+enum testType {DIT_VS_DREC,DREC_VS_SREC,DREC_VS_DLIST};
 
 /**
 *   \class TestEnv
@@ -76,29 +76,29 @@ private:
     bool* _boolPar; 
     
     /**
-    *   \brief Lance le test itvsrec
+    *   \brief Lance le test DitVsDrec
     *
-    *   Méthode qui lance le test pour Spr_ite statique en premier puis Spr_rec statique
+    *   Méthode qui lance le test pour Spr_ite dynamique en premier puis Spr_rec dynamique
     *   Chronomètre le temps des deux tests et les compare
     *   Va chercher les valeurs dans les vecteur en attributs
     */
-    void _itVsrec();
+    void _DitVsDrec();
     /**
-    *   \brief Lance le test statiqueVsdynamique
+    *   \brief Lance le test DrecVsSrec
     *
-    *   Méthode qui lance le test pour Spr_rec statique en premier puis Spr_rec dynamique
+    *   Méthode qui lance le test pour Spr_rec dynamique en premier puis Spr_rec statique
     *   Chronomètre le temps des deux tests et les compare
     *   Va chercher les valeurs dans les vecteurs en attributs
     */
-    void _statiqueVsdynamique();
+    void _DrecVsSrec();
     /**
-    *   \brief Lance le test itvslist
+    *   \brief Lance le test DrecVsDlist
     *
-    *   Méthode qui lance le test pour Spr_ite statique en premier puis Spr_list statique
+    *   Méthode qui lance le test pour Spr_rec dynamique en premier puis Spr_list dynamique
     *   Chronomètre le temps des deux test et les compare
     *   Va chercher les valeurs dans les vecteurs en attributs
     */
-    void _itVslist();
+    void _DrecVsDlist();
     
     /**
     *   \classe Chrono

@@ -256,7 +256,7 @@ private:
 /**
 *   \brief Permet l'affichage de l'arbre
 *   \param acc Chaine en cours de construction
-*   \param depth hauteur à laquelle doit commencer la fonction
+*   \param depth hauteur à laquelle est la fonction
 *   \return Retourne un chaine de caractère représentant l'arbre
 *
 *   Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long)

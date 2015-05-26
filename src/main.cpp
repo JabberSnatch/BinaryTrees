@@ -68,17 +68,17 @@ void debug(int argc, char* argv[])
             }
         }
     }
-    else if(strcmp(argv[1],"ITVSLIST")==0)
+    else if(strcmp(argv[1],"DIT_VS_DREC")==0)
     {
-        test=ITVSLIST;
+        test=DIT_VS_DREC;
     }
-    else if(strcmp(argv[1],"STATVSDYN")==0)
+    else if(strcmp(argv[1],"DREC_VS_SREC")==0)
     {
-        test=STATVSDYN;
+        test=DREC_VS_SREC;
     }
-    else if(strcmp(argv[1],"ITVSREC")==0)
+    else if(strcmp(argv[1],"DREC_VS_DLIST")==0)
     {
-        test=ITVSREC;
+        test=DREC_VS_DLIST;
     }
     else
     {

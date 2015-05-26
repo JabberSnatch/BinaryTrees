@@ -1,5 +1,25 @@
-TEST : 1) ITVSREC
-TEST : 2) STATVSDYN
+Tests possibles : DIT_VS_DREC, SREC_VS_DREC, DREC_VS_DLIST
+TEST : 1) DIT_VS_DREC
+        FloatList : 
+    -2 Needed : 
+        -f1 : float nbInsert : how many insert inside trees
+            Default : 5.000
+        -f2 : float randomNode : which node is choosen for spr
+            Default : random value between 0 and nbInsert
+    -1 Optionnal:
+        -f3 : float nbRound : number of round made 
+        
+        
+        BoolList:
+    -4 boolean:
+        -b1: boolean timeShown : boolean if the time of both test are shown
+        -b2: boolean dataCountShown : boolean if dataCount is shown
+        -b3: boolean nodeCountShown : boolean if nodeCount is shown
+        -b4: boolean randomNodeShown : boolean if tree is shown
+        
+        
+___________________________________________
+TEST : 2) SREC_VS_DREC
         FloatList : 
     -2 Needed : 
         -f1 : float nbInsert : how many insert inside trees
@@ -20,7 +40,7 @@ TEST : 2) STATVSDYN
         
 ___________________________________________
 
-TEST : 3) RECVSLIST
+TEST : 3) DREC_VS_DLIST
         FloatList : 
     -2 Needed : 
         -f1 : float nbInsert : how many insert inside trees

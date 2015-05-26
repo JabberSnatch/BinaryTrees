@@ -195,7 +195,7 @@ Node::degraph()
                 {
                     _parent->_parent->_left = _parent->_right;
                 }
-                if(_parent->_parent->_right == _parent)
+                else if(_parent->_parent->_right == _parent)
                 {
                     _parent->_parent->_right = _parent->_right;
                 }
@@ -208,7 +208,7 @@ Node::degraph()
             }
         }
 
-        if(_parent->_right == this)
+        else if(_parent->_right == this)
         {
             if(!_parent->isOrphan())
             {
@@ -216,7 +216,7 @@ Node::degraph()
                 {
                     _parent->_parent->_left = _parent->_left;
                 }
-                if(_parent->_parent->_right == _parent)
+                else if(_parent->_parent->_right == _parent)
                 {
                     _parent->_parent->_right = _parent->_left;
                 }
@@ -248,7 +248,7 @@ Node::regraph(Node* child)
     {
         regraphedNode->_left = this;
     }
-    if(regraphedNode->isRightFree())
+    else if(regraphedNode->isRightFree())
     {
         regraphedNode->_right = this;
     }
@@ -260,7 +260,7 @@ Node::regraph(Node* child)
         {
             _parent->_left = regraphedNode;
         }
-        if(_parent->_right == this)
+        else if(_parent->_right == this)
         {
             _parent->_right = regraphedNode;
         }
