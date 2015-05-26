@@ -68,9 +68,9 @@ void debug(int argc, char* argv[])
             }
         }
     }
-    else if(strcmp(argv[1],"DIT_VS_DREC")==0)
+    else if(strcmp(argv[1],"DREC_VS_DIT")==0)
     {
-        test=DIT_VS_DREC;
+        test=DREC_VS_DIT;
     }
     else if(strcmp(argv[1],"DREC_VS_SREC")==0)
     {
@@ -79,6 +79,10 @@ void debug(int argc, char* argv[])
     else if(strcmp(argv[1],"DREC_VS_DLIST")==0)
     {
         test=DREC_VS_DLIST;
+    }
+    else if(strcmp(argv[1],"SREC_VS_SIT")==0)
+    {
+        test=SREC_VS_SIT;
     }
     else
     {

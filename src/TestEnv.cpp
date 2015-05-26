@@ -17,7 +17,6 @@
  * =====================================================================================
  */
 
-
 #include "TestEnv.hpp"
 #include <iostream>
 #include <chrono>
@@ -40,13 +39,15 @@ TestEnv::TestEnv(testType test,std::vector<float> floatPar,bool* floatBoolPar, b
 void
 TestEnv::runTest()
 {
-    if(_type==DIT_VS_DREC)
-        _DitVsDrec();
+    if(_type==DREC_VS_DIT)
+        _DrecVsDit();
     else if (_type==DREC_VS_SREC)
         _DrecVsSrec();
         
     else if (_type==DREC_VS_DLIST)
         _DrecVsDlist();
+    else if (_type==SREC_VS_SIT)
+        _SrecVsSit();
 }
 
 /**
@@ -64,7 +65,7 @@ TestEnv::runTest()
 */
 
 void
-TestEnv::_DitVsDrec()
+TestEnv::_DrecVsDit()
 {
     {
         int nbOption=0;
@@ -284,6 +285,7 @@ TestEnv::_DrecVsDlist()
             {
                 myChrono2.stop();
                 cout << "temps de création de la liste : " << myChrono2.getDuration() << "ms" << endl;
+                myChrono2.reset();
             }
             myChrono.start();
                 copy.SPR_list(copyNode);
@@ -314,6 +316,83 @@ TestEnv::_DrecVsDlist()
         }
         
     }
+}
+
+void
+TestEnv::_SrecVsSit()
+{
+    int nbOption=0;
+    float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
+    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+    float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:(randomPick(rng));
+    float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
+    
+    bool timeShown=(_boolPar[0])? true:false;
+    bool dataCountShown=(_boolPar[1])? true:false;
+    bool nodeCountShown=(_boolPar[2])? true:false;
+    bool randomNodeShown=(_boolPar[3])? true:false;
+    
+    TestEnv::Chrono myChrono;
+    float temps1 =0;
+    float temps2 =0 ;
+    float tempsTot=0;
+    Node* rootNode;
+    
+    while(nbRound>0)
+    {
+        Node root(0);
+        for(int i = 1; i < nbInsert; ++i)
+        {
+            root.insert(i);
+        }
+        Node copy(root);
+        ArrayTree rootArray(copy);
+        
+        rootNode = root.nodeAt(randomNode);
+        cout << "Premier Test : rec dynamique" << endl;
+        myChrono.start();
+            root.SPR_rec(rootNode);
+        myChrono.stop();
+        temps1+=myChrono.getDuration();
+        if(timeShown !=0)
+            cout << "durée du calcul: " << myChrono.getDuration()<< " ms" << endl;   
+        if(dataCountShown!=0)
+            cout << "somme de données: " << root.dataCount() << endl;
+        if(nodeCountShown!=0)
+            cout << "nombre de données: " << root.nodeCount() << endl; 
+        
+        myChrono.reset();
+        cout << endl;
+        
+        cout << "Deuxième test : rec statique" << endl;
+        myChrono.start();
+            rootArray.SPR_rec(randomNode);
+        myChrono.stop();
+        temps2 +=myChrono.getDuration();
+        if(timeShown !=0)
+            cout << "durée du calcul: " << myChrono.getDuration()<< " ms" << endl;   
+        if(dataCountShown!=0)
+            cout << "somme de données: " << rootArray.dataCount() << endl;
+        if(nodeCountShown!=0)
+            cout << "nombre de données: " << rootArray.nodeCount() << endl;
+        myChrono.reset();
+
+
+        if(randomNodeShown){
+            if(rootNode->getParent()!=nullptr)
+            {
+                rootNode=rootNode->getParent();
+            }
+            cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+            cout << rootNode->to_str() << endl;
+        }          
+        tempsTot= temps2/temps1 * 100;
+        
+        cout << "Temps stat / dyn : " << tempsTot << endl;
+        if(--nbRound>0)
+            cout << "------------------" << endl;
+    }
+        
 }
 
 

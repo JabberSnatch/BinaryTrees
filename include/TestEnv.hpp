@@ -35,7 +35,7 @@
 *   \enum testType
 *   \brief Nomme tous les types de test
 */
-enum testType {DIT_VS_DREC,DREC_VS_SREC,DREC_VS_DLIST};
+enum testType {DREC_VS_DIT,DREC_VS_SREC,DREC_VS_DLIST,SREC_VS_SIT};
 
 /**
 *   \class TestEnv
@@ -82,7 +82,7 @@ private:
     *   Chronomètre le temps des deux tests et les compare
     *   Va chercher les valeurs dans les vecteur en attributs
     */
-    void _DitVsDrec();
+    void _DrecVsDit();
     /**
     *   \brief Lance le test DrecVsSrec
     *
@@ -100,6 +100,7 @@ private:
     */
     void _DrecVsDlist();
     
+    void _SrecVsSit();
     /**
     *   \classe Chrono
     *   \brief Classe pour chronométrer des test 

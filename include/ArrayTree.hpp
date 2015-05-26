@@ -92,9 +92,6 @@ public:
 */
     int regraph(ArrayTree& child, int node);
 
-    // New versions, degraph let the data inside the arraytree and returns the index of the degraphed node
-    // int degraph(int node); 
-    // int regraph(int child, int node);
 /**
 *   \brief Vérifie l'arbre
 *   \return Retourne si l'arbre est conformes
