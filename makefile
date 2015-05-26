@@ -4,6 +4,7 @@ SRCS = main.cpp\
        Node.cpp\
        NodeTree.cpp\
        ArrayTree.cpp\
+       TestEnv.cpp\
 
 OBJ_DIR = ./obj
 SRC_DIR = ./src

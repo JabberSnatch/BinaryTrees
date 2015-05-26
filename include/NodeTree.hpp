@@ -42,7 +42,8 @@ public:
 
     std::string to_str() {return _root->to_str();}
 
-    void SPR_list(Node* noeud);
+    std::vector<Node*> SPR_list_init(Node* noeud);
+    void SPR_list(Node* noeud, std::vector<Node*>& nodes);
 
 private:
     Node* _root;

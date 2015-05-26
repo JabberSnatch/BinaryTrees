@@ -29,11 +29,11 @@ mt19937 Node::rng = mt19937(random_device()());
 uniform_int_distribution<int> Node::binaryPick = uniform_int_distribution<int>(0, 1);
 
 Node::Node(int data, Node* parent)
-    :_parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
+    :_tree(nullptr), _parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
 {}
 
 Node::Node(const Node& n)
-    :_parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
+    :_tree(nullptr), _parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
 {
     if(!n.isLeftFree())
     {
@@ -176,6 +176,25 @@ Node::insertBalanced(int E)
     return result;
 }
 
+bool
+Node::addChild(Node* noeud)
+{
+    if(isLeftFree())
+    {
+        _left=noeud;
+        return true;
+    }
+    else if (isRightFree())
+    {
+        _right=noeud;
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 // The parent is degraphed along with the calling node
 // The parent's other child is attached to the parent's parent
 void 
@@ -247,7 +266,7 @@ Node::regraph(Node* child)
     {
         regraphedNode->_left = this;
     }
-    if(regraphedNode->isRightFree())
+    else if(regraphedNode->isRightFree())
     {
         regraphedNode->_right = this;
     }
@@ -351,10 +370,10 @@ Node::nodeCheck() const
     return RES;
 }
 
-const Node*
-Node::findRoot() const
+Node*
+Node::findRoot()
 {
-    const Node* target = this;
+    Node* target = this;
     
     while(!target->isOrphan())
     {
@@ -363,6 +382,7 @@ Node::findRoot() const
 
     return target;
 }
+
 
 int 
 Node::descendantCount() const
@@ -401,6 +421,63 @@ Node::nodeAt(int num)
             }
         }
     }
+    return res;
+}
+
+int
+Node::dataCount()
+{ 
+    int res=_data;
+    
+    if(!isLeftFree())
+    {
+        res+=_left->dataCount();
+    }
+    if(!isRightFree())
+    {
+        res+=_right->dataCount();
+    }
+    
+    return res;
+}
+
+int 
+Node::nodeCount()
+{
+    return descendantCount()+1;
+}
+
+std::string 
+Node::newick()
+{
+    
+    std::string res;
+    if(!isLeftFree() & !isRightFree())
+    {
+        res="(";
+        res+=(_left->newick());
+        res+=(","+_right->newick());
+        res+=")";
+    }
+    else if(!isLeftFree()& isRightFree())
+    {
+        res= _left->newick();
+    }
+    else if(isLeftFree()& !isRightFree())
+    {
+        res= _left->newick();
+    }
+    else if(isRightFree() & isLeftFree())
+    {
+        stringstream ss;
+        ss << _data;
+        res = ss.str();
+    }
+    else
+    {
+    cerr << "erreur dans newick, arbre mal formé" << endl;
+    }
+    
     return res;
 }
 
@@ -450,15 +527,9 @@ Node::_to_str(string acc, int depth)
 }
 
 void
-Node::SPR_list(Node* noeud)
+Node::SPR_list_init(Node* noeud)
 {
-    int count = 0;
-    int expectedSize = size();
-    std::vector<Node*> nodes;
-
     noeud->degraph();
-    std::cout << noeud->to_str() << std::endl;
-
     for(NodeIter* it = begin(); it->hasNext();)
     {
         Node* n = it->getNext();
@@ -467,6 +538,13 @@ Node::SPR_list(Node* noeud)
             nodes.push_back(n);
         }
     }
+}
+
+void
+Node::SPR_list(Node* noeud)
+{
+    int expectedSize = size()+noeud->size();
+    int count = 0;
 
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
@@ -480,17 +558,19 @@ Node::SPR_list(Node* noeud)
         noeud->degraph();
     }
 
-    std::cout << count << std::endl;
+#if DEBUG
+    std::cout << count << " degraph/regraph" << std::endl;
+#endif
 }
 
 void
 Node::SPR_ite(Node* noeud)
 {
     int i=0;
+    Node* copy(noeud);
     noeud->degraph();
     Node * nodeActual=this;
     bool fin=false,remonte=false;
-
     while(fin==false)
     {
         if(remonte)// si on est en train de remonter
@@ -575,13 +655,30 @@ Node::SPR_ite(Node* noeud)
             }
         }
     }
-    std::cout << i << std::endl;
+    
+    
+    if(!(copy->_parent)->addChild(copy))
+    {
+#if DEBUG
+    cerr << "le rajout du noeud n'a pas marché" << endl;
+#endif    
+    }
+#if DEBUG
+    //number of regraph
+    std::cout << i <<" degraph/regraph"<< std::endl;
+#endif
+
 }
 
 void
 Node::SPR_rec(Node* noeud)
 {
-    std::cout << _SPR_rec(noeud, 0) << std::endl;
+#if DEBUG
+    //number of regraph
+    std::cout << _SPR_rec(noeud, 0) << " degraph/regraph"<<std::endl;
+#else
+    _SPR_rec(noeud, 0);
+#endif
 }
 
 int
@@ -591,8 +688,8 @@ Node::_SPR_rec(Node* noeud, int count)
     if(regraph(noeud))
     {
         count++;
+        noeud->degraph();
     }
-    noeud->degraph();
 
     if(!isLeftFree())
     {

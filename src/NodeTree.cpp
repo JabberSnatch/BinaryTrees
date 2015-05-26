@@ -81,11 +81,9 @@ NodeTree::leafCount()
     return _root->leafCount();
 }
 
-void
-NodeTree::SPR_list(Node* noeud)
+std::vector<Node*>
+NodeTree::SPR_list_init(Node* noeud)
 {
-    int count = 0;
-    int expectedSize = size();
     std::vector<Node*> nodes;
 
     noeud->degraph();
@@ -101,6 +99,15 @@ NodeTree::SPR_list(Node* noeud)
             nodes.push_back(n);
         }
     }
+
+    return nodes;
+}
+
+void
+NodeTree::SPR_list(Node* noeud, std::vector<Node*>& nodes)
+{
+    int count = 0;
+    int expectedSize = size()+nodes.size();
 
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {

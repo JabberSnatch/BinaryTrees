@@ -18,60 +18,116 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <chrono>
 #include <random>
 #include <ctime>
 #include <cassert>
+#include <string.h>
+#include <stdio.h>
+
+#include "TestEnv.hpp"
 
 #include "Node.hpp"
 #include "NodeTree.hpp"
 #include "ArrayTree.hpp"
+int maxSizeBoolPar=50;
+int maxSizeFloatPar=50;
 
-int main(int argc, char* argv[])
+void debug(int argc, char* argv[])
 {
-    std::cout << "YOLO" << std::endl;
-
-    std::chrono::duration<int> s_oneday(60*60*24);
-    std::cout << s_oneday.count() << std::endl;
 
 #ifdef RODOLPHE
-    while(1){
-        Node root(0);
-        for(int i = 1; i < 50000; ++i)
-        {
-            root.insert(i);
-        }
+    std::vector<float> floatList={};
+    bool floatBoolList[maxSizeFloatPar];
+    for(int i=0;i<maxSizeFloatPar;i++)
+        floatBoolList[i]=false;
         
-        Node copy(root);
-        Node copy2;
-
+    bool boolList[maxSizeBoolPar];
+    for(int i=0;i<maxSizeBoolPar;i++)
+        boolList[i]=false;
         
-        int nb=25;
-        std::chrono::time_point<std::chrono::system_clock> start, end;
-        start = std::chrono::system_clock::now();
-            Node* rootNode = root.nodeAt(nb);
-            root.SPR_rec(rootNode);
-        end = std::chrono::system_clock::now();
-        int elapsed_seconds = std::chrono::duration_cast<std::chrono::milliseconds>
-                                 (end-start).count();
-        std::cout << "temps rec: " << elapsed_seconds << std::endl;
-        
-        
-        start = std::chrono::system_clock::now();
-            Node* copyNode = copy.nodeAt(nb);
-            copy.SPR_ite(copyNode);
-        end = std::chrono::system_clock::now();
-        int elapsed_seconds_2 = std::chrono::duration_cast<std::chrono::milliseconds>
-                                 (end-start).count();
-        std::cout << "temps it: " << elapsed_seconds_2 << std::endl;
-        std::cout << "temps it/rec%: " << ((float)elapsed_seconds_2/(float)elapsed_seconds)*100.0 << std::endl << std::endl;
-        delete copyNode;
-
-        
-
-        delete rootNode;
-        
+    testType test;
+    if(argc<2)
+    {
+        std::cout << "Donnez un test à faire, --help pour plus d'info" << std::endl;
+    
     }
+    else if(strcmp(argv[1],"--help")==0)
+    {
+        std::ifstream fichier("help.txt");
+        if(!fichier) 
+        {
+            std::cerr << "Le fichier help n'existe pas" << std::endl;
+        }
+        else
+        {
+            std::string line;
+            while(std::getline(fichier,line))
+            {
+                std::cout << line << std::endl;
+            }
+        }
+    }
+    else if(strcmp(argv[1],"DREC_VS_DIT")==0)
+    {
+        test=DREC_VS_DIT;
+    }
+    else if(strcmp(argv[1],"DREC_VS_SREC")==0)
+    {
+        test=DREC_VS_SREC;
+    }
+    else if(strcmp(argv[1],"DREC_VS_DLIST")==0)
+    {
+        test=DREC_VS_DLIST;
+    }
+    else if(strcmp(argv[1],"SREC_VS_SIT")==0)
+    {
+        test=SREC_VS_SIT;
+    }
+    else
+    {
+        std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+    }
+    for(int i=2;i<argc;i++)
+    {
+        if(strlen(argv[i])!=3)
+        {
+            std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu" << std::endl;
+        }
+        if(argv[i][0]=='-')
+        {
+            if(argv[i][1]=='f')
+            {
+                float puissance=1;
+                float nombre=0;
+                floatBoolList[(int)(argv[i][2])-49]=true;
+                i++;
+                for(int j=strlen(argv[i])-1;j>=0;j--)
+                {
+                    nombre=nombre+(argv[i][j]-48)*puissance;
+                    puissance*=10;
+                }
+                floatList.push_back(nombre);
+            }
+            else if(argv[i][1]=='b')
+            {
+                boolList[(int)(argv[i][2])-49]=true;
+            }
+            else
+            {
+                std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu, début non reconnu" << std::endl;
+            }
+        }
+    }
+            
+            
+            
+    TestEnv myTest(test,floatList,floatBoolList,boolList);
+    myTest.runTest();
+        
+
+
 #endif 
 
 #ifdef SAMUEL
@@ -120,7 +176,7 @@ int main(int argc, char* argv[])
 
 #else
 
-    for(int i = 0; i < 1000; ++i)
+    for(int i = 0; i < 10000; ++i)
     {
         nTree.insert(i);
     }
@@ -144,10 +200,18 @@ int main(int argc, char* argv[])
     std::cout << nTree.to_str() << std::endl;
     #endif
 
-
 #endif
-
 #endif
+}
+
+int main(int argc, char* argv[])
+{
+    std::cout << "YOLO" << std::endl;
+
+    std::chrono::duration<int> s_oneday(60*60*24);
+    std::cout << s_oneday.count() << std::endl;
+
+    debug(argc,argv);
 
     return 0;
 }
