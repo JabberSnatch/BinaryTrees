@@ -248,7 +248,7 @@ Node::regraph(Node* child)
     {
         regraphedNode->_left = this;
     }
-    else if(regraphedNode->isRightFree())
+    if(regraphedNode->isRightFree())
     {
         regraphedNode->_right = this;
     }
@@ -260,7 +260,7 @@ Node::regraph(Node* child)
         {
             _parent->_left = regraphedNode;
         }
-        else if(_parent->_right == this)
+        if(_parent->_right == this)
         {
             _parent->_right = regraphedNode;
         }
@@ -492,8 +492,6 @@ Node::SPR_list_init(Node* noeud)
             nodes.push_back(n);
         }
     }
-    
-    
 }
 
 
@@ -519,7 +517,6 @@ Node::SPR_list(Node* noeud)
     std::cout << count << " degraph/regraph" << std::endl;
 #endif
 }
-
 
 void
 Node::SPR_ite(Node* noeud)

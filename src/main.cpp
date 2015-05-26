@@ -36,7 +36,6 @@ int maxSizeFloatPar=50;
 
 void debug(int argc, char* argv[])
 {
-#ifdef RODOLPHE
     std::vector<float> floatList={};
     bool floatBoolList[maxSizeFloatPar];
     for(int i=0;i<maxSizeFloatPar;i++)
@@ -121,6 +120,7 @@ void debug(int argc, char* argv[])
     TestEnv myTest(test,floatList,floatBoolList,boolList);
     myTest.runTest();
         
+#ifdef RODOLPHE
 #endif 
 
 #ifdef SAMUEL
@@ -159,7 +159,7 @@ void debug(int argc, char* argv[])
 
 #else
 
-    for(int i = 1; i < 300; ++i)
+    for(int i = 0; i < 10000; ++i)
     {
         root.insert(i);
     }
@@ -181,7 +181,7 @@ void debug(int argc, char* argv[])
     std::cout << n->getParent()->to_str() << std::endl;
     root.SPR_list(n);
     std::cout << root.to_str() << std::endl;
-    #endif
+#endif
 
 #if 0
     ArrayTree tree(root);
@@ -193,8 +193,8 @@ void debug(int argc, char* argv[])
     std::cout << root.to_str() << std::endl;
     root.SPR_rec(root.nodeAt(3));
     std::cout << root.to_str() << std::endl;
-#endif
 
+#endif
 #endif
 #endif
 }

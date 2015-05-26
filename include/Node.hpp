@@ -190,8 +190,6 @@ public:
 *   Affiche tous les éléments de l'arbre, avec leur pointeur pour les différencier (caster en long) grâce à _to_str()
 */
     std::string to_str();
-    
-    
 /**
 *   \brief Permet d'initialiser SPR_list()
 *   \param noeud Noeud utilisé pour le SPR

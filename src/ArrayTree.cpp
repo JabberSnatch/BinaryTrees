@@ -194,47 +194,6 @@ ArrayTree::insert(int E)
 }
 
 
-/*
-// TODO : Do not return a new ArrayTree, keep the subtreee inside instead
-ArrayTree*
-ArrayTree::degraph(int node)
-{
-
-    if(!isOrphan(node))
-    {
-        if(getLeft(getParent(node)) == node)
-        {
-            _lefts[_parents[node]] = -1;
-        }
-        if(getRight(getParent(node)) == node)
-        {
-            _rights[_parents[node]] = -1;
-        }
-
-        _parents[node] = -1;
-    }
-    _swap(node,_nodeCount-1);
-    if(!isOrphan(node))
-    {
-        if(getLeft(getParent(node)) == (_nodeCount-1))
-        {
-            _lefts[_parents[node]] = node;
-        }
-        if(getRight(getParent(node)) == (_nodeCount-1))
-        {
-            _rights[_parents[node]] = node;
-        }
-    }
-    
-    _remove(_nodeCount-1);
-
-#if DEBUG
-    assert(check(0));
-#endif
-
-    return this;
-}*/
-
 
 ArrayTree*
 ArrayTree::degraph(int node)
@@ -292,37 +251,6 @@ ArrayTree::degraph(int node)
     return res;
 }
 
-/*
-int
-ArrayTree::regraph(ArrayTree& child, int node)
-{
-    int result = -1;
-
-    if(isLeftFree(node))
-    {
-        int left = _load(child, 0);
-
-        _parents[left] = node;
-        _lefts[node] = left;
-
-        result = left;
-    }
-    else if(isRightFree(node))
-    {
-        int right = _load(child, 0);
-
-        _parents[right] = node;
-        _rights[node] = right;
-
-        result = right;
-    }
-
-#if DEBUG
-    assert(check(0));
-#endif
-
-    return result;
-}*/
 
 int
 ArrayTree::regraph(ArrayTree& child,int node)
