@@ -134,21 +134,18 @@ void debug(int argc, char* argv[])
     NodeTree nTree;
 
 // ARRAYTREE
-#if 0
-    for(int i = 0; i < 10; ++i)
-    {
-        nTree.insert(i);    
-    }
+#if 1
+    nTree.insertNLeaves(15);
 
 #if 1
     ArrayTree aTree(nTree);
     aTree.dumpToStdout();
     std::cout << aTree.to_str() << std::endl;
-    assert(aTree.check(0));
+    assert(aTree.check(aTree.getRoot()));
     std::cout << "Check 1 Ok" << std::endl;
 #endif
 
-#if 1
+#if 0
     int subTree = aTree.degraph(1);
     std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
     aTree.dumpToStdout();
@@ -157,7 +154,7 @@ void debug(int argc, char* argv[])
     std::cout << "Check 2 Ok" << std::endl;
 #endif
 
-#if 1
+#if 0
     std::cout << aTree.regraph(1, aTree.getRoot()) << std::endl;
     std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
     aTree.dumpToStdout();
@@ -166,14 +163,13 @@ void debug(int argc, char* argv[])
     std::cout << "Check 3 Ok" << std::endl;
 #endif
 
-    //std::cout << aTree.SPR_rec(3) << std::endl;
-    //std::cout << aTree.to_str() << std::endl;
-
-    #if 0
-    std::cout << nTree.to_str() << std::endl;
-    nTree.SPR_list(nTree.nodeAt(3));
-    std::cout << nTree.to_str() << std::endl;
-    #endif
+#if 1
+    std::vector<int> nodes = aTree.SPR_list_init(3);
+    aTree.SPR_list(3, nodes);
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(aTree.getRoot()));
+    std::cout << "Check 4 Ok" << std::endl;
+#endif
 
 // NODETREE
 #else

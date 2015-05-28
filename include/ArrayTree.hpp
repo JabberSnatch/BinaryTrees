@@ -177,7 +177,11 @@ public:
 */
     void SPR_ite(int node);
 
+    std::vector<int> SPR_list_init(int noeud);
+    void SPR_list(int noeud, std::vector<int>& nodes);
+
 private:
+    void _SPR_list_init(int noeud, std::vector<int>& nodes);
 /**
 *   \brief Charge un arbre dynamique dans l'ArrayTree appelant
 *   \param n Noeud racine de l'arbre à charger

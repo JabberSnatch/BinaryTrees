@@ -754,4 +754,49 @@ ArrayTree::SPR_ite(int node)
 
 }
 
+std::vector<int>
+ArrayTree::SPR_list_init(int noeud)
+{
+    std::vector<int> nodes;
+
+    degraph(noeud);
+
+    _SPR_list_init(_root, nodes);
+    return nodes;
+}
+
+void
+ArrayTree::_SPR_list_init(int noeud, std::vector<int>& nodes)
+{
+    nodes.push_back(noeud);
+    if(!isLeftFree(noeud))
+    {
+        _SPR_list_init(_lefts[noeud], nodes);
+    }
+    if(!isRightFree(noeud))
+    {
+        _SPR_list_init(_rights[noeud], nodes);
+    }
+}
+
+void
+ArrayTree::SPR_list(int noeud, std::vector<int>& nodes)
+{
+    int count = 0;
+    
+    for(unsigned int i = 0; i < nodes.size(); i++)
+    {
+        if(regraph(noeud, nodes[i]))
+        {
+            count++;
+        }
+        degraph(noeud);
+    }
+
+#if DEBUG
+    std::cout << count << "degraph/regraph" << std::endl;
+#endif
+
+}
+
 
