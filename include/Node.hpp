@@ -53,6 +53,13 @@ public:
 *   \param parent Node parent pour la nouvelle node
 */
     Node(int data, Node* parent = nullptr);
+/**
+ *  \brief Constructeur avec édition de liens
+ *  \param parent Le noeud parent du nouveau noeud
+ *  \param left Le noeud qui sera placé à gauche du nouveau noeud
+ *  \param right Le noeud qui sera placé à droite du nouveau noeud
+ */
+    Node(NodeTree* tree, Node* parent, Node* left, Node* right);
 /** \brief Constructeur par recopie \param Node Node utilisé pour copier les données*/
     Node(const Node&);
 /** \brief Ajout d'un opérateur =   \param Node Noeud à utiliser pour l'assignation*/
@@ -81,6 +88,11 @@ public:
 *   Insert une Node, va chercher le premier noeud pour laisser l'arbre équilibré et l'insert
 */
     Node* insertBalanced(int E);
+/**
+ *  \brief Crée une nouvelle feuille, placée comme soeur du noeud appelant
+ *  \return Renvoie un pointeur sur le noeud créé
+ */
+    Node* insertLeaf();
 /**
 *   \brief Permet d'ajouter un fils à un noeud
 *   \param noeud Node a rajouté
@@ -228,6 +240,11 @@ public:
 */
     void SPR_rec(Node* noeud);
 
+/** Moteur de RNG du noeud*/
+    static std::mt19937 rng;
+/** Distribution pour l'aléatoire binaire du noeud*/
+    static std::uniform_int_distribution<int> binaryPick;
+
 private:
 /**
 *   \brief Change l'arbre auquel est associé le noeud
@@ -256,11 +273,6 @@ private:
     int _data;
 /** Booléen si le noeud a été initialisé*/
     bool _free;
-
-/** Moteur de RNG du noeud*/
-    static std::mt19937 rng;
-/** Distribution pour l'aléatoire binaire du noeud*/
-    static std::uniform_int_distribution<int> binaryPick;
 
 /** 
 *   \brief Lance SPR_rec sur tout l'arbre

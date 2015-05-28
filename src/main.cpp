@@ -133,7 +133,8 @@ void debug(int argc, char* argv[])
 #ifdef SAMUEL
     NodeTree nTree;
 
-#if 1
+// ARRAYTREE
+#if 0
     for(int i = 0; i < 10; ++i)
     {
         nTree.insert(i);    
@@ -174,31 +175,12 @@ void debug(int argc, char* argv[])
     std::cout << nTree.to_str() << std::endl;
     #endif
 
+// NODETREE
 #else
 
-    for(int i = 0; i < 10000; ++i)
-    {
-        nTree.insert(i);
-    }
+    nTree.insertNLeaves(13);
     std::cout << nTree.check() << std::endl;
     std::cout << nTree.to_str() << std::endl;
-
-    #if 0
-    Node* n = nTree.nodeAt(3);
-    n->degraph();
-
-    std::cout << nTree.to_str() << std::endl;
-    std::cout << n->getParent()->to_str() << std::endl;
-
-    nTree.nodeAt(1)->regraph(n);
-
-    std::cout << nTree.to_str() << std::endl; 
-    #else
-    Node* n = nTree.nodeAt(5);
-    std::cout << n->getParent()->to_str() << std::endl;
-    nTree.SPR_list(n);
-    std::cout << nTree.to_str() << std::endl;
-    #endif
 
 #endif
 #endif

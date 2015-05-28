@@ -32,6 +32,10 @@ Node::Node(int data, Node* parent)
     :_tree(nullptr), _parent(parent), _left(nullptr), _right(nullptr), _data(data), _free(false)
 {}
 
+Node::Node(NodeTree* tree, Node* parent, Node* left, Node* right)
+    :_tree(tree), _parent(parent), _left(left), _right(right), _data(0), _free(true)
+{}
+
 Node::Node(const Node& n)
     :_tree(nullptr), _parent(nullptr), _left(nullptr), _right(nullptr), _data(n._data), _free(n.isFree())
 {
@@ -174,6 +178,38 @@ Node::insertBalanced(int E)
     }
 
     return result;
+}
+
+Node*
+Node::insertLeaf()
+{
+    Node* parent = new Node(_tree, _parent, this, nullptr);
+    Node* sibling = new Node(_tree, parent, nullptr, nullptr);
+
+    parent->_right = sibling;
+
+    if(!isOrphan())
+    {
+        if(parent->_parent->_left == this)
+        {
+            parent->_parent->_left = parent;
+        }
+        if(parent->_parent->_right == this)
+        {
+            parent->_parent->_right = parent;
+        }
+    }
+    else
+    {
+        if(_tree)
+        {
+            _tree->setRoot(parent);
+        }
+    }
+
+    _parent = parent;
+
+    return sibling;
 }
 
 bool

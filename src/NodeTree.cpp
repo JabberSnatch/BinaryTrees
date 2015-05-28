@@ -19,11 +19,11 @@
 #include "NodeTree.hpp"
 
 #include <cassert>
+#include <deque>
 
 NodeTree::NodeTree()
 {
-    _root = new Node();
-    _root->_setTree(this);
+    _root = new Node(this, nullptr, nullptr, nullptr);
 }
 
 NodeTree::NodeTree(const Node& n)
@@ -44,6 +44,87 @@ NodeTree::insertBalanced(int E)
 {
     Node* node = _root->insertBalanced(E);
     node->_setTree(this);
+}
+
+void
+NodeTree::insertNLeaves(int n)
+{
+    Node* node;
+
+    for(int i = 0; i < n; i++)
+    {
+        // Choose a random leaf
+        node = _root;
+        while(!node->isLeftFree() || !node->isRightFree())
+        {
+            if(!node->isLeftFree() && !node->isRightFree())
+            {
+                int side = Node::binaryPick(Node::rng);
+                node = (side == 0) ? node->getLeft() : node->getRight();
+            }
+            else if(!node->isLeftFree())
+            {
+                node = node->getLeft();
+            }
+            else if(!node->isRightFree())
+            {
+                node = node->getRight();
+            }
+        }
+
+        node->insertLeaf();
+    }
+
+    int count = 0;
+    for(Node::NodeIter* it = _root->begin(); it->hasNext();)
+    {
+        Node* n = it->getNext();
+        n->setData(count++);
+    }
+}
+
+void
+NodeTree::insertNBalanced(int n)
+{
+    delete _root;
+    _root = new Node(this, nullptr, nullptr, nullptr);
+
+    std::deque<Node*> nodes;
+    for(int i = 0; i < n; i++)
+    {
+        nodes.push_back(new Node(this, nullptr, nullptr, nullptr));
+    }
+
+    while(nodes.size() > 2)
+    {
+        Node* A = nodes.front();
+        nodes.pop_front();
+        Node* B = nodes.front();
+        nodes.pop_front();
+
+        Node* parent = new Node(this, nullptr, A, B);
+        nodes.push_back(parent);
+
+        A->_parent = parent;
+        B->_parent = parent;
+    }
+
+    Node* A = nodes.front();
+    nodes.pop_front();
+    Node* B = nodes.front();
+    nodes.pop_front();
+
+    _root->_left = A;
+    _root->_right = B;
+    A->_parent = _root;
+    B->_parent = _root;
+
+    int count = 0;
+    for(Node::NodeIter* it = _root->begin(); it->hasNext();)
+    {
+        Node* n = it->getNext();
+        n->setData(count++);
+    }
 }
 
 bool
