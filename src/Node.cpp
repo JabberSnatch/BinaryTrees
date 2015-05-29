@@ -284,6 +284,17 @@ Node::degraph()
 
         _parent->_parent = nullptr;
     }
+
+#if DEBUG
+    if(_tree)
+    {
+        assert(_tree->check());
+    }
+    else
+    {
+        assert(findRoot()->check());
+    }
+#endif
 }
 
 
@@ -720,12 +731,9 @@ Node::SPR_rec(Node* noeud)
 int
 Node::_SPR_rec(Node* noeud, int count)
 {
+    regraph(noeud);
+    count++;
     noeud->degraph();
-    if(regraph(noeud))
-    {
-        count++;
-        noeud->degraph();
-    }
 
     if(!isLeftFree())
     {

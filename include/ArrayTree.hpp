@@ -83,14 +83,14 @@ public:
 /**
  *  \brief Débranche le père du noeud à l'index donné de l'arbre, en y laissant son frère
  *  \param node Indice du noeud à degrapher dans l'abre
- *  \return Indice de la racine du sous-arbre dégraphé
+ *  \return Renvoie node
  */
     int degraph(int node); 
 /**
  *  \brief Branche le père du noeud au dessus de l'index donné, de telle manière que les noeuds child et node soient frères
  *  \param child Indice du noeud à regrapher. Devrait être le fils unique d'un noeud racine
  *  \param node Indice du noeud sur lequel regrapher. Après opération, devrait être le frère du noeud child
- *  \return Emplacement du noeud child après le regraph. Devrait être identique à child
+ *  \return Renvoie child
  */
     int regraph(int child, int node);
 

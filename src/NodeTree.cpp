@@ -208,3 +208,9 @@ NodeTree::SPR_list(Node* noeud, std::vector<Node*>& nodes)
 
 }
 
+void
+NodeTree::SPR_rec(Node* noeud)
+{
+    noeud->degraph();
+    _root->SPR_rec(noeud);
+}

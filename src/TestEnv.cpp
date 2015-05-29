@@ -24,6 +24,7 @@
 #include <ctime>
 #include <vector>
 #include "Node.hpp"
+#include "NodeTree.hpp"
 #include "ArrayTree.hpp"
 
 using namespace std;
@@ -70,7 +71,7 @@ TestEnv::_DrecVsDit()
     {
         int nbOption=0;
         float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
         float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:( randomPick(rng));
         float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
         
@@ -89,12 +90,12 @@ TestEnv::_DrecVsDit()
         
         while(nbRound>0)
         {
-            Node root(0);
+            NodeTree root;
             for(int i = 1; i < nbInsert; ++i)
             {
                 root.insert(i);
             }
-            Node copy(root);
+            NodeTree copy(root);
             
             rootNode = root.nodeAt(randomNode);
             cout << "Premier Test : it" << endl;
@@ -152,7 +153,7 @@ TestEnv::_DrecVsSrec()
     {
         int nbOption=0;
         float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
         float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:(randomPick(rng));
         float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
         
@@ -169,13 +170,12 @@ TestEnv::_DrecVsSrec()
         
         while(nbRound>0)
         {
-            Node root(0);
-            for(int i = 1; i < nbInsert; ++i)
+            NodeTree root;
+            for(int i = 0; i < nbInsert; ++i)
             {
                 root.insert(i);
             }
-            Node copy(root);
-            ArrayTree rootArray(copy);
+            ArrayTree rootArray(root);
             
             rootNode = root.nodeAt(randomNode);
             cout << "Premier Test : rec dynamique" << endl;
@@ -233,7 +233,7 @@ TestEnv::_DrecVsDlist()
     {
         int nbOption=0;
         float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+        uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
         float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:( randomPick(rng));
         float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
         
@@ -253,12 +253,12 @@ TestEnv::_DrecVsDlist()
         
         while(nbRound>0)
         {
-            Node root(0);
+            NodeTree root;
             for(int i = 1; i < nbInsert; ++i)
             {
                 root.insert(i);
             }
-            Node copy(root);
+            NodeTree copy(root);
             rootNode = root.nodeAt(randomNode);
             cout << "Premier Test : rec dynamique" << endl;
             myChrono.start();
@@ -323,7 +323,7 @@ TestEnv::_SrecVsSit()
 {
     int nbOption=0;
     float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
     float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:(randomPick(rng));
     float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
     
@@ -340,7 +340,7 @@ TestEnv::_SrecVsSit()
     
     while(nbRound>0)
     {
-        Node root(0);
+        NodeTree root;
         for(int i = 1; i < nbInsert; ++i)
         {
             root.insert(i);
