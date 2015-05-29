@@ -31,12 +31,12 @@ public:
  *  \brief Constructeur à partir d'un Node
  *  \param node Noeud qui servira de racine à l'arbre
  */
-    NodeTree(const Node&);
+    NodeTree(const Node& n);
 /**
  *  \brief Destructeur par défaut
  */
     ~NodeTree() = default;
-
+    void _setTree(Node* node);
 /**
  *  \brief Permet d'insérer une donnée dans l'arbre
  *  \param E Element à insérer
@@ -95,6 +95,14 @@ public:
  *  \return Nombre de feuilles de l'arbre
  */
     int leafCount();
+/**
+ *  \brief Donne la somme des données contenues dans l'arbre
+ */
+    int dataCount() {return _root->dataCount();}
+/**
+ *  \brief Donne le nombre de noeuds de l'arbre
+ */
+    int nodeCount() {return _root->nodeCount();}
 
 /**
  *  \brief Traduit l'arbre en une chaîne de caractères
@@ -115,8 +123,8 @@ public:
  */
     void SPR_list(Node* noeud, std::vector<Node*>& nodes);
 
-    void SPR_rec(Node* noeud) {_root->SPR_rec(noeud);}
-    void SPR_ite(Node* noeud) {_root->SPR_ite(noeud);}
+    void SPR_rec(Node* noeud);
+    void SPR_ite(Node* noeud);
 
 private:
 /** Racine de l'arbre */

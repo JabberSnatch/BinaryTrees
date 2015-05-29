@@ -29,7 +29,24 @@ NodeTree::NodeTree()
 NodeTree::NodeTree(const Node& n)
 {
     _root = new Node(n);
-    _root->_setTree(this);
+    _setTree(_root);
+}
+
+void
+NodeTree::_setTree(Node* node)
+{
+    if(node!=nullptr)  
+    {
+        node->setTree(this);
+        if(node->isLeftFree())
+        {
+            _setTree(node->getLeft());        
+        }
+        if(node->isRightFree())
+        {
+            _setTree(node->getRight());
+        }
+    } 
 }
 
 void
@@ -143,7 +160,6 @@ NodeTree::nodeAt(int num)
 void
 NodeTree::setRoot(Node* n)
 {
-    assert(n->getTree() == this);
     // Should the node not be made root if it has parent or should it be orphaned ?
 #if 0
     if(n->isOrphan())
@@ -208,3 +224,17 @@ NodeTree::SPR_list(Node* noeud, std::vector<Node*>& nodes)
 
 }
 
+void
+NodeTree::SPR_rec(Node* noeud)
+{
+    noeud->degraph();
+    std::cout << "plop" << std::endl;
+    _root->SPR_rec(noeud);
+}
+
+void
+NodeTree::SPR_ite(Node* noeud)
+{
+    noeud->degraph();
+    _root->SPR_ite(noeud);
+}

@@ -284,6 +284,17 @@ Node::degraph()
 
         _parent->_parent = nullptr;
     }
+
+#if DEBUG
+    if(_tree)
+    {
+        assert(_tree->check());
+    }
+    else
+    {
+        assert(findRoot()->check());
+    }
+#endif
 }
 
 
@@ -344,6 +355,7 @@ Node::regraph(Node* child)
     {
         if(_tree->getRoot() == this)
         {
+            std::cout << "plopa" << std::endl;
             _tree->setRoot(_parent);
         }
     }
@@ -621,8 +633,8 @@ void
 Node::SPR_ite(Node* noeud)
 {
     int i=0;
-    Node* copy(noeud);
-    noeud->degraph();
+    //Node* copy(noeud);
+    
     Node * nodeActual=this;
     bool fin=false,remonte=false;
     while(fin==false)
@@ -659,11 +671,10 @@ Node::SPR_ite(Node* noeud)
         else
         {
             
-            if(nodeActual->regraph(noeud))
-            {
-                i++;
-                noeud->degraph();
-            }
+            nodeActual->regraph(noeud);
+            i++;
+            noeud->degraph();
+
             if(nodeActual->_left!=nullptr)// si on peut aller a gauche
             {
                 nodeActual=nodeActual->_left;
@@ -711,12 +722,12 @@ Node::SPR_ite(Node* noeud)
     }
     
     
-    if(!(copy->_parent)->addChild(copy))
+    /*if(!(copy->_parent)->addChild(copy))
     {
 #if DEBUG
-    cerr << "le rajout du noeud n'a pas marché" << endl;
+    cout << "le rajout du noeud n'a pas marché" << endl;
 #endif    
-    }
+    }*/
 #if DEBUG
     //number of regraph
     std::cout << i <<" degraph/regraph"<< std::endl;
@@ -738,12 +749,9 @@ Node::SPR_rec(Node* noeud)
 int
 Node::_SPR_rec(Node* noeud, int count)
 {
+    regraph(noeud);
+    count++;
     noeud->degraph();
-    if(regraph(noeud))
-    {
-        count++;
-        noeud->degraph();
-    }
 
     if(!isLeftFree())
     {

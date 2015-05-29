@@ -244,6 +244,7 @@ public:
     static std::mt19937 rng;
 /** Distribution pour l'aléatoire binaire du noeud*/
     static std::uniform_int_distribution<int> binaryPick;
+    void setTree(NodeTree* tree) {_tree = tree;}
 
 private:
 /**

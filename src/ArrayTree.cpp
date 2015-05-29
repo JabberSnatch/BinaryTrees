@@ -51,6 +51,7 @@ ArrayTree::ArrayTree(Node& root)
     _load(&root);
 
 #if DEBUG
+    std::cout << "Checking tree.." << std::endl;
     assert(check(_root));
 #endif
 }
@@ -60,6 +61,7 @@ ArrayTree::ArrayTree(NodeTree& tree)
     _load(tree.getRoot());
 
 #if DEBUG
+    std::cout << "Checking tree.." << std::endl;
     assert(check(_root));
 #endif
 }
@@ -256,7 +258,7 @@ ArrayTree::degraph(int node)
     assert(check(_root));
 #endif
 
-    return _parents[node];
+    return node;
 }
 
 int
@@ -303,7 +305,6 @@ bool
 ArrayTree::check(int node) const
 {
     bool RES = false;
-    //std::cout << "checking node n°" << node << std::endl;
 
     if(node == _root)
     {
@@ -336,7 +337,7 @@ ArrayTree::check(int node) const
 
         if(!isRightFree(node))
         {
-            if(getParent(getLeft(node)) == node)
+            if(getParent(getRight(node)) == node)
             {
                 RES = true;
                 RES &= check(getRight(node));

@@ -19,7 +19,7 @@ TEST : 1) DIT_VS_DREC
         
         
 ___________________________________________
-TEST : 2) SREC_VS_DREC
+TEST : 2) DREC_VS_SREC
         FloatList : 
     -2 Needed : 
         -f1 : float nbInsert : how many insert inside trees
