@@ -47,7 +47,8 @@ void debug(int argc, char* argv[])
     for(int i=0;i<maxSizeBoolPar;i++)
         boolList[i]=false;
         
-    testType test;
+    testType test1;
+    testType test2;
     if(argc<2)
     {
         std::cout << "Donnez un test à faire, --help pour plus d'info" << std::endl;
@@ -69,27 +70,66 @@ void debug(int argc, char* argv[])
             }
         }
     }
-    else if(strcmp(argv[1],"DREC_VS_DIT")==0)
+    //Premier test
+    else if(strcmp(argv[1],"DREC")==0)
     {
-        test=DREC_VS_DIT;
+        test1=DREC;
     }
-    else if(strcmp(argv[1],"DREC_VS_SREC")==0)
+    else if(strcmp(argv[1],"DIT")==0)
     {
-        test=DREC_VS_SREC;
+        test1=DIT;
     }
-    else if(strcmp(argv[1],"DREC_VS_DLIST")==0)
+    else if(strcmp(argv[1],"DLIST")==0)
     {
-        test=DREC_VS_DLIST;
+        test1=DLIST;
     }
-    else if(strcmp(argv[1],"SREC_VS_SIT")==0)
+    else if(strcmp(argv[1],"SREC")==0)
     {
-        test=SREC_VS_SIT;
+        test1=SREC;
+    }
+    else if(strcmp(argv[1],"SIT")==0)
+    {
+        test1=SIT;
+    }
+    else if(strcmp(argv[1],"SLIST")==0)
+    {
+        test1=SLIST;
     }
     else
     {
         std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
     }
-    for(int i=2;i<argc;i++)
+    
+    //Deuxième test
+    if(strcmp(argv[2],"DREC")==0)
+    {
+        test2=DREC;
+    }
+    else if(strcmp(argv[2],"DIT")==0)
+    {
+        test2=DIT;
+    }
+    else if(strcmp(argv[2],"DLIST")==0)
+    {
+        test2=DLIST;
+    }
+    else if(strcmp(argv[2],"SREC")==0)
+    {
+        test2=SREC;
+    }
+    else if(strcmp(argv[2],"SIT")==0)
+    {
+        test2=SIT;
+    }
+    else if(strcmp(argv[2],"SLIST")==0)
+    {
+        test2=SLIST;
+    }
+    else
+    {
+        std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+    }
+    for(int i=3;i<argc;i++)
     {
         if(strlen(argv[i])!=3)
         {
@@ -123,7 +163,7 @@ void debug(int argc, char* argv[])
             
             
             
-    TestEnv myTest(test,floatList,floatBoolList,boolList);
+    TestEnv myTest(test1,test2,floatList,floatBoolList,boolList);
     myTest.runTest();
         
 

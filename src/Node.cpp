@@ -237,7 +237,7 @@ void
 Node::degraph()
 {
     Node* sibling;
-
+    
     if(!isOrphan())
     {
         if(_parent->_left == this)
@@ -275,7 +275,7 @@ Node::degraph()
         }
         else
         {
-            std::cout << "Parent is root" << std::endl;
+            //std::cout << "Parent is root" << std::endl;
             if(_tree)
             {
                 _tree->setRoot(sibling);
@@ -294,9 +294,19 @@ bool
 Node::regraph(Node* child)
 {
     bool success = false;
-
-    Node* regraphedNode = child->_parent;
-
+    if(child==this)
+    {
+        return true;
+    }
+    Node* regraphedNode;
+    if(!child->isOrphan())//vérif si la node qu'on raccroche est la racine, légère modif du code
+    {
+        regraphedNode = child->_parent;
+    }
+    else
+    {
+        regraphedNode=child;
+    }
     // Plug the node under the child's parent
     if(regraphedNode->isLeftFree())
     {
@@ -306,8 +316,16 @@ Node::regraph(Node* child)
     {
         regraphedNode->_right = this;
     }
+    
+    if(!child->isOrphan())//vérif si la node qu'on raccroche est la racine, légère modif du code
+    {
+        regraphedNode->_parent = _parent;
+    }
+    else
+    {
+        regraphedNode->_parent = nullptr;
+    }
 
-    regraphedNode->_parent = _parent;
     if(!isOrphan())
     {
         if(_parent->_left == this)

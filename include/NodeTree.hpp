@@ -116,7 +116,7 @@ public:
     void SPR_list(Node* noeud, std::vector<Node*>& nodes);
 
     void SPR_rec(Node* noeud) {_root->SPR_rec(noeud);}
-    void SPR_ite(Node* noeud) {_root->SRP_ite(noeud);}
+    void SPR_ite(Node* noeud) {_root->SPR_ite(noeud);}
 
 private:
 /** Racine de l'arbre */

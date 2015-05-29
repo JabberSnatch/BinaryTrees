@@ -30,12 +30,13 @@
 #include <string>
 #include <chrono>
 #include <ctime>
+#include "ArrayTree.hpp"
 
 /**
 *   \enum testType
 *   \brief Nomme tous les types de test
 */
-enum testType {DREC_VS_DIT,DREC_VS_SREC,DREC_VS_DLIST,SREC_VS_SIT};
+enum testType {DREC,DIT,DLIST,SREC,SIT,SLIST};
 
 /**
 *   \class TestEnv
@@ -48,13 +49,14 @@ enum testType {DREC_VS_DIT,DREC_VS_SREC,DREC_VS_DLIST,SREC_VS_SIT};
 class TestEnv 
 {
 public:
+    
     /**
     *   \brief Constructeur
     *
     *   Constructeur de la classe TestEnv, mets dans les attributs ce qu'il faut pour lancer un test
     *
     */
-    TestEnv(testType test,std::vector<float> floatPar=std::vector<float> (),bool *floatBoolPar=nullptr, bool* boolPar=nullptr);
+    TestEnv(testType test1,testType test2,std::vector<float> floatPar=std::vector<float> (),bool *floatBoolPar=nullptr, bool* boolPar=nullptr);
     
     /**
     *   \brief Lance le test 
@@ -66,8 +68,11 @@ public:
     
     
 private:
-    /** Type du test */
-    testType _type; 
+    class Chrono;
+    /** Type du premier test */
+    testType _type1;
+    /** Type du deuxième test */
+    testType _type2;
     /** Vecteur des valeurs paramètres float du test */
     std::vector<float> _floatPar;
     /** Vecteur de booléen pour savoir quelle option est prise, dont la valeur est dans _floatPar */
@@ -75,32 +80,17 @@ private:
     /** Vecteur de booléen pour savoir quel option booléenne prendre */ 
     bool* _boolPar; 
     
-    /**
-    *   \brief Lance le test DitVsDrec
-    *
-    *   Méthode qui lance le test pour Spr_ite dynamique en premier puis Spr_rec dynamique
-    *   Chronomètre le temps des deux tests et les compare
-    *   Va chercher les valeurs dans les vecteur en attributs
-    */
-    void _DrecVsDit();
-    /**
-    *   \brief Lance le test DrecVsSrec
-    *
-    *   Méthode qui lance le test pour Spr_rec dynamique en premier puis Spr_rec statique
-    *   Chronomètre le temps des deux tests et les compare
-    *   Va chercher les valeurs dans les vecteurs en attributs
-    */
-    void _DrecVsSrec();
-    /**
-    *   \brief Lance le test DrecVsDlist
-    *
-    *   Méthode qui lance le test pour Spr_rec dynamique en premier puis Spr_list dynamique
-    *   Chronomètre le temps des deux test et les compare
-    *   Va chercher les valeurs dans les vecteurs en attributs
-    */
-    void _DrecVsDlist();
+    void _Drec(Chrono myChrono,NodeTree nodeTree,Node* rootNode);
+    void _Dit(Chrono myChrono,NodeTree nodeTree,Node* rootNode);
+    std::vector<Node*> _Dlist_init(Chrono myChrono2,Node* rootNode,NodeTree nodeTree);
+    void _Dlist(Chrono myChrono,std::vector<Node*> vect_noeud,Node* rootNode,NodeTree nodeTree);
     
-    void _SrecVsSit();
+    void _Srec(Chrono myChrono,ArrayTree arrayTree,int randomNode);
+    void _Sit(Chrono myChrono,ArrayTree arrayTree,int randomNode);
+    std::vector<int> _Slist_init(Chrono myChrono2,int randomNode,ArrayTree arrayTree);
+    void _Slist(Chrono myChrono,std::vector<int> vect_noeud,int randomNode,ArrayTree arrayTree);
+    
+    
     /**
     *   \classe Chrono
     *   \brief Classe pour chronométrer des test 

@@ -245,7 +245,7 @@ ArrayTree::degraph(int node)
         }
         else
         {
-            std::cout << "Parent is root" << std::endl;
+            //std::cout << "Parent is root" << std::endl;
             _setRoot(sibling);
         }
 
@@ -303,7 +303,7 @@ bool
 ArrayTree::check(int node) const
 {
     bool RES = false;
-    std::cout << "checking node n°" << node << std::endl;
+    //std::cout << "checking node n°" << node << std::endl;
 
     if(node == _root)
     {
@@ -329,7 +329,8 @@ ArrayTree::check(int node) const
             }
             else
             {
-                std::cout << "left node isn't linked back to current node" << std::endl;
+                
+                std::cout << "left node isn't linked back to current node "<< node << std::endl;
             }
         }
 

@@ -169,7 +169,7 @@ NodeTree::SPR_list_init(Node* noeud)
 
     noeud->degraph();
 #if DEBUG
-    std::cout << noeud->to_str() << std::endl;
+    //std::cout << noeud->to_str() << std::endl;
 #endif
 
     for(Node::NodeIter* it = _root->begin(); it->hasNext();)
