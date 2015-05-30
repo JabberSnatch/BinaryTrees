@@ -117,6 +117,7 @@ TestEnv::runTest()
             myChrono2->reset();
         }
         myChrono->reset();
+        std::cout << std::endl;
         
         //___________________Deuxième test_________________________
         if(_type2==DREC)
@@ -175,6 +176,7 @@ TestEnv::runTest()
             {
                 rootNode=rootNode->getParent();
             }*/
+            cout << endl;
             cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
             cout << rootNode->to_str() << endl;
         }            

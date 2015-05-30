@@ -228,7 +228,6 @@ void
 NodeTree::SPR_rec(Node* noeud)
 {
     noeud->degraph();
-    std::cout << "plop" << std::endl;
     _root->SPR_rec(noeud);
 }
 

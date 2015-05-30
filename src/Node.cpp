@@ -355,7 +355,6 @@ Node::regraph(Node* child)
     {
         if(_tree->getRoot() == this)
         {
-            std::cout << "plopa" << std::endl;
             _tree->setRoot(_parent);
         }
     }

@@ -1,78 +1,47 @@
-Tests possibles : DIT_VS_DREC, DREC_VS_SREC, DREC_VS_DLIST, SREC_VS_SIT
-TEST : 1) DIT_VS_DREC
-        FloatList : 
-    -2 Needed : 
-        -f1 : float nbInsert : how many insert inside trees
-            Default : 5.000
-        -f2 : float randomNode : which node is choosen for spr
-            Default : random value between 0 and nbInsert
-    -1 Optionnal:
-        -f3 : float nbRound : number of round made 
-        
-        
-        BoolList:
-    -4 boolean:
-        -b1: boolean timeShown : boolean if the time of both test are shown
-        -b2: boolean dataCountShown : boolean if dataCount is shown
-        -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean randomNodeShown : boolean if the node is shown
-        
-        
-___________________________________________
-TEST : 2) DREC_VS_SREC
-        FloatList : 
-    -2 Needed : 
-        -f1 : float nbInsert : how many insert inside trees
-            Default : 5.000
-        -f2 : float randomNode : which node is choosen for spr
-            Default : random value between 0 and nbInsert
-    -1 Optionnal:
-        -f3 : float nbRound : number of round made 
-        
-        
-        BoolList:
-    -4 boolean:
-        -b1: boolean timeShown : boolean if the time of both test are shown
-        -b2: boolean dataCountShown : boolean if dataCount is shown
-        -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean randomNodeShown : boolean if the node is shown
-        
-        
-___________________________________________
 
-TEST : 3) DREC_VS_DLIST
-        FloatList : 
-    -2 Needed : 
-        -f1 : float nbInsert : how many insert inside trees
-            Default : 5.000
-        -f2 : float randomNode : which node is choosen for spr
-            Default : random value between 0 and nbInsert
-    -1 Optionnal:
-        -f3 : float nbRound : number of round made 
+
+NAME
+       ./bin/prog
+
+SYNOPSIS
+       ./bin/prog [TEST1] [TEST2] [OPTION_FLOAT] [float] [OPTION_BOOL]
+
+DESCRIPTION
+        TEST : 
+        -DREC
+        -DIT
+        -DLIST
         
-        
-        BoolList:
-    -5 boolean:
-        -b1: boolean timeShown : boolean if the time of both test are shown
-        -b2: boolean dataCountShown : boolean if dataCount is shown
-        -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean randomNodeShown : boolean if the node is shown
-        -b5: boolean timeListCreationShown : boolean if the creation of the list is timed.
-        ___________________________________________
-TEST : 2) SREC_VS_SIT
-        FloatList : 
-    -2 Needed : 
-        -f1 : float nbInsert : how many insert inside trees
-            Default : 5.000
-        -f2 : float randomNode : which node is choosen for spr
-            Default : random value between 0 and nbInsert
-    -1 Optionnal:
-        -f3 : float nbRound : number of round made 
-        
-        
-        BoolList:
-    -4 boolean:
-        -b1: boolean timeShown : boolean if the time of both test are shown
-        -b2: boolean dataCountShown : boolean if dataCount is shown
-        -b3: boolean nodeCountShown : boolean if nodeCount is shown
-        -b4: boolean randomNodeShown : boolean if the node is shown
+        -SREC
+        -SIT
+        -SLIST 
+       Fait des tests de performances entre différentes implémentations d'arbre binairput.
+        FLOAT : 
+       -f1 [float]
+            Donne le nombre de feuilles à insérer
+            Defaut : 5000
+
+       -f2 [float]
+            Donne le numéro de la node prise pour le SPR, doit être comprise entre 0 et le premier paramètre
+            Defaut : random entre 0 et nbInsert
+
+       -f3 [float]
+            Donne le nombre de fois que les tests sont faits
+            Defaut : 1
+            
+        BOOLEAN:
+       -b1 
+            Montre le temps de chaque test
+
+       -b2 
+            Montre la somme des donneés
+
+       -b3 
+            Montre le nombre de noeuds
+
+       -b4   
+            Montre la node prise au hasard
+            
+       -b5
+            Montre la temps de création de la liste
+            NEEDED : Un des test doit être un list

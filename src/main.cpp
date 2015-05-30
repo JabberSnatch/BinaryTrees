@@ -49,9 +49,11 @@ void debug(int argc, char* argv[])
         
     testType test1;
     testType test2;
+    bool fin=false;
     if(argc<2)
     {
         std::cout << "Donnez un test à faire, --help pour plus d'info" << std::endl;
+        fin=true;
     
     }
     else if(strcmp(argv[1],"--help")==0)
@@ -69,6 +71,7 @@ void debug(int argc, char* argv[])
                 std::cout << line << std::endl;
             }
         }
+        fin=true;
     }
     //Premier test
     else if(strcmp(argv[1],"DREC")==0)
@@ -98,36 +101,41 @@ void debug(int argc, char* argv[])
     else
     {
         std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+        fin=true;
     }
     
     //Deuxième test
-    if(strcmp(argv[2],"DREC")==0)
+    if(!fin)
     {
-        test2=DREC;
-    }
-    else if(strcmp(argv[2],"DIT")==0)
-    {
-        test2=DIT;
-    }
-    else if(strcmp(argv[2],"DLIST")==0)
-    {
-        test2=DLIST;
-    }
-    else if(strcmp(argv[2],"SREC")==0)
-    {
-        test2=SREC;
-    }
-    else if(strcmp(argv[2],"SIT")==0)
-    {
-        test2=SIT;
-    }
-    else if(strcmp(argv[2],"SLIST")==0)
-    {
-        test2=SLIST;
-    }
-    else
-    {
-        std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+        if(strcmp(argv[2],"DREC")==0)
+        {
+            test2=DREC;
+        }
+        else if(strcmp(argv[2],"DIT")==0)
+        {
+            test2=DIT;
+        }
+        else if(strcmp(argv[2],"DLIST")==0)
+        {
+            test2=DLIST;
+        }
+        else if(strcmp(argv[2],"SREC")==0)
+        {
+            test2=SREC;
+        }
+        else if(strcmp(argv[2],"SIT")==0)
+        {
+            test2=SIT;
+        }
+        else if(strcmp(argv[2],"SLIST")==0)
+        {
+            test2=SLIST;
+        }
+        else
+        {
+            std::cerr << "Le test demandé n'existe pas, pour plus d'informations essayez --help" << std::endl;
+            fin=true;
+        }
     }
     for(int i=3;i<argc;i++)
     {
@@ -162,9 +170,11 @@ void debug(int argc, char* argv[])
     }
             
             
-            
-    TestEnv myTest(test1,test2,floatList,floatBoolList,boolList);
-    myTest.runTest();
+    if(!fin)      
+    {
+        TestEnv myTest(test1,test2,floatList,floatBoolList,boolList);
+        myTest.runTest();
+    }  
         
 
 
