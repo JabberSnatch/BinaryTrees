@@ -29,24 +29,37 @@ NodeTree::NodeTree()
 NodeTree::NodeTree(const Node& n)
 {
     _root = new Node(n);
-    _setTree(_root);
+    _root->setTree(this);
 }
 
-void
-NodeTree::_setTree(Node* node)
+NodeTree::NodeTree(const NodeTree& nt)
 {
-    if(node!=nullptr)  
+    _root = new Node(*(nt._root));
+    _root->setTree(this);
+    //_setChild(_root);
+}
+
+void 
+NodeTree::_setChild(Node* node)
+{
+    if(node!=nullptr)
     {
         node->setTree(this);
-        if(node->isLeftFree())
+        if(!node->isLeftFree())
         {
-            _setTree(node->getLeft());        
+            Node* left=node->getLeft();
+            left->setTree(this); 
+            left->setParent(node);
+            _setChild(left);
         }
-        if(node->isRightFree())
+        if(!node->isRightFree())
         {
-            _setTree(node->getRight());
+            Node* right=node->getRight();
+            right->setTree(this);
+            right->setParent(node);
+            _setChild(right);
         }
-    } 
+    }
 }
 
 void

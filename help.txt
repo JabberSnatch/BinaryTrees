@@ -14,7 +14,8 @@ DESCRIPTION
         
         -SREC
         -SIT
-        -SLIST 
+        -SLIST
+         
        Fait des tests de performances entre différentes implémentations d'arbre binairput.
         FLOAT : 
        -f1 [float]

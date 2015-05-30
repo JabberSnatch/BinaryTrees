@@ -32,11 +32,13 @@ public:
  *  \param node Noeud qui servira de racine à l'arbre
  */
     NodeTree(const Node& n);
+    
+    NodeTree(const NodeTree& nt);
 /**
  *  \brief Destructeur par défaut
  */
     ~NodeTree() = default;
-    void _setTree(Node* node);
+    void _setChild(Node* node);
 /**
  *  \brief Permet d'insérer une donnée dans l'arbre
  *  \param E Element à insérer

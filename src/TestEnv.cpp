@@ -62,12 +62,12 @@ TestEnv::runTest()
     
     while(nbRound>0)
     {
-        NodeTree nodeTree;
+        NodeTree copyTree;
         chrono2Activated=false;
-        nodeTree.insertNLeaves(nbInsert);
-        NodeTree copyTree(*(nodeTree.getRoot()));
-        rootNode = nodeTree.nodeAt(randomNode);
+        copyTree.insertNLeaves(nbInsert);
+        NodeTree nodeTree(copyTree);
         copyNode = copyTree.nodeAt(randomNode);
+        rootNode = nodeTree.nodeAt(randomNode);
         
         //___________________Premier Test_________________________
         if(_type1==DREC)
@@ -103,17 +103,23 @@ TestEnv::runTest()
             _Slist(myChrono,vect_noeud,randomNode,arrayTree);
             timeListCreationShown=(_boolPar[4])? true:false;
         }
+        Node* plop=nodeTree.getRoot();
+        plop=plop->getLeft();
+        plop=plop->getLeft();
+        plop->regraph(rootNode);
+        
+        
         //___________________Fin Premier test_________________________
         temps1 +=myChrono->getDuration();
         if(timeShown !=0)
-            cout << "durée du calcul: " << myChrono->getDuration()<< " nanos" << endl;   
+            cout << "durée du calcul: " << myChrono->getDuration()<< " ms" << endl;   
         //if(dataCountShown!=0)
         //    cout << "somme de données: " << nodeTree.dataCount() << endl;
         if(nodeCountShown!=0)
             cout << "nombre de données: " << nodeTree.leafCount() << endl; 
         if(timeListCreationShown & chrono2Activated)
         {
-            cout << "temps de création de la liste : " << myChrono2->getDuration() << "nanos" << endl;
+            cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
             myChrono2->reset();
         }
         myChrono->reset();
@@ -136,35 +142,38 @@ TestEnv::runTest()
         }
         else if (_type2==SREC)
         {
-            ArrayTree arrayTree(copyTree);
-            _Srec(myChrono,arrayTree,randomNode);
+            ArrayTree arrayTree2(copyTree);
+            _Srec(myChrono,arrayTree2,randomNode);
         }
         else if (_type2==SIT)
         {
-            ArrayTree arrayTree(copyTree);
-            _Sit(myChrono,arrayTree,randomNode);
+            ArrayTree arrayTree2(copyTree);
+            _Sit(myChrono,arrayTree2,randomNode);
         }
         else if (_type2==SLIST)
         {
             chrono2Activated=true;
-            ArrayTree arrayTree(copyTree);
-            std::vector<int> vect_noeud=_Slist_init(myChrono2,randomNode,arrayTree);
-            _Slist(myChrono,vect_noeud,randomNode,arrayTree);
+            ArrayTree arrayTree2(copyTree);
+            std::vector<int> vect_noeud=_Slist_init(myChrono2,randomNode,arrayTree2);
+            _Slist(myChrono,vect_noeud,randomNode,arrayTree2);
         }
+        
+        
+        
         
         //_____________________Fin Deuxième Test_______________________
         temps2 +=myChrono->getDuration();
         
         
         if(timeShown !=0)
-            cout << "durée du calcul: " << myChrono->getDuration() << " nanos" << endl;   
+            cout << "durée du calcul: " << myChrono->getDuration() << " ms" << endl;   
         //if(dataCountShown!=0)
         //    cout << "somme de données: " << copyTree.dataCount() << endl;
         if(nodeCountShown!=0)
-            cout << "nombre de données: " <<copyTree.leafCount() << endl;
+            cout << "nombre de données: " << copyTree.leafCount() << endl;
         if(timeListCreationShown & chrono2Activated)
         {
-            cout << "temps de création de la liste : " << myChrono2->getDuration() << "nanos" << endl;
+            cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
             myChrono2->reset();
         }
         myChrono->reset();
@@ -220,10 +229,10 @@ void _Slist(Chrono myChrono,std::vector<int> vect_noeud,int randomNode,ArrayTree
 */
     
 void 
-TestEnv::_Drec(Chrono* myChrono,NodeTree nodeTree,Node* rootNode)
+TestEnv::_Drec(Chrono* myChrono,NodeTree tree,Node* node)
 {
     myChrono->start();
-        nodeTree.SPR_rec(rootNode);
+        tree.SPR_rec(node);
     myChrono->stop();
 }
 

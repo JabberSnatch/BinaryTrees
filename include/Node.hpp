@@ -172,6 +172,11 @@ public:
 */
     std::string newick();
 
+/**
+*   \brief Change le parent par le nouveau en paramètre
+*   \param parent Nouveau parent du noeud
+*/
+    void setParent(Node* parent) {_parent = parent;}
 /**   \brief Permet de changer les data d'un noeud */
     void setData(int data) {_data = data;}
 /** \brief Renvoie l'arbre auquel est associé le noeud */
@@ -252,11 +257,7 @@ private:
 *   \param tree Nouvel arbre du noeud
 */
     void _setTree(NodeTree* tree) {_tree = tree;}
-/**
-*   \brief Change le parent par le nouveau en paramètre
-*   \param parent Nouveau parent du noeud
-*/
-    void _setParent(Node* parent) {_parent = parent;}
+
 
 /** Arbre associé au noeud */
     NodeTree* _tree;
