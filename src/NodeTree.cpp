@@ -29,37 +29,13 @@ NodeTree::NodeTree()
 NodeTree::NodeTree(const Node& n)
 {
     _root = new Node(n);
-    _root->setTree(this);
+    _root->_setTree(this);
 }
 
 NodeTree::NodeTree(const NodeTree& nt)
+    :_root(nt._root->clone())
 {
-    _root = new Node(*(nt._root));
-    _root->setTree(this);
-    //_setChild(_root);
-}
-
-void 
-NodeTree::_setChild(Node* node)
-{
-    if(node!=nullptr)
-    {
-        node->setTree(this);
-        if(!node->isLeftFree())
-        {
-            Node* left=node->getLeft();
-            left->setTree(this); 
-            left->setParent(node);
-            _setChild(left);
-        }
-        if(!node->isRightFree())
-        {
-            Node* right=node->getRight();
-            right->setTree(this);
-            right->setParent(node);
-            _setChild(right);
-        }
-    }
+    _root->_setTree(this);
 }
 
 void
@@ -180,6 +156,7 @@ NodeTree::setRoot(Node* n)
         _root = n;
     }
 #else
+    //TODO : check if the _tree correspond to this
     n->_parent = nullptr;
     _root = n;
 #endif

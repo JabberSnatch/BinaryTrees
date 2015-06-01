@@ -249,14 +249,13 @@ public:
     static std::mt19937 rng;
 /** Distribution pour l'aléatoire binaire du noeud*/
     static std::uniform_int_distribution<int> binaryPick;
-    void setTree(NodeTree* tree) {_tree = tree;}
 
 private:
 /**
-*   \brief Change l'arbre auquel est associé le noeud
+*   \brief Change l'arbre auquel est associé le noeud et toute son arborescence
 *   \param tree Nouvel arbre du noeud
 */
-    void _setTree(NodeTree* tree) {_tree = tree;}
+    void _setTree(NodeTree* tree);
 
 
 /** Arbre associé au noeud */

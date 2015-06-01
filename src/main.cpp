@@ -184,7 +184,7 @@ void debug(int argc, char* argv[])
     NodeTree nTree;
 
 // ARRAYTREE
-#if 1
+#if 0
     nTree.insertNLeaves(15);
 
 #if 1
@@ -224,9 +224,38 @@ void debug(int argc, char* argv[])
 // NODETREE
 #else
 
-    nTree.insertNLeaves(13);
-    std::cout << nTree.check() << std::endl;
+    nTree.insertNLeaves(6);
+    NodeTree copy(nTree);
+    
     std::cout << nTree.to_str() << std::endl;
+    std::cout << nTree.check() << std::endl;
+    std::cout << copy.to_str() << std::endl;
+    std::cout << copy.check() << std::endl;
+
+    NodeTree* A = &nTree;
+    NodeTree* B = &copy;
+
+    Node* nodeA = (*A).nodeAt(3);
+    Node* nodeB = (*B).nodeAt(3);
+
+    std::cout << nodeA->to_str() << std::endl;
+    std::cout << nodeB->to_str() << std::endl;
+
+    std::vector<Node*> nodesA = (*A).SPR_list_init(nodeA);
+    (*A).SPR_list(nodeA, nodesA);
+
+    std::vector<Node*> nodesB = (*B).SPR_list_init(nodeB);
+    (*B).SPR_list(nodeB, nodesB);
+
+    //(*B).SPR_rec((*B).nodeAt(3));
+
+    std::cout << (*A).to_str() << std::endl;
+    std::cout << (*A).getRoot()->to_str() << std::endl;
+    std::cout << (*A).check() << std::endl;
+
+    std::cout << (*B).to_str() << std::endl;
+    std::cout << (*B).getRoot()->to_str() << std::endl;
+    std::cout << (*B).check() << std::endl;
 
 #endif
 #endif

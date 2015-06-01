@@ -103,10 +103,6 @@ TestEnv::runTest()
             _Slist(myChrono,vect_noeud,randomNode,arrayTree);
             timeListCreationShown=(_boolPar[4])? true:false;
         }
-        Node* plop=nodeTree.getRoot();
-        plop=plop->getLeft();
-        plop=plop->getLeft();
-        plop->regraph(rootNode);
         
         
         //___________________Fin Premier test_________________________

@@ -309,6 +309,7 @@ Node::regraph(Node* child)
     {
         return true;
     }
+
     Node* regraphedNode;
     if(!child->isOrphan())//vérif si la node qu'on raccroche est la racine, légère modif du code
     {
@@ -316,8 +317,10 @@ Node::regraph(Node* child)
     }
     else
     {
-        regraphedNode=child;
+        cerr << "Impossible de regrapher une racine" << endl;
+        return false;
     }
+
     // Plug the node under the child's parent
     if(regraphedNode->isLeftFree())
     {
@@ -577,7 +580,7 @@ Node::_to_str(string acc, int depth)
         acc += " ";
     }
 
-    acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + "\n";
+    acc += "+->" + to_string(_data) + " _ " + to_string((long int)this) + " _ " + to_string((long int)_tree) + "\n";
 
     if(!isLeftFree())
     {
@@ -764,3 +767,12 @@ Node::_SPR_rec(Node* noeud, int count)
     return count;
 }
 
+void
+Node::_setTree(NodeTree* tree)
+{
+    Node* root = findRoot();
+    for(int i = 0; i < root->size(); i++)
+    {
+        root->nodeAt(i)->_tree = tree;
+    }
+}

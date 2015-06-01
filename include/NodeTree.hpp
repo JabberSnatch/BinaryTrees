@@ -38,7 +38,7 @@ public:
  *  \brief Destructeur par défaut
  */
     ~NodeTree() = default;
-    void _setChild(Node* node);
+
 /**
  *  \brief Permet d'insérer une donnée dans l'arbre
  *  \param E Element à insérer

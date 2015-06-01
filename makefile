@@ -18,7 +18,7 @@ OBJS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SRCS))
 SYS_LIBS = 
 
 INCLUDES = -I$(INC_DIR) $(addprefix -I, $(DEP_DIRS))
-CXXFLAGS = -std=c++0x -W -Wall $(INCLUDES)
+CXXFLAGS = -std=c++11 -W -Wall $(INCLUDES)
 LDLIBS = $(addprefix -l, $(SYS_LIBS))
 LDFLAGS = -W -Wall
 CXX = g++
