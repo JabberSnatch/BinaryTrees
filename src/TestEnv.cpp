@@ -41,18 +41,18 @@ TestEnv::runTest()
 {
     int nbOption=0;
     float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(0, nbInsert-1);
+    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
     float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:( randomPick(rng));
     float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
     
     bool timeShown=(_boolPar[0])? true:false;
-    //bool dataCountShown=(_boolPar[1])? true:false;
+    bool dataCountShown=(_boolPar[1])? true:false;
     bool nodeCountShown=(_boolPar[2])? true:false;
     bool randomNodeShown=(_boolPar[3])? true:false;
     bool timeListCreationShown;
     
-    TestEnv::Chrono* myChrono=new Chrono(0,"milliseconds");
-    TestEnv::Chrono* myChrono2=new Chrono(0,"milliseconds");
+    TestEnv::Chrono* myChrono=new Chrono(0,"nanoseconds");
+    TestEnv::Chrono* myChrono2=new Chrono(0,"nanoseconds");
     bool chrono2Activated=false;
     float temps1 =0;
     float temps2 =0 ;
@@ -109,8 +109,8 @@ TestEnv::runTest()
         temps1 +=myChrono->getDuration();
         if(timeShown !=0)
             cout << "durée du calcul: " << myChrono->getDuration()<< " ms" << endl;   
-        //if(dataCountShown!=0)
-        //    cout << "somme de données: " << nodeTree.dataCount() << endl;
+        if(dataCountShown!=0)
+            cout << "somme de données: " << nodeTree.dataCount() << endl;
         if(nodeCountShown!=0)
             cout << "nombre de données: " << nodeTree.leafCount() << endl; 
         if(timeListCreationShown & chrono2Activated)
@@ -163,8 +163,8 @@ TestEnv::runTest()
         
         if(timeShown !=0)
             cout << "durée du calcul: " << myChrono->getDuration() << " ms" << endl;   
-        //if(dataCountShown!=0)
-        //    cout << "somme de données: " << copyTree.dataCount() << endl;
+        if(dataCountShown!=0)
+            cout << "somme de données: " << copyTree.dataCount() << endl;
         if(nodeCountShown!=0)
             cout << "nombre de données: " << copyTree.leafCount() << endl;
         if(timeListCreationShown & chrono2Activated)
@@ -177,10 +177,10 @@ TestEnv::runTest()
         
 
         if(randomNodeShown){
-            /*if(rootNode->getParent()!=nullptr)
+            if(rootNode->getParent()!=nullptr)
             {
                 rootNode=rootNode->getParent();
-            }*/
+            }
             cout << endl;
             cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
             cout << rootNode->to_str() << endl;
@@ -198,34 +198,8 @@ TestEnv::runTest()
         
 }
 
-/**
-    How to build a new test :
-    
-        test for ... vs ...
-        FloatList : 
-        -Needed : 
-            -f1: 
-                Default :
-        -Optionnal:
-        
-        BoolList:
-        -b1: 
-*/
-
-
-/*
-void _Dit(Chrono myChrono,NodeTree nodeTree,Node* rootNode);
-std::vector<Node*> _Dlist_init(Chrono myChrono2,Node* rootNode,NodeTree nodeTree);
-void _Dlist(Chrono myChrono,std::vector<Node*> vect_noeud,Node* rootNode,NodeTree nodeTree);
-
-void _Srec(Chrono myChrono,ArrayTree arrayTree,int randomNode);
-void _Sit(Chrono myChrono,ArrayTree arrayTree,int randomNode);
-std::vector<int> _Dlist_init(Chrono myChrono,int randomNode,ArrayTree arrayTree);
-void _Slist(Chrono myChrono,std::vector<int> vect_noeud,int randomNode,ArrayTree arrayTree);
-*/
-    
 void 
-TestEnv::_Drec(Chrono* myChrono,NodeTree tree,Node* node)
+TestEnv::_Drec(Chrono* myChrono,NodeTree& tree,Node* node)
 {
     myChrono->start();
         tree.SPR_rec(node);
@@ -233,7 +207,7 @@ TestEnv::_Drec(Chrono* myChrono,NodeTree tree,Node* node)
 }
 
 void 
-TestEnv::_Dit(Chrono* myChrono,NodeTree nodeTree,Node* rootNode)
+TestEnv::_Dit(Chrono* myChrono,NodeTree& nodeTree,Node* rootNode)
 {
     myChrono->start();
         nodeTree.SPR_ite(rootNode);
@@ -241,7 +215,7 @@ TestEnv::_Dit(Chrono* myChrono,NodeTree nodeTree,Node* rootNode)
 }
 
 std::vector<Node*> 
-TestEnv::_Dlist_init(Chrono* myChrono2,Node* rootNode,NodeTree nodeTree)
+TestEnv::_Dlist_init(Chrono* myChrono2,Node* rootNode,NodeTree& nodeTree)
 {
     myChrono2->start();
         std::vector<Node*> vect_noeud= nodeTree.SPR_list_init(rootNode);
@@ -250,7 +224,7 @@ TestEnv::_Dlist_init(Chrono* myChrono2,Node* rootNode,NodeTree nodeTree)
 }
 
 void 
-TestEnv::_Dlist(Chrono* myChrono,std::vector<Node*> vect_noeud,Node* rootNode,NodeTree nodeTree)
+TestEnv::_Dlist(Chrono* myChrono,std::vector<Node*>& vect_noeud,Node* rootNode,NodeTree& nodeTree)
 {
     myChrono->start();
         nodeTree.SPR_list(rootNode,vect_noeud);
@@ -258,7 +232,7 @@ TestEnv::_Dlist(Chrono* myChrono,std::vector<Node*> vect_noeud,Node* rootNode,No
 }
 
 void 
-TestEnv::_Srec(Chrono* myChrono,ArrayTree arrayTree,int randomNode)
+TestEnv::_Srec(Chrono* myChrono,ArrayTree& arrayTree,int randomNode)
 {
     myChrono->start();
         arrayTree.SPR_rec(randomNode);
@@ -266,7 +240,7 @@ TestEnv::_Srec(Chrono* myChrono,ArrayTree arrayTree,int randomNode)
 }
 
 void 
-TestEnv::_Sit(Chrono* myChrono,ArrayTree arrayTree,int randomNode)
+TestEnv::_Sit(Chrono* myChrono,ArrayTree& arrayTree,int randomNode)
 {
     myChrono->start();
         arrayTree.SPR_ite(randomNode);
@@ -275,7 +249,7 @@ TestEnv::_Sit(Chrono* myChrono,ArrayTree arrayTree,int randomNode)
 
 
 std::vector<int> 
-TestEnv::_Slist_init(Chrono* myChrono2,int randomNode,ArrayTree arrayTree)
+TestEnv::_Slist_init(Chrono* myChrono2,int randomNode,ArrayTree& arrayTree)
 {
     myChrono2->start();
         std::vector<int> vect_noeud = arrayTree.SPR_list_init(randomNode);
@@ -284,7 +258,7 @@ TestEnv::_Slist_init(Chrono* myChrono2,int randomNode,ArrayTree arrayTree)
 }
 
 void 
-TestEnv::_Slist(Chrono* myChrono,std::vector<int> vect_noeud,int randomNode,ArrayTree arrayTree)
+TestEnv::_Slist(Chrono* myChrono,std::vector<int>& vect_noeud,int randomNode,ArrayTree& arrayTree)
 {
     myChrono->start();
         arrayTree.SPR_list(randomNode,vect_noeud);

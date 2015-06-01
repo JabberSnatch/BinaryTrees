@@ -38,6 +38,94 @@ void debug(int argc, char* argv[])
 {
 
 #ifdef RODOLPHE
+
+#endif 
+
+#ifdef SAMUEL
+    NodeTree nTree;
+
+// ARRAYTREE
+#if 0
+    nTree.insertNLeaves(15);
+
+#if 1
+    ArrayTree aTree(nTree);
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(aTree.getRoot()));
+    std::cout << "Check 1 Ok" << std::endl;
+#endif
+
+#if 0
+    int subTree = aTree.degraph(1);
+    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(0));
+    std::cout << "Check 2 Ok" << std::endl;
+#endif
+
+#if 0
+    std::cout << aTree.regraph(1, aTree.getRoot()) << std::endl;
+    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
+    aTree.dumpToStdout();
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(0));
+    std::cout << "Check 3 Ok" << std::endl;
+#endif
+
+#if 1
+    std::vector<int> nodes = aTree.SPR_list_init(3);
+    aTree.SPR_list(3, nodes);
+    std::cout << aTree.to_str() << std::endl;
+    assert(aTree.check(aTree.getRoot()));
+    std::cout << "Check 4 Ok" << std::endl;
+#endif
+
+// NODETREE
+#else
+
+    nTree.insertNLeaves(10);
+    NodeTree copy(nTree);
+    
+    std::cout << nTree.to_str() << std::endl;
+    std::cout << nTree.check() << std::endl;
+    std::cout << copy.to_str() << std::endl;
+    std::cout << copy.check() << std::endl;
+
+    NodeTree* A = &nTree;
+    NodeTree* B = &copy;
+
+    Node* nodeA = (*A).nodeAt(1);
+    Node* nodeB = (*B).nodeAt(1);
+
+    std::cout << nodeA->to_str() << std::endl;
+    std::cout << nodeB->to_str() << std::endl;
+
+#if 0
+    std::vector<Node*> nodesA = (*A).SPR_list_init(nodeA);
+    (*A).SPR_list(nodeA, nodesA);
+
+    std::vector<Node*> nodesB = (*B).SPR_list_init(nodeB);
+    (*B).SPR_list(nodeB, nodesB);
+#else
+    (*A).SPR_ite(nodeA);
+    (*B).SPR_rec(nodeB);
+#endif
+    std::cout << (*A).to_str() << std::endl;
+    std::cout << (*A).getRoot()->to_str() << std::endl;
+    std::cout << (*A).check() << std::endl;
+
+    std::cout << (*B).to_str() << std::endl;
+    std::cout << (*B).getRoot()->to_str() << std::endl;
+    std::cout << (*B).check() << std::endl;
+
+#endif
+#endif
+}
+
+int parseCommandLine(int argc, char* argv[])
+{
     std::vector<float> floatList={};
     bool floatBoolList[maxSizeFloatPar];
     for(int i=0;i<maxSizeFloatPar;i++)
@@ -175,90 +263,8 @@ void debug(int argc, char* argv[])
         TestEnv myTest(test1,test2,floatList,floatBoolList,boolList);
         myTest.runTest();
     }  
-        
 
-
-#endif 
-
-#ifdef SAMUEL
-    NodeTree nTree;
-
-// ARRAYTREE
-#if 0
-    nTree.insertNLeaves(15);
-
-#if 1
-    ArrayTree aTree(nTree);
-    aTree.dumpToStdout();
-    std::cout << aTree.to_str() << std::endl;
-    assert(aTree.check(aTree.getRoot()));
-    std::cout << "Check 1 Ok" << std::endl;
-#endif
-
-#if 0
-    int subTree = aTree.degraph(1);
-    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
-    aTree.dumpToStdout();
-    std::cout << aTree.to_str() << std::endl;
-    assert(aTree.check(0));
-    std::cout << "Check 2 Ok" << std::endl;
-#endif
-
-#if 0
-    std::cout << aTree.regraph(1, aTree.getRoot()) << std::endl;
-    std::cout << "aTree._root=" << aTree.getRoot() << std::endl;
-    aTree.dumpToStdout();
-    std::cout << aTree.to_str() << std::endl;
-    assert(aTree.check(0));
-    std::cout << "Check 3 Ok" << std::endl;
-#endif
-
-#if 1
-    std::vector<int> nodes = aTree.SPR_list_init(3);
-    aTree.SPR_list(3, nodes);
-    std::cout << aTree.to_str() << std::endl;
-    assert(aTree.check(aTree.getRoot()));
-    std::cout << "Check 4 Ok" << std::endl;
-#endif
-
-// NODETREE
-#else
-
-    nTree.insertNLeaves(6);
-    NodeTree copy(nTree);
-    
-    std::cout << nTree.to_str() << std::endl;
-    std::cout << nTree.check() << std::endl;
-    std::cout << copy.to_str() << std::endl;
-    std::cout << copy.check() << std::endl;
-
-    NodeTree* A = &nTree;
-    NodeTree* B = &copy;
-
-    Node* nodeA = (*A).nodeAt(3);
-    Node* nodeB = (*B).nodeAt(3);
-
-    std::cout << nodeA->to_str() << std::endl;
-    std::cout << nodeB->to_str() << std::endl;
-
-    std::vector<Node*> nodesA = (*A).SPR_list_init(nodeA);
-    (*A).SPR_list(nodeA, nodesA);
-
-    std::vector<Node*> nodesB = (*B).SPR_list_init(nodeB);
-    (*B).SPR_list(nodeB, nodesB);
-
-    //(*B).SPR_rec((*B).nodeAt(3));
-
-    std::cout << (*A).to_str() << std::endl;
-    std::cout << (*A).getRoot()->to_str() << std::endl;
-    std::cout << (*A).check() << std::endl;
-
-    std::cout << (*B).to_str() << std::endl;
-    std::cout << (*B).getRoot()->to_str() << std::endl;
-    std::cout << (*B).check() << std::endl;
-
-#endif
-#endif
+    return 0;
 }
 
 int main(int argc, char* argv[])
@@ -267,9 +273,9 @@ int main(int argc, char* argv[])
 
     std::chrono::duration<int> s_oneday(60*60*24);
     std::cout << s_oneday.count() << std::endl;
-
+    
     debug(argc,argv);
 
-    return 0;
+    return parseCommandLine(argc, argv);
 }
 

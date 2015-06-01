@@ -80,15 +80,15 @@ private:
     /** Vecteur de booléen pour savoir quel option booléenne prendre */ 
     bool* _boolPar; 
     
-    void _Drec(Chrono* myChrono,NodeTree nodeTree,Node* rootNode);
-    void _Dit(Chrono* myChrono,NodeTree nodeTree,Node* rootNode);
-    std::vector<Node*> _Dlist_init(Chrono* myChrono2,Node* rootNode,NodeTree nodeTree);
-    void _Dlist(Chrono* myChrono,std::vector<Node*> vect_noeud,Node* rootNode,NodeTree nodeTree);
+    void _Drec(Chrono* myChrono,NodeTree& nodeTree,Node* rootNode);
+    void _Dit(Chrono* myChrono,NodeTree& nodeTree,Node* rootNode);
+    std::vector<Node*> _Dlist_init(Chrono* myChrono2,Node* rootNode,NodeTree& nodeTree);
+    void _Dlist(Chrono* myChrono,std::vector<Node*>& vect_noeud,Node* rootNode,NodeTree& nodeTree);
     
-    void _Srec(Chrono* myChrono,ArrayTree arrayTree,int randomNode);
-    void _Sit(Chrono* myChrono,ArrayTree arrayTree,int randomNode);
-    std::vector<int> _Slist_init(Chrono* myChrono2,int randomNode,ArrayTree arrayTree);
-    void _Slist(Chrono* myChrono,std::vector<int> vect_noeud,int randomNode,ArrayTree arrayTree);
+    void _Srec(Chrono* myChrono,ArrayTree& arrayTree,int randomNode);
+    void _Sit(Chrono* myChrono,ArrayTree& arrayTree,int randomNode);
+    std::vector<int> _Slist_init(Chrono* myChrono2,int randomNode,ArrayTree& arrayTree);
+    void _Slist(Chrono* myChrono,std::vector<int>& vect_noeud,int randomNode,ArrayTree& arrayTree);
     
     
     /**

@@ -55,9 +55,12 @@ NodeTree::insertBalanced(int E)
 void
 NodeTree::insertNLeaves(int n)
 {
+    delete _root;
+    _root = new Node(this, nullptr, nullptr, nullptr);
+
     Node* node;
 
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < n-1; i++)
     {
         // Choose a random leaf
         node = _root;
@@ -194,15 +197,11 @@ void
 NodeTree::SPR_list(Node* noeud, std::vector<Node*>& nodes)
 {
     int count = 0;
-    int expectedSize = size()+nodes.size();
 
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         if(nodes[i]->regraph(noeud))
         {
-#if DEBUG
-            assert(expectedSize = size());
-#endif
             count++;
         }
         noeud->degraph();

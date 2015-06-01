@@ -236,10 +236,10 @@ Node::addChild(Node* noeud)
 void 
 Node::degraph()
 {
-    Node* sibling;
-    
     if(!isOrphan())
     {
+        Node* sibling;
+
         if(_parent->_left == this)
         {
             sibling = _parent->_right;
@@ -611,16 +611,12 @@ Node::SPR_list_init(Node* noeud)
 void
 Node::SPR_list(Node* noeud)
 {
-    int expectedSize = size()+noeud->size();
     int count = 0;
 
     for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         if(nodes[i]->regraph(noeud))
         {
-#if DEBUG
-            assert(expectedSize == size());
-#endif
             count++;
         }
         noeud->degraph();
