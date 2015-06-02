@@ -227,32 +227,79 @@ int parseCommandLine(int argc, char* argv[])
     }
     for(int i=3;i<argc;i++)
     {
-        if(strlen(argv[i])!=3)
+        if(strlen(argv[i])!=2)
         {
             std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu" << std::endl;
         }
-        if(argv[i][0]=='-')
+        else
         {
-            if(argv[i][1]=='f')
+            if(argv[i][0]=='-')
             {
-                float puissance=1;
-                float nombre=0;
-                floatBoolList[(int)(argv[i][2])-49]=true;
-                i++;
-                for(int j=strlen(argv[i])-1;j>=0;j--)
+                bool isFloat=false;
+                bool isBool=false;
+                int numFloat;
+                int numBool;
+                
+                
+                switch((char)argv[i][1])
                 {
-                    nombre=nombre+(argv[i][j]-48)*puissance;
-                    puissance*=10;
+                    case 'F':
+                        isFloat=true;
+                        numFloat=0;
+                        break;
+                    case 'N':
+                        isFloat=true;
+                        numFloat=1;
+                        break;
+                    case 'C':
+                        isFloat=true;
+                        numFloat=2;
+                        break;
+                    case 'T':
+                        isBool=true;
+                        numBool=0;
+                        break;
+                    case 'S':
+                        isBool=true;
+                        numBool=1;
+                        break;
+                    case 'H':
+                        isBool=true;
+                        numBool=2;
+                        break;
+                    case 'R':
+                        isBool=true;
+                        numBool=3;
+                        break;
+                    case 'L':
+                        isBool=true;
+                        numBool=4;
+                        break;
                 }
-                floatList.push_back(nombre);
-            }
-            else if(argv[i][1]=='b')
-            {
-                boolList[(int)(argv[i][2])-49]=true;
-            }
-            else
-            {
-                std::cerr << "L'argument numéro " << (i-2) << " n'est pas reconnu, début non reconnu" << std::endl;
+                
+                
+                
+                if(isFloat)
+                {
+                    float puissance=1;
+                    float nombre=0;
+                    floatBoolList[numFloat]=true;
+                    i++;
+                    for(int j=strlen(argv[i])-1;j>=0;j--)
+                    {
+                        nombre=nombre+(argv[i][j]-48)*puissance;
+                        puissance*=10;
+                    }
+                    floatList.push_back(nombre);
+                }
+                else if(isBool)
+                {
+                    boolList[numBool]=true;
+                }
+                else
+                {
+                    std::cerr << "L'argument numéro " << (i-3) << " n'est pas reconnu, début non reconnu" << std::endl;
+                }
             }
         }
     }
