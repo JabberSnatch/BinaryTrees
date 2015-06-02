@@ -49,7 +49,7 @@ TestEnv::runTest()
     bool dataCountShown=(_boolPar[1])? true:false;
     bool nodeCountShown=(_boolPar[2])? true:false;
     bool randomNodeShown=(_boolPar[3])? true:false;
-    bool timeListCreationShown;
+    bool timeListCreationShown=(_boolPar[4])? true:false;
     bool minimalVerbosity=(_boolPar[5])? true:false;
     
     TestEnv::Chrono* myChrono=new Chrono(0,"nanoseconds");
@@ -61,6 +61,9 @@ TestEnv::runTest()
     Node* rootNode;
     Node* copyNode;
     
+    if(!minimalVerbosity)
+        std::cout << "TEST LANCÉ :" << std::endl;
+
     while(nbRound>0)
     {
         NodeTree copyTree;
@@ -84,7 +87,6 @@ TestEnv::runTest()
             chrono2Activated=true;
             std::vector<Node*> vect_noeud=_Dlist_init(myChrono2,rootNode,nodeTree);
             _Dlist(myChrono,vect_noeud,rootNode,nodeTree);
-            timeListCreationShown=(_boolPar[4])? true:false;
         }
         else if (_type1==SREC)
         {
@@ -102,7 +104,7 @@ TestEnv::runTest()
             ArrayTree arrayTree(nodeTree);
             std::vector<int> vect_noeud=_Slist_init(myChrono2,randomNode,arrayTree);
             _Slist(myChrono,vect_noeud,randomNode,arrayTree);
-            timeListCreationShown=(_boolPar[4])? true:false;
+            
         }
         
         
@@ -116,14 +118,14 @@ TestEnv::runTest()
         else
         {
             if(timeShown !=0)
-                cout << "durée du calcul: " << myChrono->getDuration()<< " ms" << endl;   
+                cout << "durée du calcul: " << myChrono->getDuration()<< myChrono->getPrecision() << endl;   
             if(dataCountShown!=0)
                 cout << "somme de données: " << nodeTree.dataCount() << endl;
             if(nodeCountShown!=0)
                 cout << "nombre de données: " << nodeTree.leafCount() << endl; 
             if(timeListCreationShown & chrono2Activated)
             {
-                cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
+                cout << "temps de création de la liste : " << myChrono2->getDuration() << myChrono2->getPrecision() << endl;
             }
             std::cout << std::endl;
         }
@@ -177,25 +179,25 @@ TestEnv::runTest()
         else
         {
             if(timeShown !=0)
-                cout << "durée du calcul: " << myChrono->getDuration() << " ms" << endl;   
+                cout << "durée du calcul: " << myChrono->getDuration() << myChrono->getPrecision() << endl;   
             if(dataCountShown!=0)
                 cout << "somme de données: " << copyTree.dataCount() << endl;
             if(nodeCountShown!=0)
                 cout << "nombre de données: " << copyTree.leafCount() << endl;
             if(timeListCreationShown & chrono2Activated)
             {
-                cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
+                cout << "temps de création de la liste : " << myChrono2->getDuration() << myChrono2->getPrecision() << endl;
             }
 
             if(randomNodeShown){
                 rootNode = rootNode->findRoot();
                 cout << endl;
-                cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+                cout << "Sous-arbre extrait pour le SPR " << rootNode->nodeCount() << " :" << endl;
                 cout << rootNode->to_str() << endl;
             }            
             tempsTot= temps2/temps1 * 100;
             
-            cout << "Temps test1 / test2 : " << tempsTot << endl;
+            cout << "Temps premier test / deuxième test : " << tempsTot << " %" << endl;
             if(nbRound>0)
                 cout << "------------------" << endl;
         }

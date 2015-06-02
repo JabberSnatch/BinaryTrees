@@ -18,31 +18,31 @@ DESCRIPTION
          
        Fait des tests de performances entre différentes implémentations d'arbre binairput.
         FLOAT : 
-       -f1 [float]
+       -F [float]
             Donne le nombre de feuilles à insérer
             Defaut : 5000
 
-       -f2 [float]
+       -N [float]
             Donne le numéro de la node prise pour le SPR, doit être comprise entre 0 et le premier paramètre
             Defaut : random entre 0 et nbInsert
 
-       -f3 [float]
+       -C [float]
             Donne le nombre de fois que les tests sont faits
             Defaut : 1
             
         BOOLEAN:
-       -b1 
+       -T 
             Montre le temps de chaque test
 
-       -b2 
+       -S 
             Montre la somme des donneés
 
-       -b3 
+       -H 
             Montre le nombre de noeuds
 
-       -b4   
+       -R   
             Montre la node prise au hasard
             
-       -b5
+       -L
             Montre la temps de création de la liste
             NEEDED : Un des test doit être un list

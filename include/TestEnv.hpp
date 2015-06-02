@@ -131,6 +131,8 @@ private:
         *   Permet aux méthodes qui utilisent le chrono de récupérer la valeur finale
         */
         float getDuration();
+        
+        std::string getPrecision(){return _precision;}
     private:
         /** Temps de départ du chrono*/
         std::chrono::time_point<std::chrono::system_clock> _start;
