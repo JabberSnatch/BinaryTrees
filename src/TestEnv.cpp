@@ -113,7 +113,7 @@ TestEnv::runTest()
 
         if(minimalVerbosity)
         {
-            cout << myChrono->getDuration() << ";";
+            cout << nbInsert << ";" << myChrono->getDuration() << ";";
         }
         else
         {
@@ -198,7 +198,7 @@ TestEnv::runTest()
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps premier test / deuxième test : " << tempsTot << " %" << endl;
-            if(nbRound>0)
+            if(nbRound>1)
                 cout << "------------------" << endl;
         }
 
