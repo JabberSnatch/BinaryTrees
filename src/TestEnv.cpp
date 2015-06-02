@@ -41,7 +41,7 @@ TestEnv::runTest()
 {
     int nbOption=0;
     float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, nbInsert-1);
+    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, 2*nbInsert-1);
     float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:( randomPick(rng));
     float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
     
@@ -50,6 +50,7 @@ TestEnv::runTest()
     bool nodeCountShown=(_boolPar[2])? true:false;
     bool randomNodeShown=(_boolPar[3])? true:false;
     bool timeListCreationShown;
+    bool minimalVerbosity=(_boolPar[5])? true:false;
     
     TestEnv::Chrono* myChrono=new Chrono(0,"nanoseconds");
     TestEnv::Chrono* myChrono2=new Chrono(0,"nanoseconds");
@@ -107,19 +108,28 @@ TestEnv::runTest()
         
         //___________________Fin Premier test_________________________
         temps1 +=myChrono->getDuration();
-        if(timeShown !=0)
-            cout << "durée du calcul: " << myChrono->getDuration()<< " ms" << endl;   
-        if(dataCountShown!=0)
-            cout << "somme de données: " << nodeTree.dataCount() << endl;
-        if(nodeCountShown!=0)
-            cout << "nombre de données: " << nodeTree.leafCount() << endl; 
-        if(timeListCreationShown & chrono2Activated)
+
+        if(minimalVerbosity)
         {
-            cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
-            myChrono2->reset();
+            cout << myChrono->getDuration() << ";";
         }
+        else
+        {
+            if(timeShown !=0)
+                cout << "durée du calcul: " << myChrono->getDuration()<< " ms" << endl;   
+            if(dataCountShown!=0)
+                cout << "somme de données: " << nodeTree.dataCount() << endl;
+            if(nodeCountShown!=0)
+                cout << "nombre de données: " << nodeTree.leafCount() << endl; 
+            if(timeListCreationShown & chrono2Activated)
+            {
+                cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
+            }
+            std::cout << std::endl;
+        }
+
+        myChrono2->reset();
         myChrono->reset();
-        std::cout << std::endl;
         
         //___________________Deuxième test_________________________
         if(_type2==DREC)
@@ -160,36 +170,40 @@ TestEnv::runTest()
         //_____________________Fin Deuxième Test_______________________
         temps2 +=myChrono->getDuration();
         
-        
-        if(timeShown !=0)
-            cout << "durée du calcul: " << myChrono->getDuration() << " ms" << endl;   
-        if(dataCountShown!=0)
-            cout << "somme de données: " << copyTree.dataCount() << endl;
-        if(nodeCountShown!=0)
-            cout << "nombre de données: " << copyTree.leafCount() << endl;
-        if(timeListCreationShown & chrono2Activated)
+        if(minimalVerbosity)
         {
-            cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
-            myChrono2->reset();
+            cout << myChrono->getDuration() << ";" << endl;
         }
-        myChrono->reset();
-
-        
-
-        if(randomNodeShown){
-            if(rootNode->getParent()!=nullptr)
+        else
+        {
+            if(timeShown !=0)
+                cout << "durée du calcul: " << myChrono->getDuration() << " ms" << endl;   
+            if(dataCountShown!=0)
+                cout << "somme de données: " << copyTree.dataCount() << endl;
+            if(nodeCountShown!=0)
+                cout << "nombre de données: " << copyTree.leafCount() << endl;
+            if(timeListCreationShown & chrono2Activated)
             {
-                rootNode=rootNode->getParent();
+                cout << "temps de création de la liste : " << myChrono2->getDuration() << "ms" << endl;
             }
-            cout << endl;
-            cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
-            cout << rootNode->to_str() << endl;
-        }            
-        tempsTot= temps2/temps1 * 100;
-        
-        cout << "Temps it / rec : " << tempsTot << endl;
-        if(--nbRound>0)
-            cout << "------------------" << endl;
+
+            if(randomNodeShown){
+                rootNode = rootNode->findRoot();
+                cout << endl;
+                cout << "Node prise , de taille " << rootNode->nodeCount() << " :" << endl;
+                cout << rootNode->to_str() << endl;
+            }            
+            tempsTot= temps2/temps1 * 100;
+            
+            cout << "Temps test1 / test2 : " << tempsTot << endl;
+            if(nbRound>0)
+                cout << "------------------" << endl;
+        }
+
+        nbRound--;
+
+        myChrono->reset();
+        myChrono2->reset();
     }
         
         

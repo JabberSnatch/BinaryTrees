@@ -31,8 +31,8 @@
 #include "Node.hpp"
 #include "NodeTree.hpp"
 #include "ArrayTree.hpp"
-int maxSizeBoolPar=50;
-int maxSizeFloatPar=50;
+int maxSizeBoolPar=10;
+int maxSizeFloatPar=10;
 
 void debug(int argc, char* argv[])
 {
@@ -269,11 +269,6 @@ int parseCommandLine(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    std::cout << "YOLO" << std::endl;
-
-    std::chrono::duration<int> s_oneday(60*60*24);
-    std::cout << s_oneday.count() << std::endl;
-    
     debug(argc,argv);
 
     return parseCommandLine(argc, argv);
