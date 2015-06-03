@@ -89,6 +89,7 @@ NodeTree::insertNLeaves(int n)
     {
         Node* n = it->getNext();
         n->setData(count++);
+        n->_free = false;
     }
 }
 

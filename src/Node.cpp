@@ -681,6 +681,10 @@ Node::SPR_ite(Node* noeud)
             {
                 nodeActual=nodeActual->_right;
             }
+            else if(nodeActual->isOrphan())
+            {
+                fin = true;
+            }
             else if((nodeActual->_parent)->_parent==nullptr)//si on est juste après la racine
             {
                 if((nodeActual->_parent)->_right==nodeActual)   //si on est a droite
@@ -720,12 +724,6 @@ Node::SPR_ite(Node* noeud)
     }
     
     
-    /*if(!(copy->_parent)->addChild(copy))
-    {
-#if DEBUG
-    cout << "le rajout du noeud n'a pas marché" << endl;
-#endif    
-    }*/
 #if DEBUG
     //number of regraph
     std::cout << i <<" degraph/regraph"<< std::endl;

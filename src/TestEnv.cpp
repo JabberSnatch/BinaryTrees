@@ -41,7 +41,7 @@ TestEnv::runTest()
 {
     int nbOption=0;
     float nbInsert = (_floatBoolPar[0])?_floatPar[nbOption++]:5000;
-    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, 2*nbInsert-1);
+    uniform_int_distribution<int> randomPick = uniform_int_distribution<int>(1, (2*nbInsert)-2);
     float randomNode = (_floatBoolPar[1])? _floatPar[nbOption++]:( randomPick(rng));
     float nbRound= (_floatBoolPar[2])? _floatPar[nbOption++]:1;
     
@@ -64,7 +64,7 @@ TestEnv::runTest()
     if(!minimalVerbosity)
         std::cout << "TEST LANCÉ :" << std::endl;
 
-    while(nbRound>0)
+    for(int i = 0; i < nbRound; ++i)
     {
         NodeTree copyTree;
         chrono2Activated=false;
@@ -73,7 +73,7 @@ TestEnv::runTest()
         copyNode = copyTree.nodeAt(randomNode);
         rootNode = nodeTree.nodeAt(randomNode);
         
-        //___________________Premier Test_________________________
+    //___________________Premier Test_________________________
         if(_type1==DREC)
         {
             _Drec(myChrono,nodeTree,rootNode);
@@ -111,11 +111,7 @@ TestEnv::runTest()
         //___________________Fin Premier test_________________________
         temps1 +=myChrono->getDuration();
 
-        if(minimalVerbosity)
-        {
-            cout << nbInsert << ";" << myChrono->getDuration() << ";";
-        }
-        else
+        if(!minimalVerbosity)
         {
             if(timeShown !=0)
                 cout << "durée du calcul: " << myChrono->getDuration()<< myChrono->getPrecision() << endl;   
@@ -172,11 +168,7 @@ TestEnv::runTest()
         //_____________________Fin Deuxième Test_______________________
         temps2 +=myChrono->getDuration();
         
-        if(minimalVerbosity)
-        {
-            cout << myChrono->getDuration() << ";" << endl;
-        }
-        else
+        if(!minimalVerbosity)
         {
             if(timeShown !=0)
                 cout << "durée du calcul: " << myChrono->getDuration() << myChrono->getPrecision() << endl;   
@@ -198,14 +190,17 @@ TestEnv::runTest()
             tempsTot= temps2/temps1 * 100;
             
             cout << "Temps premier test / deuxième test : " << tempsTot << " %" << endl;
-            if(nbRound>1)
+            if(nbRound-i>1)
                 cout << "------------------" << endl;
         }
 
-        nbRound--;
-
         myChrono->reset();
         myChrono2->reset();
+    }
+
+    if(minimalVerbosity)
+    {
+        cout << nbInsert << ";" << temps1/nbRound << ";" << temps2/nbRound << ";" << endl;
     }
         
         

@@ -661,7 +661,7 @@ ArrayTree::SPR_ite(int node)
     int i=0;
     int regraphIndex;
     int child=degraph(node);
-    int nodeActual=0;
+    int nodeActual=_root;
     bool fin=false,remonte=false;
     while(fin==false)
     {
@@ -709,6 +709,10 @@ ArrayTree::SPR_ite(int node)
             else if (getRight(nodeActual)!=-1)// si on peut aller a droite
             {
                 nodeActual=getRight(nodeActual);
+            }
+            else if(isOrphan(nodeActual))
+            {
+                fin = true;
             }
             else if(getParent(getParent(nodeActual))==-1)//si on est juste après la racine
             {
@@ -786,7 +790,7 @@ ArrayTree::SPR_list(int noeud, std::vector<int>& nodes)
 {
     int count = 0;
     
-    for(unsigned int i = 0; i < nodes.size(); i++)
+    for(unsigned int i = 0; i < nodes.size(); ++i)
     {
         if(regraph(noeud, nodes[i]))
         {
